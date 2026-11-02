@@ -39,6 +39,12 @@ test('a website alone produces a live board with three verdicts and quoted evide
   await expect(reason).toHaveText('“Customer support powered by RivalDesk”');
   expect(await reason.getAttribute('href')).toBe('https://brightkettle.example/#:~:text=Customer%20support%20powered%20by%20RivalDesk');
   await expect(page.getByRole('status').first()).toContainText('Done: 1 shortlisted, 1 needs a look, 1 rejected');
+  // The second model's work is in the open: Oak and Pine's details list the quotes the checker threw out, each with why.
+  await needsLook.getByRole('button', { name: 'Details' }).click();
+  const thrown = needsLook.getByRole('region', { name: 'Thrown out by Checker (synthetic)' });
+  await expect(thrown).toBeVisible();
+  await expect(thrown.locator('li').first().locator('.agent-thrown-why')).not.toBeEmpty();
+  await expect(page.locator('.agent-monitor-stats')).toContainText('Kept by checker');
 
   // The pinned monitor shows every step done and the run's numbers; the activity log lists each step.
   const monitor = page.getByRole('region', { name: 'What the agent is doing' });

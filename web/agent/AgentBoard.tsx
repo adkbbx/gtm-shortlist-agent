@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { SiteIcon } from '../SiteIcon';
 import { Assumptions } from './Assumptions';
 import { EarlySteps, Feed, Monitor, Working } from './AgentLive';
-import { EvidenceList, QuoteBlock } from './Evidence';
+import { EvidenceList, QuoteBlock, checkerName } from './Evidence';
 import { agentApi, domainOf, editToken, isActive, keepShortlist } from './agent-api';
 import { AgentConfigContext, useAgentConfig } from './agent-config';
 import type { AgentEvent, AgentRun, AgentRunView, Company, EvidenceItem, Overrides, Profile } from './agent-api';
@@ -190,7 +190,7 @@ function CompanyRow({ company, run, events, runId, onUpdate }: { company: Compan
         {verdict.disqualifier && <QuoteBlock quote={verdict.disqualifier.quote} />}
       </div>}
       {verdict.kind === 'needs_look' && <Missing items={verdict.missing} />}
-      <EvidenceList company={company} checkName={checkNamer(run)} />
+      <EvidenceList company={company} checkName={checkNamer(run)} checker={checkerName(run.synthetic)} />
       {company.checked_places.length > 0 && <p className="agent-checked"><span>Checked for competitors:</span> {company.checked_places.join(', ')}</p>}
       {company.found_via && <p className="agent-checked"><span>Found by:</span> {company.found_via}</p>}
       <Trace events={mine} />

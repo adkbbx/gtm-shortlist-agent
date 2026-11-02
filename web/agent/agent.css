@@ -127,6 +127,16 @@ blockquote.agent-quote-text{margin:0;text-decoration:none}
 .agent-unread>summary{font-size:.875rem;color:var(--muted);cursor:pointer}
 .agent-unread li{overflow-wrap:anywhere;color:var(--muted)}
 .agent-evidence-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.875rem}
+.agent-thrown{margin-top:.875rem;padding:.875rem 1rem;border:1px solid var(--line);border-radius:var(--radius-control);background:#fbfaf8}
+.agent-thrown-title{font-size:.8125rem;font-weight:700;letter-spacing:.01em}
+.agent-thrown-title span{margin-left:.375rem;padding:.0625rem .4375rem;border-radius:999px;background:#ebe7e1;font-weight:600;color:var(--muted)}
+.agent-thrown ul{list-style:none;margin:.5rem 0 0;padding:0}
+.agent-thrown li{padding:.625rem 0;border-top:1px solid var(--line)}
+.agent-thrown li:first-child{border-top:0}
+.agent-thrown-claim{font-size:.8125rem;font-weight:600}
+.agent-thrown-quote{display:block;margin-top:.25rem;font-size:.8125rem;line-height:1.5;color:var(--muted);quotes:'“' '”';overflow-wrap:anywhere}
+.agent-thrown-why{margin-top:.375rem;font-size:.8125rem;line-height:1.6}
+.agent-thrown-why .agent-decision{margin-right:.5rem}
 .agent-all-quotes{margin-top:.5rem}
 .agent-all-quotes>summary{font-size:.875rem;color:var(--orange)}
 .agent-all-quotes ul{list-style:none;padding:0;margin:0}

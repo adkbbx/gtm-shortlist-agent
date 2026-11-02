@@ -60,9 +60,19 @@ const claimLabel: { [kind in EvidenceItem['claim_type']]: string } = {
 };
 const decisionLabel = { supports: 'Supports', contradicts: 'Contradicts', insufficient: 'Not enough' } as const;
 
-export function EvidenceList({ company, checkName }: { company: Company; checkName: (item: EvidenceItem) => string }) {
+/** Who judged the quotes: the second Meta model, or the scripted stand-in on synthetic test data. */
+export const checkerName = (synthetic: boolean) => synthetic ? 'Checker (synthetic)' : 'Muse Spark Open';
+const short = (text: string, limit = 220) => text.length > limit ? `${text.slice(0, limit - 1).trimEnd()}…` : text;
+
+export function EvidenceList({ company, checkName, checker }: { company: Company; checkName: (item: EvidenceItem) => string;
+  checker: string }) {
   const decisions = new Map(company.decisions.map(decision => [decision.evidence_id, decision]));
   const supported = company.evidence.filter(item => decisions.get(item.id)?.decision === 'supports' && item.claim_type !== 'disqualifier');
+  // The second model's work, in the open: every quote it threw out, with its reason.
+  const thrownOut = company.evidence.filter(item => {
+    const decision = decisions.get(item.id);
+    return decision?.decided_by === 'skeptic' && decision.decision !== 'supports';
+  });
   // One chip per check: a check supported by several quotes showed up as repeated chips on a live board.
   const byCheck = new Map<string, EvidenceItem[]>();
   for (const item of supported) {
@@ -72,8 +82,20 @@ export function EvidenceList({ company, checkName }: { company: Company; checkNa
   return <>
     {byCheck.size > 0 && <div className="agent-evidence-chips" aria-label="Supported evidence">
       {[...byCheck.values()].map(items => <Chip key={items[0].id} label={checkName(items[0])} tag={claimLabel[items[0].claim_type]}
-        quotes={items.map(item => item.quote)} tone="good" note={`Reviewer: ${decisions.get(items[0].id)?.reason || 'supports'}`} />)}
+        quotes={items.map(item => item.quote)} tone="good" note={`${checker}: ${decisions.get(items[0].id)?.reason || 'supports'}`} />)}
     </div>}
+    {thrownOut.length > 0 && <section className="agent-thrown" aria-label={`Thrown out by ${checker}`}>
+      <p className="agent-thrown-title">Thrown out by {checker} <span>{thrownOut.length}</span></p>
+      <ul>{thrownOut.map(item => {
+        const decision = decisions.get(item.id)!;
+        return <li key={item.id}>
+          <p className="agent-thrown-claim">{claimLabel[item.claim_type]}: {checkName(item)}</p>
+          <q className="agent-thrown-quote">{short(item.quote.text)}</q>
+          <p className="agent-thrown-why"><span className={`agent-decision ${decision.decision}`}>{decisionLabel[decision.decision]}</span>
+            {decision.reason}</p>
+        </li>;
+      })}</ul>
+    </section>}
     {company.evidence.length > 0 && <details className="agent-all-quotes">
       <summary>All checked quotes ({company.evidence.length})</summary>
       <ul>
@@ -83,7 +105,7 @@ export function EvidenceList({ company, checkName }: { company: Company; checkNa
             <p className="agent-evidence-line"><span className={`agent-decision ${decision?.decision ?? 'insufficient'}`}>
               {decision ? decisionLabel[decision.decision] : 'Not checked'}</span>{claimLabel[item.claim_type]}: {checkName(item)}</p>
             <QuoteBlock quote={item.quote} />
-            {decision?.reason && <p className="agent-decision-reason">{decision.decided_by === 'rule' ? 'Rule' : decision.decided_by === 'no_skeptic' ? 'Not reviewed' : 'Reviewer'}: {decision.reason}</p>}
+            {decision?.reason && <p className="agent-decision-reason">{decision.decided_by === 'rule' ? 'Rule' : decision.decided_by === 'no_skeptic' ? 'Not reviewed' : checker}: {decision.reason}</p>}
           </li>;
         })}
       </ul>
