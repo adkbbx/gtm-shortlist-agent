@@ -124,11 +124,17 @@ def checked_note(operation: str, instructions: str, schema: type[Answer], text_o
                            for item in quotes.values() if item.id in used],
                 "note": text}
         try:
+            # Muse Spark Open reasons before it answers: at 1,500 tokens a live check ran out of room three times
+            # (2 Nov, a dental clinic), so it starts with 3,000.
             check = calls.skeptic_json(operation + "_check", PitchCheck, [
                 {"role": "system", "content": CHECK},
                 {"role": "user", "content": "<data>\n" + json.dumps(note) + "\n</data>"}], company=company.domain,
-                max_tokens=1500)
-        except (AgentOutputError, AgentProviderError):
+                max_tokens=3000)
+        except (AgentOutputError, AgentProviderError) as exc:
+            # Unchecked, so not shown; logged as what it was, not as a rejection.
+            dropped.append(DroppedClaim(stage=operation, company=company.domain, claim_type=operation,
+                                        quote=text.replace("\n", " | ")[:1500],
+                                        reason=f"Not shown: the checker's answer could not be read ({exc})"[:600]))
             return None
         if check.decision == "supported":
             return answer, used, True, check.reason.strip()[:600]

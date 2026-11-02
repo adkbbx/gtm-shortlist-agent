@@ -50,6 +50,23 @@ def test_a_pitch_the_skeptic_cannot_support_is_dropped_and_logged(providers, run
     assert dropped and dropped[0].stage == "pitch" and "funding round" in dropped[0].reason
 
 
+class Garbled(Doubter):
+    """A skeptic whose answer to the check can never be read. SYNTHETIC."""
+
+    def chat(self, messages, *, max_tokens=2000):
+        if messages[0]["content"] == CHECK:
+            return ChatTurn(text="I think it is mostly fine", input_tokens=10, output_tokens=10, latency_ms=1)
+        return self.inner.chat(messages, max_tokens=max_tokens)
+
+
+def test_an_unreadable_check_is_not_shown_and_is_logged_as_unreadable_not_as_a_rejection(providers, run_result):
+    company = shortlisted(run_result)[0].model_copy(update={"pitch": None})
+    calls = Calls(Meter(Telemetry(budget_usd=1.0)), providers.investigator, Garbled(providers.skeptic))
+    dropped = []
+    assert write_pitch(company, run_result.profile, calls, use_skeptic=True, dropped=dropped) is None
+    assert dropped and "could not be read" in dropped[0].reason and "Skeptic:" not in dropped[0].reason
+
+
 def test_no_current_need_means_no_pitch(providers, run_result):
     company = shortlisted(run_result)[0]
     fit_only = company.model_copy(update={"evidence": [e for e in company.evidence if e.claim_type == "fit"]})
