@@ -1,0 +1,100 @@
+{
+ "text": "I'd started a rough prototype before the hackathon. Everything you'll see here, I built this week on Muse Spark.",
+ "words": [
+  {
+   "text": "I'd",
+   "start": 0.0,
+   "end": 0.24
+  },
+  {
+   "text": "started",
+   "start": 0.28,
+   "end": 0.56
+  },
+  {
+   "text": "a",
+   "start": 0.6,
+   "end": 0.64
+  },
+  {
+   "text": "rough",
+   "start": 0.68,
+   "end": 0.88
+  },
+  {
+   "text": "prototype",
+   "start": 0.936,
+   "end": 1.44
+  },
+  {
+   "text": "before",
+   "start": 1.486,
+   "end": 1.76
+  },
+  {
+   "text": "the",
+   "start": 1.78,
+   "end": 1.84
+  },
+  {
+   "text": "hackathon.",
+   "start": 1.888,
+   "end": 2.56
+  },
+  {
+   "text": "Everything",
+   "start": 2.647,
+   "end": 3.52
+  },
+  {
+   "text": "you'll",
+   "start": 3.54,
+   "end": 3.72
+  },
+  {
+   "text": "see",
+   "start": 3.75,
+   "end": 3.84
+  },
+  {
+   "text": "here,",
+   "start": 3.904,
+   "end": 4.32
+  },
+  {
+   "text": "I",
+   "start": 4.36,
+   "end": 4.4
+  },
+  {
+   "text": "built",
+   "start": 4.44,
+   "end": 4.64
+  },
+  {
+   "text": "this",
+   "start": 4.704,
+   "end": 4.96
+  },
+  {
+   "text": "week",
+   "start": 5.024,
+   "end": 5.28
+  },
+  {
+   "text": "on",
+   "start": 5.36,
+   "end": 5.52
+  },
+  {
+   "text": "Muse",
+   "start": 5.584,
+   "end": 5.84
+  },
+  {
+   "text": "Spark.",
+   "start": 5.907,
+   "end": 6.32
+  }
+ ]
+}

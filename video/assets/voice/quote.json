@@ -1,0 +1,85 @@
+{
+ "text": "Their open job post says: as one of the first three SDRs in this enterprise initiative.",
+ "words": [
+  {
+   "text": "Their",
+   "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "open",
+   "start": 0.128,
+   "end": 0.32
+  },
+  {
+   "text": "job",
+   "start": 0.4,
+   "end": 0.64
+  },
+  {
+   "text": "post",
+   "start": 0.72,
+   "end": 1.04
+  },
+  {
+   "text": "says:",
+   "start": 1.104,
+   "end": 1.44
+  },
+  {
+   "text": "as",
+   "start": 1.627,
+   "end": 2.0
+  },
+  {
+   "text": "one",
+   "start": 2.04,
+   "end": 2.16
+  },
+  {
+   "text": "of",
+   "start": 2.187,
+   "end": 2.24
+  },
+  {
+   "text": "the",
+   "start": 2.28,
+   "end": 2.4
+  },
+  {
+   "text": "first",
+   "start": 2.467,
+   "end": 2.8
+  },
+  {
+   "text": "three",
+   "start": 2.867,
+   "end": 3.2
+  },
+  {
+   "text": "SDRs",
+   "start": 3.36,
+   "end": 3.92
+  },
+  {
+   "text": "in",
+   "start": 3.947,
+   "end": 4.0
+  },
+  {
+   "text": "this",
+   "start": 4.048,
+   "end": 4.24
+  },
+  {
+   "text": "enterprise",
+   "start": 4.291,
+   "end": 4.8
+  },
+  {
+   "text": "initiative.",
+   "start": 4.851,
+   "end": 5.44
+  }
+ ]
+}

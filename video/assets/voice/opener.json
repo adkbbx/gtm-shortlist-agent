@@ -1,0 +1,100 @@
+{
+ "text": "It writes my opening line from those quotes only. And the checker reads it before I ever see it.",
+ "words": [
+  {
+   "text": "It",
+   "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "writes",
+   "start": 0.126,
+   "end": 0.4
+  },
+  {
+   "text": "my",
+   "start": 0.453,
+   "end": 0.56
+  },
+  {
+   "text": "opening",
+   "start": 0.61,
+   "end": 0.96
+  },
+  {
+   "text": "line",
+   "start": 1.024,
+   "end": 1.28
+  },
+  {
+   "text": "from",
+   "start": 1.312,
+   "end": 1.44
+  },
+  {
+   "text": "those",
+   "start": 1.48,
+   "end": 1.68
+  },
+  {
+   "text": "quotes",
+   "start": 1.76,
+   "end": 2.24
+  },
+  {
+   "text": "only.",
+   "start": 2.368,
+   "end": 2.96
+  },
+  {
+   "text": "And",
+   "start": 3.24,
+   "end": 4.08
+  },
+  {
+   "text": "the",
+   "start": 4.1,
+   "end": 4.16
+  },
+  {
+   "text": "checker",
+   "start": 4.21,
+   "end": 4.56
+  },
+  {
+   "text": "reads",
+   "start": 4.613,
+   "end": 4.88
+  },
+  {
+   "text": "it",
+   "start": 4.933,
+   "end": 5.04
+  },
+  {
+   "text": "before",
+   "start": 5.143,
+   "end": 5.76
+  },
+  {
+   "text": "I",
+   "start": 5.96,
+   "end": 6.16
+  },
+  {
+   "text": "ever",
+   "start": 6.224,
+   "end": 6.48
+  },
+  {
+   "text": "see",
+   "start": 6.54,
+   "end": 6.72
+  },
+  {
+   "text": "it.",
+   "start": 6.773,
+   "end": 7.04
+  }
+ ]
+}

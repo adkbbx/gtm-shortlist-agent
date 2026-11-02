@@ -1,0 +1,55 @@
+{
+ "text": "The models gather the evidence. Plain code makes the call.",
+ "words": [
+  {
+   "text": "The",
+   "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "models",
+   "start": 0.126,
+   "end": 0.4
+  },
+  {
+   "text": "gather",
+   "start": 0.446,
+   "end": 0.72
+  },
+  {
+   "text": "the",
+   "start": 0.74,
+   "end": 0.8
+  },
+  {
+   "text": "evidence.",
+   "start": 0.862,
+   "end": 1.44
+  },
+  {
+   "text": "Plain",
+   "start": 1.6,
+   "end": 2.4
+  },
+  {
+   "text": "code",
+   "start": 2.496,
+   "end": 2.88
+  },
+  {
+   "text": "makes",
+   "start": 2.947,
+   "end": 3.28
+  },
+  {
+   "text": "the",
+   "start": 3.3,
+   "end": 3.36
+  },
+  {
+   "text": "call.",
+   "start": 3.44,
+   "end": 3.92
+  }
+ ]
+}

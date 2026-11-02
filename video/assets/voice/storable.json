@@ -1,0 +1,85 @@
+{
+ "text": "Proudly employs over eight hundred employees. I sell to seed to Series A startups. It's out.",
+ "words": [
+  {
+   "text": "Proudly",
+   "start": 0.0,
+   "end": 0.32
+  },
+  {
+   "text": "employs",
+   "start": 0.4,
+   "end": 0.96
+  },
+  {
+   "text": "over",
+   "start": 1.008,
+   "end": 1.2
+  },
+  {
+   "text": "eight",
+   "start": 1.24,
+   "end": 1.44
+  },
+  {
+   "text": "hundred",
+   "start": 1.5,
+   "end": 1.92
+  },
+  {
+   "text": "employees.",
+   "start": 1.992,
+   "end": 2.72
+  },
+  {
+   "text": "I",
+   "start": 2.96,
+   "end": 3.2
+  },
+  {
+   "text": "sell",
+   "start": 3.248,
+   "end": 3.44
+  },
+  {
+   "text": "to",
+   "start": 3.547,
+   "end": 3.76
+  },
+  {
+   "text": "seed",
+   "start": 3.84,
+   "end": 4.16
+  },
+  {
+   "text": "to",
+   "start": 4.24,
+   "end": 4.4
+  },
+  {
+   "text": "Series",
+   "start": 4.469,
+   "end": 4.88
+  },
+  {
+   "text": "A",
+   "start": 4.96,
+   "end": 5.04
+  },
+  {
+   "text": "startups.",
+   "start": 5.111,
+   "end": 5.76
+  },
+  {
+   "text": "It's",
+   "start": 6.0,
+   "end": 6.56
+  },
+  {
+   "text": "out.",
+   "start": 6.64,
+   "end": 9.84
+  }
+ ]
+}

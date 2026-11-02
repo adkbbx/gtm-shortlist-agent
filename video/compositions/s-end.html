@@ -1,0 +1,33 @@
+<template>
+<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}
+@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
+#root{position:absolute;inset:0;overflow:hidden;background:#f7f7f5;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b}
+.glow{position:absolute;left:460px;top:-380px;width:1000px;height:900px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(213,104,47,.16),rgba(213,104,47,0))}
+.motif{position:absolute;left:0;top:0;width:1920px;height:1080px}
+.motif path{stroke-dasharray:1;stroke-dashoffset:1}
+.big{position:absolute;left:0;width:1920px;text-align:center;font-weight:800;letter-spacing:-.045em;line-height:1}
+.word{display:inline-block}
+.lockup{position:absolute;left:0;top:300px;width:1920px;display:flex;justify-content:center;align-items:center;gap:36px}
+.mark{width:150px;height:150px}.mark svg{width:150px;height:150px;display:block}
+.name{font-size:150px;font-weight:800;letter-spacing:-.05em}
+.url{position:absolute;left:0;top:520px;width:1920px;text-align:center;font-size:46px;font-weight:800;color:#b4501c;letter-spacing:-.02em}
+.credit{position:absolute;left:0;top:640px;width:1920px;text-align:center;font-size:32px;font-weight:500;color:#1b1b1b}
+.note{position:absolute;left:0;top:800px;width:1920px;text-align:center;font-size:30px;line-height:1.5;font-weight:500;color:#5c5853}</style>
+<div id="root" data-composition-id="s-end" data-width="1920" data-height="1080">
+  <div class="glow"></div>
+  <div class="lockup"><div id="s-end-mark" class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><path fill="#e0692c" fill-rule="evenodd" d="M18 4H46Q48 4 48 6V20Q60 25 60 38V58Q60 60 58 60H48Q46 60 46 58V36Q46 32 42 32H22Q18 32 18 36V58Q18 60 16 60H6Q4 60 4 58V38Q4 25 16 20V6Q16 4 18 4ZM24 12V20H30V12ZM36 12V20H42V12Z"/><path fill="#e0692c" d="M22 46L27 41L31 45L39 37L44 42L31 55Z"/></svg></div><div id="s-end-name" class="name">GTM Shortlist</div></div>
+  <div id="s-end-url" class="url">gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run</div>
+  <div id="s-end-credit" class="credit">Built solo for the Meta Global AI Developer Hackathon · Muse Spark 1.3 · Muse Spark Open on Baseten</div>
+  <div id="s-end-note" class="note">Voice, music and sound made with AI. Every product shot is a real recording.</div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s-end-mark",{opacity:0,scale:.4,rotation:-20},{opacity:1,scale:1,rotation:0,duration:.6,ease:"back.out(1.5)"},0.15);
+tl.fromTo("#s-end-name",{opacity:0,x:-40,filter:"blur(8px)"},{opacity:1,x:0,filter:"blur(0px)",duration:.45,ease:"expo.out"},0.45);
+tl.fromTo("#s-end-url",{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:"expo.out"},0.9);
+tl.fromTo("#s-end-credit",{opacity:0,y:20},{opacity:1,y:0,duration:.4,ease:"expo.out"},1.15);
+tl.fromTo("#s-end-note",{opacity:0},{opacity:1,duration:.5,ease:"sine.out"},1.5);
+window.__timelines["s-end"] = tl;
+</script>
+</template>

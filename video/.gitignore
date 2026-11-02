@@ -1,0 +1,10 @@
+# Media is large and is recreated by the tools below; only source, fonts and word timings are kept.
+renders/
+.hyperframes/
+assets/screens/
+assets/music/
+assets/sfx/
+assets/voice/samples/
+assets/voice/*.mp3
+assets/voice/*.wav
+node_modules/

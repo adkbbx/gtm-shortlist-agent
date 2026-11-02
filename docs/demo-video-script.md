@@ -20,7 +20,12 @@ For the Meta Global AI Developer Hackathon. Judging: Impact 30, Meta AI tooling 
 
 Record the real product. If one company must not be named, blur that card in the edit; video mode (`?video=1`) stays available but the script does not use it. At least 70% of the video is real screen recording.
 
-- **R1, start page:** the hero lines flowing, then typing `eygentic.com`, choosing 3, pressing Find. 1440×900, zoom 110%.
+- **R1, start page:** the hero lines flowing, then typing `eygentic.com`, choosing 5, pressing Find. 1440×900, zoom 110%.
+
+The first cut is built in `video/` with HyperFrames: these shots recorded with Playwright from the live demo (R2 is a real
+live search), an AI voice and AI music and effects from ElevenLabs, and the lines in `video/narration.json`, which follow
+this script with small changes (the checker's measured share of thrown-out quotes, and "Here's a finished search for my
+site" where the film moves from the live search to the finished example).
 - **R2, live board, first minute:** "What we assumed" filling in, competitors, companies being researched, the activity rail.
 - **R3, the finished eygentic.com example** (Explore a finished search): ThriveCart in Shortlisted with its quote popover and opening line; Storable in Rejected with its quote; the Needs a look column; the board's footer.
 - **R4, the no-website popup:** fill in the three questions slowly; do not submit.

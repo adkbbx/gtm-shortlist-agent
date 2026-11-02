@@ -1,0 +1,45 @@
+{
+ "text": "It proves my competitors from their own homepages.",
+ "words": [
+  {
+   "text": "It",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "text": "proves",
+   "start": 0.206,
+   "end": 0.48
+  },
+  {
+   "text": "my",
+   "start": 0.533,
+   "end": 0.64
+  },
+  {
+   "text": "competitors",
+   "start": 0.7,
+   "end": 1.36
+  },
+  {
+   "text": "from",
+   "start": 1.392,
+   "end": 1.52
+  },
+  {
+   "text": "their",
+   "start": 1.547,
+   "end": 1.68
+  },
+  {
+   "text": "own",
+   "start": 1.74,
+   "end": 1.92
+  },
+  {
+   "text": "homepages.",
+   "start": 1.968,
+   "end": 2.96
+  }
+ ]
+}

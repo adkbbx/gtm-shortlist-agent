@@ -1,0 +1,45 @@
+{
+ "text": "Storable looked like a fit. Until it didn't.",
+ "words": [
+  {
+   "text": "Storable",
+   "start": 0.0,
+   "end": 0.48
+  },
+  {
+   "text": "looked",
+   "start": 0.514,
+   "end": 0.72
+  },
+  {
+   "text": "like",
+   "start": 0.752,
+   "end": 0.88
+  },
+  {
+   "text": "a",
+   "start": 0.96,
+   "end": 1.04
+  },
+  {
+   "text": "fit.",
+   "start": 1.12,
+   "end": 1.44
+  },
+  {
+   "text": "Until",
+   "start": 1.64,
+   "end": 2.64
+  },
+  {
+   "text": "it",
+   "start": 2.667,
+   "end": 2.72
+  },
+  {
+   "text": "didn't.",
+   "start": 2.768,
+   "end": 3.2
+  }
+ ]
+}

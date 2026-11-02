@@ -1,0 +1,25 @@
+{
+ "text": "One input. My website.",
+ "words": [
+  {
+   "text": "One",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "text": "input.",
+   "start": 0.24,
+   "end": 0.72
+  },
+  {
+   "text": "My",
+   "start": 0.933,
+   "end": 1.36
+  },
+  {
+   "text": "website.",
+   "start": 1.42,
+   "end": 2.0
+  }
+ ]
+}

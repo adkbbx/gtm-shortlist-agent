@@ -1,0 +1,70 @@
+{
+ "text": "It even reads their homepage code, to see which tools they already use.",
+ "words": [
+  {
+   "text": "It",
+   "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "even",
+   "start": 0.144,
+   "end": 0.4
+  },
+  {
+   "text": "reads",
+   "start": 0.453,
+   "end": 0.72
+  },
+  {
+   "text": "their",
+   "start": 0.747,
+   "end": 0.88
+  },
+  {
+   "text": "homepage",
+   "start": 0.942,
+   "end": 1.44
+  },
+  {
+   "text": "code,",
+   "start": 1.504,
+   "end": 1.96
+  },
+  {
+   "text": "to",
+   "start": 2.027,
+   "end": 2.16
+  },
+  {
+   "text": "see",
+   "start": 2.2,
+   "end": 2.32
+  },
+  {
+   "text": "which",
+   "start": 2.36,
+   "end": 2.56
+  },
+  {
+   "text": "tools",
+   "start": 2.653,
+   "end": 3.12
+  },
+  {
+   "text": "they",
+   "start": 3.152,
+   "end": 3.28
+  },
+  {
+   "text": "already",
+   "start": 3.33,
+   "end": 3.68
+  },
+  {
+   "text": "use.",
+   "start": 3.8,
+   "end": 4.48
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "text": "Then it hunts for signals, not a database. Live job posts, news, launches.",
+ "words": [
+  {
+   "text": "Then",
+   "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "it",
+   "start": 0.133,
+   "end": 0.24
+  },
+  {
+   "text": "hunts",
+   "start": 0.28,
+   "end": 0.48
+  },
+  {
+   "text": "for",
+   "start": 0.52,
+   "end": 0.64
+  },
+  {
+   "text": "signals,",
+   "start": 0.73,
+   "end": 1.76
+  },
+  {
+   "text": "not",
+   "start": 1.82,
+   "end": 2.0
+  },
+  {
+   "text": "a",
+   "start": 2.04,
+   "end": 2.08
+  },
+  {
+   "text": "database.",
+   "start": 2.151,
+   "end": 2.88
+  },
+  {
+   "text": "Live",
+   "start": 3.04,
+   "end": 3.68
+  },
+  {
+   "text": "job",
+   "start": 3.74,
+   "end": 3.92
+  },
+  {
+   "text": "posts,",
+   "start": 4.0,
+   "end": 4.64
+  },
+  {
+   "text": "news,",
+   "start": 4.736,
+   "end": 5.2
+  },
+  {
+   "text": "launches.",
+   "start": 5.28,
+   "end": 6.32
+  }
+ ]
+}

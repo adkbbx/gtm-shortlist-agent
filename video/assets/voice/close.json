@@ -1,0 +1,65 @@
+{
+ "text": "Now I know who to email this week, and what to say.",
+ "words": [
+  {
+   "text": "Now",
+   "start": 0.0,
+   "end": 0.24
+  },
+  {
+   "text": "I",
+   "start": 0.28,
+   "end": 0.32
+  },
+  {
+   "text": "know",
+   "start": 0.352,
+   "end": 0.48
+  },
+  {
+   "text": "who",
+   "start": 0.5,
+   "end": 0.56
+  },
+  {
+   "text": "to",
+   "start": 0.613,
+   "end": 0.72
+  },
+  {
+   "text": "email",
+   "start": 0.773,
+   "end": 1.04
+  },
+  {
+   "text": "this",
+   "start": 1.072,
+   "end": 1.2
+  },
+  {
+   "text": "week,",
+   "start": 1.264,
+   "end": 1.6
+  },
+  {
+   "text": "and",
+   "start": 1.78,
+   "end": 2.32
+  },
+  {
+   "text": "what",
+   "start": 2.352,
+   "end": 2.48
+  },
+  {
+   "text": "to",
+   "start": 2.533,
+   "end": 2.64
+  },
+  {
+   "text": "say.",
+   "start": 2.72,
+   "end": 3.04
+  }
+ ]
+}

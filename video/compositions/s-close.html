@@ -1,0 +1,32 @@
+<template>
+<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}
+@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
+#root{position:absolute;inset:0;overflow:hidden;background:#f7f7f5;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b}
+.glow{position:absolute;left:460px;top:-380px;width:1000px;height:900px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(213,104,47,.16),rgba(213,104,47,0))}
+.motif{position:absolute;left:0;top:0;width:1920px;height:1080px}
+.motif path{stroke-dasharray:1;stroke-dashoffset:1}
+.big{position:absolute;left:0;width:1920px;text-align:center;font-weight:800;letter-spacing:-.045em;line-height:1}
+.word{display:inline-block}
+</style>
+<div id="root" data-composition-id="s-close" data-width="1920" data-height="1080">
+  <div class="glow"></div><svg class="motif" viewBox="0 0 1920 1080" style="opacity:1.0"><g fill="none" stroke="#9c958c" stroke-width="2" stroke-opacity=".55"><path class="s-close-g" d="M -20 63 C 360 134 680 483 980 540" pathLength="1"/><path class="s-close-g" d="M -20 104 C 499 170 708 488 980 540" pathLength="1"/><path class="s-close-g" d="M -20 151 C 494 209 691 493 980 540" pathLength="1"/><path class="s-close-g" d="M -20 170 C 368 226 627 496 980 540" pathLength="1"/><path class="s-close-g" d="M -20 226 C 458 273 717 502 980 540" pathLength="1"/><path class="s-close-g" d="M -20 237 C 387 283 633 504 980 540" pathLength="1"/><path class="s-close-g" d="M -20 293 C 346 330 719 510 980 540" pathLength="1"/><path class="s-close-g" d="M -20 331 C 331 362 611 515 980 540" pathLength="1"/><path class="s-close-g" d="M -20 369 C 389 394 604 519 980 540" pathLength="1"/><path class="s-close-g" d="M -20 407 C 462 427 665 524 980 540" pathLength="1"/><path class="s-close-g" d="M -20 442 C 379 457 622 528 980 540" pathLength="1"/><path class="s-close-g" d="M -20 472 C 467 482 632 532 980 540" pathLength="1"/><path class="s-close-g" d="M -20 525 C 321 527 683 538 980 540" pathLength="1"/><path class="s-close-g" d="M -20 572 C 422 567 670 544 980 540" pathLength="1"/><path class="s-close-g" d="M -20 583 C 476 577 702 545 980 540" pathLength="1"/><path class="s-close-g" d="M -20 635 C 382 621 694 551 980 540" pathLength="1"/><path class="s-close-g" d="M -20 664 C 321 646 687 555 980 540" pathLength="1"/><path class="s-close-g" d="M -20 722 C 347 695 649 562 980 540" pathLength="1"/><path class="s-close-g" d="M -20 754 C 475 722 642 566 980 540" pathLength="1"/><path class="s-close-g" d="M -20 785 C 303 748 658 569 980 540" pathLength="1"/><path class="s-close-g" d="M -20 821 C 494 779 661 574 980 540" pathLength="1"/><path class="s-close-g" d="M -20 871 C 420 821 664 580 980 540" pathLength="1"/><path class="s-close-g" d="M -20 906 C 380 851 631 584 980 540" pathLength="1"/><path class="s-close-g" d="M -20 932 C 352 873 633 587 980 540" pathLength="1"/><path class="s-close-g" d="M -20 990 C 300 922 654 594 980 540" pathLength="1"/><path class="s-close-g" d="M -20 1021 C 353 948 630 598 980 540" pathLength="1"/></g><g fill="none" stroke="#d5682f" stroke-width="4"><path class="s-close-o" d="M 980 540 C 1240 540 1400 438 1940 370" pathLength="1"/><path class="s-close-o" d="M 980 540 C 1240 540 1400 540 1940 540" pathLength="1"/><path class="s-close-o" d="M 980 540 C 1240 540 1400 642 1940 710" pathLength="1"/></g><circle id="s-close-core" cx="980" cy="540" r="9" fill="#d5682f"/></svg>
+  <div class="big" style="top:130px;font-size:84px"><span class="word " id="s-close-w0">Find</span> <span class="word " id="s-close-w1">the</span> <span class="word " id="s-close-w2">companies</span> <span class="word " id="s-close-w3">that</span> <span class="word " id="s-close-w4">need</span> <span class="word " id="s-close-w5">you</span> <span class="word " id="s-close-w6">this</span> <span class="word " id="s-close-w7">week.</span></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo(".s-close-g",{strokeDashoffset:1},{strokeDashoffset:0,duration:1.2,ease:"power2.out",stagger:.025},0);
+tl.to(".s-close-g",{strokeOpacity:.18,duration:.8,ease:"sine.inOut"},1.3);
+tl.fromTo(".s-close-o",{strokeDashoffset:1},{strokeDashoffset:0,duration:1.1,ease:"power2.inOut",stagger:.12},1.1);
+tl.fromTo("#s-close-core",{scale:0,transformOrigin:"50% 50%"},{scale:1,duration:.5,ease:"back.out(1.6)"},0.9);
+tl.fromTo("#s-close-w0",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.3);
+tl.fromTo("#s-close-w1",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.38);
+tl.fromTo("#s-close-w2",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.45999999999999996);
+tl.fromTo("#s-close-w3",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.54);
+tl.fromTo("#s-close-w4",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.62);
+tl.fromTo("#s-close-w5",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.7);
+tl.fromTo("#s-close-w6",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.78);
+tl.fromTo("#s-close-w7",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.14,ease:"power4.out"},0.8600000000000001);
+window.__timelines["s-close"] = tl;
+</script>
+</template>

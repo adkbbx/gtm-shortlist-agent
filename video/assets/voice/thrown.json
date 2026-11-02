@@ -1,0 +1,115 @@
+{
+ "text": "Every quote the checker throws out stays on the board, with its reason. Across my searches, that was a third of them.",
+ "words": [
+  {
+   "text": "Every",
+   "start": 0.0,
+   "end": 0.24
+  },
+  {
+   "text": "quote",
+   "start": 0.307,
+   "end": 0.64
+  },
+  {
+   "text": "the",
+   "start": 0.66,
+   "end": 0.72
+  },
+  {
+   "text": "checker",
+   "start": 0.76,
+   "end": 1.04
+  },
+  {
+   "text": "throws",
+   "start": 1.086,
+   "end": 1.36
+  },
+  {
+   "text": "out",
+   "start": 1.42,
+   "end": 1.6
+  },
+  {
+   "text": "stays",
+   "start": 1.653,
+   "end": 1.92
+  },
+  {
+   "text": "on",
+   "start": 1.973,
+   "end": 2.08
+  },
+  {
+   "text": "the",
+   "start": 2.1,
+   "end": 2.16
+  },
+  {
+   "text": "board,",
+   "start": 2.213,
+   "end": 2.8
+  },
+  {
+   "text": "with",
+   "start": 2.832,
+   "end": 2.96
+  },
+  {
+   "text": "its",
+   "start": 3.0,
+   "end": 3.12
+  },
+  {
+   "text": "reason.",
+   "start": 3.177,
+   "end": 3.6
+  },
+  {
+   "text": "Across",
+   "start": 3.76,
+   "end": 4.72
+  },
+  {
+   "text": "my",
+   "start": 4.8,
+   "end": 4.96
+  },
+  {
+   "text": "searches,",
+   "start": 5.022,
+   "end": 5.76
+  },
+  {
+   "text": "that",
+   "start": 5.792,
+   "end": 5.92
+  },
+  {
+   "text": "was",
+   "start": 5.96,
+   "end": 6.08
+  },
+  {
+   "text": "a",
+   "start": 6.12,
+   "end": 6.16
+  },
+  {
+   "text": "third",
+   "start": 6.2,
+   "end": 6.4
+  },
+  {
+   "text": "of",
+   "start": 6.453,
+   "end": 6.56
+  },
+  {
+   "text": "them.",
+   "start": 6.608,
+   "end": 6.88
+  }
+ ]
+}
