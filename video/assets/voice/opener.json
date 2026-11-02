@@ -1,5 +1,5 @@
 {
- "text": "It writes my opening line from those quotes only. And the checker reads it before I ever see it.",
+ "text": "It drafts the first line of my email from that quote, and the second model checks it before I see it.",
  "words": [
   {
    "text": "It",
@@ -7,94 +7,104 @@
    "end": 0.08
   },
   {
-   "text": "writes",
-   "start": 0.126,
-   "end": 0.4
-  },
-  {
-   "text": "my",
-   "start": 0.453,
-   "end": 0.56
-  },
-  {
-   "text": "opening",
-   "start": 0.61,
-   "end": 0.96
-  },
-  {
-   "text": "line",
-   "start": 1.024,
-   "end": 1.28
-  },
-  {
-   "text": "from",
-   "start": 1.312,
-   "end": 1.44
-  },
-  {
-   "text": "those",
-   "start": 1.48,
-   "end": 1.68
-  },
-  {
-   "text": "quotes",
-   "start": 1.76,
-   "end": 2.24
-  },
-  {
-   "text": "only.",
-   "start": 2.368,
-   "end": 2.96
-  },
-  {
-   "text": "And",
-   "start": 3.24,
-   "end": 4.08
+   "text": "drafts",
+   "start": 0.137,
+   "end": 0.48
   },
   {
    "text": "the",
-   "start": 4.1,
-   "end": 4.16
+   "start": 0.5,
+   "end": 0.56
   },
   {
-   "text": "checker",
-   "start": 4.21,
-   "end": 4.56
+   "text": "first",
+   "start": 0.6,
+   "end": 0.8
   },
   {
-   "text": "reads",
-   "start": 4.613,
-   "end": 4.88
+   "text": "line",
+   "start": 0.848,
+   "end": 1.04
+  },
+  {
+   "text": "of",
+   "start": 1.067,
+   "end": 1.12
+  },
+  {
+   "text": "my",
+   "start": 1.173,
+   "end": 1.28
+  },
+  {
+   "text": "email",
+   "start": 1.347,
+   "end": 1.68
+  },
+  {
+   "text": "from",
+   "start": 1.728,
+   "end": 1.92
+  },
+  {
+   "text": "that",
+   "start": 1.952,
+   "end": 2.08
+  },
+  {
+   "text": "quote,",
+   "start": 2.147,
+   "end": 2.88
+  },
+  {
+   "text": "and",
+   "start": 2.9,
+   "end": 2.96
+  },
+  {
+   "text": "the",
+   "start": 2.98,
+   "end": 3.04
+  },
+  {
+   "text": "second",
+   "start": 3.097,
+   "end": 3.44
+  },
+  {
+   "text": "model",
+   "start": 3.493,
+   "end": 3.76
+  },
+  {
+   "text": "checks",
+   "start": 3.806,
+   "end": 4.08
   },
   {
    "text": "it",
-   "start": 4.933,
-   "end": 5.04
+   "start": 4.133,
+   "end": 4.24
   },
   {
    "text": "before",
-   "start": 5.143,
-   "end": 5.76
+   "start": 4.286,
+   "end": 4.56
   },
   {
    "text": "I",
-   "start": 5.96,
-   "end": 6.16
-  },
-  {
-   "text": "ever",
-   "start": 6.224,
-   "end": 6.48
+   "start": 4.68,
+   "end": 4.8
   },
   {
    "text": "see",
-   "start": 6.54,
-   "end": 6.72
+   "start": 4.84,
+   "end": 4.96
   },
   {
    "text": "it.",
-   "start": 6.773,
-   "end": 7.04
+   "start": 5.013,
+   "end": 5.28
   }
  ]
 }

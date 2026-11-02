@@ -1,5 +1,5 @@
 {
- "text": "It even reads their homepage code, to see which tools they already use.",
+ "text": "It even reads a company's site code, so it knows if they already use a competitor.",
  "words": [
   {
    "text": "It",
@@ -8,63 +8,78 @@
   },
   {
    "text": "even",
-   "start": 0.144,
-   "end": 0.4
+   "start": 0.128,
+   "end": 0.32
   },
   {
    "text": "reads",
-   "start": 0.453,
-   "end": 0.72
+   "start": 0.36,
+   "end": 0.56
   },
   {
-   "text": "their",
-   "start": 0.747,
-   "end": 0.88
+   "text": "a",
+   "start": 0.6,
+   "end": 0.64
   },
   {
-   "text": "homepage",
-   "start": 0.942,
+   "text": "company's",
+   "start": 0.69,
+   "end": 1.12
+  },
+  {
+   "text": "site",
+   "start": 1.184,
    "end": 1.44
   },
   {
    "text": "code,",
    "start": 1.504,
-   "end": 1.96
+   "end": 2.08
   },
   {
-   "text": "to",
-   "start": 2.027,
+   "text": "so",
+   "start": 2.107,
    "end": 2.16
   },
   {
-   "text": "see",
-   "start": 2.2,
+   "text": "it",
+   "start": 2.213,
    "end": 2.32
   },
   {
-   "text": "which",
+   "text": "knows",
    "start": 2.36,
    "end": 2.56
   },
   {
-   "text": "tools",
-   "start": 2.653,
-   "end": 3.12
+   "text": "if",
+   "start": 2.613,
+   "end": 2.72
   },
   {
    "text": "they",
-   "start": 3.152,
-   "end": 3.28
+   "start": 2.752,
+   "end": 2.88
   },
   {
    "text": "already",
-   "start": 3.33,
-   "end": 3.68
+   "start": 2.93,
+   "end": 3.28
   },
   {
-   "text": "use.",
-   "start": 3.8,
-   "end": 4.48
+   "text": "use",
+   "start": 3.34,
+   "end": 3.52
+  },
+  {
+   "text": "a",
+   "start": 3.56,
+   "end": 3.6
+  },
+  {
+   "text": "competitor.",
+   "start": 3.651,
+   "end": 4.24
   }
  ]
 }

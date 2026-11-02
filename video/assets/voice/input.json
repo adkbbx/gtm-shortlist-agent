@@ -1,25 +1,65 @@
 {
- "text": "One input. My website.",
+ "text": "I type in my website. That's the only thing it asks for.",
  "words": [
   {
-   "text": "One",
+   "text": "I",
    "start": 0.0,
-   "end": 0.16
+   "end": 0.08
   },
   {
-   "text": "input.",
-   "start": 0.24,
-   "end": 0.72
+   "text": "type",
+   "start": 0.128,
+   "end": 0.32
   },
   {
-   "text": "My",
-   "start": 0.933,
-   "end": 1.36
+   "text": "in",
+   "start": 0.347,
+   "end": 0.4
+  },
+  {
+   "text": "my",
+   "start": 0.453,
+   "end": 0.56
   },
   {
    "text": "website.",
-   "start": 1.42,
-   "end": 2.0
+   "start": 0.62,
+   "end": 1.12
+  },
+  {
+   "text": "That's",
+   "start": 1.232,
+   "end": 1.76
+  },
+  {
+   "text": "the",
+   "start": 1.78,
+   "end": 1.84
+  },
+  {
+   "text": "only",
+   "start": 1.888,
+   "end": 2.08
+  },
+  {
+   "text": "thing",
+   "start": 2.107,
+   "end": 2.24
+  },
+  {
+   "text": "it",
+   "start": 2.267,
+   "end": 2.32
+  },
+  {
+   "text": "asks",
+   "start": 2.4,
+   "end": 2.72
+  },
+  {
+   "text": "for.",
+   "start": 2.78,
+   "end": 3.04
   }
  ]
 }

@@ -64,8 +64,9 @@ def main():
                     continue
                 context = {"previous_text": lines[i - 1]["text"] if i else "",
                            "next_text": lines[i + 1]["text"] if i + 1 < len(lines) else ""}
-                speak(client, voice, line["text"], model, out / line["id"], context)
+                speak(client, voice, line.get("say", line["text"]), model, out / line["id"], context)
 
 
 main()
+
 

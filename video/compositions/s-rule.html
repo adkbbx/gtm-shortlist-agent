@@ -1,27 +1,23 @@
 <template>
-<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}
-@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
-#root{position:absolute;inset:0;overflow:hidden;background:#f7f7f5;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b}
-.glow{position:absolute;left:460px;top:-380px;width:1000px;height:900px;border-radius:50%;
-  background:radial-gradient(closest-side,rgba(213,104,47,.16),rgba(213,104,47,0))}
-.motif{position:absolute;left:0;top:0;width:1920px;height:1080px}
-.motif path{stroke-dasharray:1;stroke-dashoffset:1}
-.big{position:absolute;left:0;width:1920px;text-align:center;font-weight:800;letter-spacing:-.045em;line-height:1}
-.word{display:inline-block}
-</style>
+<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:600;src:url('assets/fonts/schibsted-600.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b;
+  background:radial-gradient(1400px 700px at 50% -10%,#fbf7f1 0%,#f3f1ed 60%)}
+.stack{position:absolute;left:0;top:0;width:1920px;height:1080px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:44px;text-align:center}
+.eyebrow{font-size:30px;font-weight:600;color:#b4501c;letter-spacing:-.01em}
+.big{font-size:84px;font-weight:800;letter-spacing:-.04em;line-height:1.08}
+.soft{color:#6b665f}
+.row{display:flex;flex-direction:column;align-items:center;gap:14px}
+.stack svg{width:100%;height:100%;display:block}</style>
 <div id="root" data-composition-id="s-rule" data-width="1920" data-height="1080">
-  <div class="glow"></div><svg class="motif" viewBox="0 0 1920 1080" style="opacity:0.5"><g fill="none" stroke="#9c958c" stroke-width="2" stroke-opacity=".55"><path class="s-rule-g" d="M -20 63 C 360 134 680 483 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 104 C 499 170 708 488 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 151 C 494 209 691 493 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 170 C 368 226 627 496 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 226 C 458 273 717 502 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 237 C 387 283 633 504 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 293 C 346 330 719 510 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 331 C 331 362 611 515 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 369 C 389 394 604 519 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 407 C 462 427 665 524 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 442 C 379 457 622 528 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 472 C 467 482 632 532 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 525 C 321 527 683 538 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 572 C 422 567 670 544 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 583 C 476 577 702 545 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 635 C 382 621 694 551 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 664 C 321 646 687 555 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 722 C 347 695 649 562 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 754 C 475 722 642 566 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 785 C 303 748 658 569 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 821 C 494 779 661 574 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 871 C 420 821 664 580 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 906 C 380 851 631 584 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 932 C 352 873 633 587 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 990 C 300 922 654 594 980 540" pathLength="1"/><path class="s-rule-g" d="M -20 1021 C 353 948 630 598 980 540" pathLength="1"/></g><g fill="none" stroke="#d5682f" stroke-width="4"><path class="s-rule-o" d="M 980 540 C 1240 540 1400 438 1940 370" pathLength="1"/><path class="s-rule-o" d="M 980 540 C 1240 540 1400 540 1940 540" pathLength="1"/><path class="s-rule-o" d="M 980 540 C 1240 540 1400 642 1940 710" pathLength="1"/></g><circle id="s-rule-core" cx="980" cy="540" r="9" fill="#d5682f"/></svg>
-  <div class="big l1" style="top:330px;font-size:190px"><span class="word " id="s-rulea-w0">Models</span> <span class="word " id="s-rulea-w1">gather.</span></div>
-  <div class="big l2" style="top:560px;font-size:190px;color:#b4501c"><span class="word " id="s-ruleb-w0">Code</span> <span class="word " id="s-ruleb-w1">decides.</span></div>
+  <div class="stack">
+    <div id="s-rule-a" class="big">The models collect and check the evidence.</div>
+    <div id="s-rule-b" class="big" style="color:#b4501c">Plain rules in code make the call.</div></div>
 </div>
 <script>
 const tl = gsap.timeline({ paused: true });
-tl.fromTo(".s-rule-g",{strokeDashoffset:1},{strokeDashoffset:0,duration:1.4,ease:"power2.out",stagger:.02},0);
-tl.fromTo(".s-rule-o",{strokeDashoffset:1},{strokeDashoffset:0,duration:.9,ease:"power2.inOut",stagger:.08},1.78);
-tl.fromTo("#s-rulea-w0",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.16,ease:"power4.out"},0.26);
-tl.fromTo("#s-ruleb-w0",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.16,ease:"power4.out"},1.78);
-tl.fromTo("#s-rulea-w1",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.16,ease:"power4.out"},0.5800000000000001);
-tl.fromTo("#s-ruleb-w1",{opacity:0,filter:"blur(8px)"},{opacity:1,filter:"blur(0px)",duration:.16,ease:"power4.out"},2.1);
+tl.fromTo("#s-rule-a",{opacity:0,y:16,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},0.2);
+tl.fromTo("#s-rule-b",{opacity:0,y:16,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},3.08);
 window.__timelines["s-rule"] = tl;
 </script>
 </template>

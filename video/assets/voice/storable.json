@@ -1,85 +1,140 @@
 {
- "text": "Proudly employs over eight hundred employees. I sell to seed to Series A startups. It's out.",
+ "text": "But their about page says they have over eight hundred employees, and we work with seed to Series A. So it's rejected, and it shows me why.",
  "words": [
   {
-   "text": "Proudly",
+   "text": "But",
    "start": 0.0,
-   "end": 0.32
+   "end": 0.08
   },
   {
-   "text": "employs",
-   "start": 0.4,
-   "end": 0.96
+   "text": "their",
+   "start": 0.107,
+   "end": 0.24
   },
   {
-   "text": "over",
-   "start": 1.008,
-   "end": 1.2
+   "text": "about",
+   "start": 0.293,
+   "end": 0.56
   },
   {
-   "text": "eight",
-   "start": 1.24,
+   "text": "page",
+   "start": 0.624,
+   "end": 0.88
+  },
+  {
+   "text": "says",
+   "start": 0.928,
+   "end": 1.12
+  },
+  {
+   "text": "they",
+   "start": 1.152,
+   "end": 1.28
+  },
+  {
+   "text": "have",
+   "start": 1.312,
    "end": 1.44
   },
   {
-   "text": "hundred",
-   "start": 1.5,
+   "text": "over",
+   "start": 1.472,
+   "end": 1.6
+  },
+  {
+   "text": "eight",
+   "start": 1.653,
    "end": 1.92
   },
   {
-   "text": "employees.",
-   "start": 1.992,
-   "end": 2.72
+   "text": "hundred",
+   "start": 1.98,
+   "end": 2.4
   },
   {
-   "text": "I",
-   "start": 2.96,
-   "end": 3.2
+   "text": "employees,",
+   "start": 2.464,
+   "end": 3.52
   },
   {
-   "text": "sell",
-   "start": 3.248,
-   "end": 3.44
+   "text": "and",
+   "start": 3.56,
+   "end": 3.68
   },
   {
-   "text": "to",
-   "start": 3.547,
-   "end": 3.76
+   "text": "we",
+   "start": 3.733,
+   "end": 3.84
+  },
+  {
+   "text": "work",
+   "start": 3.888,
+   "end": 4.08
+  },
+  {
+   "text": "with",
+   "start": 4.112,
+   "end": 4.24
   },
   {
    "text": "seed",
-   "start": 3.84,
-   "end": 4.16
+   "start": 4.32,
+   "end": 4.64
   },
   {
    "text": "to",
-   "start": 4.24,
-   "end": 4.4
+   "start": 4.693,
+   "end": 4.8
   },
   {
    "text": "Series",
-   "start": 4.469,
-   "end": 4.88
+   "start": 4.857,
+   "end": 5.2
   },
   {
-   "text": "A",
-   "start": 4.96,
-   "end": 5.04
-  },
-  {
-   "text": "startups.",
-   "start": 5.111,
+   "text": "A.",
+   "start": 5.32,
    "end": 5.76
   },
   {
-   "text": "It's",
-   "start": 6.0,
+   "text": "So",
+   "start": 6.027,
    "end": 6.56
   },
   {
-   "text": "out.",
-   "start": 6.64,
-   "end": 9.84
+   "text": "it's",
+   "start": 6.587,
+   "end": 6.72
+  },
+  {
+   "text": "rejected,",
+   "start": 6.782,
+   "end": 7.52
+  },
+  {
+   "text": "and",
+   "start": 7.56,
+   "end": 7.68
+  },
+  {
+   "text": "it",
+   "start": 7.707,
+   "end": 7.76
+  },
+  {
+   "text": "shows",
+   "start": 7.8,
+   "end": 8.0
+  },
+  {
+   "text": "me",
+   "start": 8.053,
+   "end": 8.16
+  },
+  {
+   "text": "why.",
+   "start": 8.24,
+   "end": 8.8
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "text": "No website yet? Describe what you sell, and it quotes your own words.",
+ "text": "No website yet? You can just describe what you sell.",
  "words": [
   {
    "text": "No",
@@ -8,63 +8,48 @@
   },
   {
    "text": "website",
-   "start": 0.21,
-   "end": 0.56
+   "start": 0.22,
+   "end": 0.64
   },
   {
    "text": "yet?",
-   "start": 0.62,
-   "end": 0.88
+   "start": 0.68,
+   "end": 0.96
   },
   {
-   "text": "Describe",
-   "start": 0.969,
-   "end": 1.68
+   "text": "You",
+   "start": 1.06,
+   "end": 1.36
+  },
+  {
+   "text": "can",
+   "start": 1.38,
+   "end": 1.44
+  },
+  {
+   "text": "just",
+   "start": 1.472,
+   "end": 1.6
+  },
+  {
+   "text": "describe",
+   "start": 1.662,
+   "end": 2.16
   },
   {
    "text": "what",
-   "start": 1.712,
-   "end": 1.84
+   "start": 2.176,
+   "end": 2.24
   },
   {
    "text": "you",
-   "start": 1.88,
-   "end": 2.0
-  },
-  {
-   "text": "sell,",
-   "start": 2.048,
+   "start": 2.28,
    "end": 2.4
   },
   {
-   "text": "and",
-   "start": 2.42,
-   "end": 2.48
-  },
-  {
-   "text": "it",
-   "start": 2.533,
-   "end": 2.64
-  },
-  {
-   "text": "quotes",
-   "start": 2.686,
-   "end": 2.96
-  },
-  {
-   "text": "your",
-   "start": 2.992,
-   "end": 3.12
-  },
-  {
-   "text": "own",
-   "start": 3.18,
-   "end": 3.36
-  },
-  {
-   "text": "words.",
-   "start": 3.44,
-   "end": 4.16
+   "text": "sell.",
+   "start": 2.464,
+   "end": 2.8
   }
  ]
 }

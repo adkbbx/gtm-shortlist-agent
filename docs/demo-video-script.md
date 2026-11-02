@@ -22,10 +22,10 @@ Record the real product. If one company must not be named, blur that card in the
 
 - **R1, start page:** the hero lines flowing, then typing `eygentic.com`, choosing 5, pressing Find. 1440×900, zoom 110%.
 
-The first cut is built in `video/` with HyperFrames: these shots recorded with Playwright from the live demo (R2 is a real
-live search), an AI voice and AI music and effects from ElevenLabs, and the lines in `video/narration.json`, which follow
-this script with small changes (the checker's measured share of thrown-out quotes, and "Here's a finished search for my
-site" where the film moves from the live search to the finished example).
+The film is built in `video/` with HyperFrames: these shots recorded with Playwright from the live demo (R2 is a real
+live search), an ElevenLabs voice, music and effects, and the narration in `video/narration.json`. That narration
+replaces the voice lines below: it is rewritten in plain first-person speech, and the film uses a clean framed-window
+look (step labels, spotlights, plain captions) instead of the stamps and slams described here.
 - **R2, live board, first minute:** "What we assumed" filling in, competitors, companies being researched, the activity rail.
 - **R3, the finished eygentic.com example** (Explore a finished search): ThriveCart in Shortlisted with its quote popover and opening line; Storable in Rejected with its quote; the Needs a look column; the board's footer.
 - **R4, the no-website popup:** fill in the three questions slowly; do not submit.

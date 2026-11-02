@@ -1,75 +1,100 @@
 {
- "text": "Five companies, forty-two cents. And I can click through to every quote it used.",
+ "text": "This search covered five companies and cost forty-two cents. And every quote links back to where it came from.",
  "words": [
   {
-   "text": "Five",
+   "text": "This",
    "start": 0.0,
-   "end": 0.24
+   "end": 0.16
   },
   {
-   "text": "companies,",
-   "start": 0.296,
+   "text": "search",
+   "start": 0.206,
+   "end": 0.48
+  },
+  {
+   "text": "covered",
+   "start": 0.53,
+   "end": 0.88
+  },
+  {
+   "text": "five",
+   "start": 0.928,
    "end": 1.12
   },
   {
+   "text": "companies",
+   "start": 1.184,
+   "end": 1.76
+  },
+  {
+   "text": "and",
+   "start": 1.82,
+   "end": 2.0
+  },
+  {
+   "text": "cost",
+   "start": 2.064,
+   "end": 2.32
+  },
+  {
    "text": "forty-two",
-   "start": 1.173,
-   "end": 1.6
+   "start": 2.373,
+   "end": 2.88
   },
   {
    "text": "cents.",
-   "start": 1.68,
-   "end": 2.24
+   "start": 2.973,
+   "end": 3.6
   },
   {
    "text": "And",
-   "start": 2.44,
-   "end": 3.04
-  },
-  {
-   "text": "I",
-   "start": 3.08,
-   "end": 3.12
-  },
-  {
-   "text": "can",
-   "start": 3.16,
-   "end": 3.28
-  },
-  {
-   "text": "click",
-   "start": 3.32,
-   "end": 3.52
-  },
-  {
-   "text": "through",
-   "start": 3.56,
-   "end": 3.84
-  },
-  {
-   "text": "to",
-   "start": 3.893,
-   "end": 4.0
+   "start": 3.78,
+   "end": 4.32
   },
   {
    "text": "every",
-   "start": 4.067,
-   "end": 4.4
+   "start": 4.373,
+   "end": 4.64
   },
   {
    "text": "quote",
-   "start": 4.453,
-   "end": 4.72
+   "start": 4.707,
+   "end": 5.04
+  },
+  {
+   "text": "links",
+   "start": 5.08,
+   "end": 5.28
+  },
+  {
+   "text": "back",
+   "start": 5.328,
+   "end": 5.52
+  },
+  {
+   "text": "to",
+   "start": 5.547,
+   "end": 5.6
+  },
+  {
+   "text": "where",
+   "start": 5.627,
+   "end": 5.76
   },
   {
    "text": "it",
-   "start": 4.773,
-   "end": 4.88
+   "start": 5.813,
+   "end": 5.92
   },
   {
-   "text": "used.",
-   "start": 4.976,
-   "end": 5.44
+   "text": "came",
+   "start": 5.968,
+   "end": 6.16
+  },
+  {
+   "text": "from.",
+   "start": 6.208,
+   "end": 6.56
   }
  ]
 }

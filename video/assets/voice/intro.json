@@ -1,0 +1,80 @@
+{
+ "text": "I run Eygentic. We help small B2B teams figure out what actually brings them customers.",
+ "words": [
+  {
+   "text": "I",
+   "start": 0.0,
+   "end": 0.16
+  },
+  {
+   "text": "run",
+   "start": 0.22,
+   "end": 0.4
+  },
+  {
+   "text": "Eygentic.",
+   "start": 0.48,
+   "end": 1.32
+  },
+  {
+   "text": "We",
+   "start": 1.413,
+   "end": 1.6
+  },
+  {
+   "text": "help",
+   "start": 1.632,
+   "end": 1.76
+  },
+  {
+   "text": "small",
+   "start": 1.827,
+   "end": 2.16
+  },
+  {
+   "text": "B2B",
+   "start": 2.32,
+   "end": 2.64
+  },
+  {
+   "text": "teams",
+   "start": 2.72,
+   "end": 3.12
+  },
+  {
+   "text": "figure",
+   "start": 3.177,
+   "end": 3.52
+  },
+  {
+   "text": "out",
+   "start": 3.56,
+   "end": 3.68
+  },
+  {
+   "text": "what",
+   "start": 3.728,
+   "end": 3.92
+  },
+  {
+   "text": "actually",
+   "start": 3.964,
+   "end": 4.32
+  },
+  {
+   "text": "brings",
+   "start": 4.366,
+   "end": 4.64
+  },
+  {
+   "text": "them",
+   "start": 4.688,
+   "end": 4.88
+  },
+  {
+   "text": "customers.",
+   "start": 4.936,
+   "end": 5.6
+  }
+ ]
+}

@@ -1,0 +1,27 @@
+<template>
+<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:600;src:url('assets/fonts/schibsted-600.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b;
+  background:radial-gradient(1400px 700px at 50% -10%,#fbf7f1 0%,#f3f1ed 60%)}
+.stack{position:absolute;left:0;top:0;width:1920px;height:1080px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:44px;text-align:center}
+.eyebrow{font-size:30px;font-weight:600;color:#b4501c;letter-spacing:-.01em}
+.big{font-size:84px;font-weight:800;letter-spacing:-.04em;line-height:1.08}
+.soft{color:#6b665f}
+.row{display:flex;flex-direction:column;align-items:center;gap:14px}
+.stack svg{width:100%;height:100%;display:block}</style>
+<div id="root" data-composition-id="s-problem" data-width="1920" data-height="1080">
+  <div class="stack">
+    <div id="s-problem-q" class="big" style="font-size:72px" data-hold>Who do I reach out to this week?</div>
+    <div style="display:flex;gap:120px;margin-top:40px">
+      <div id="s-problem-a" class="row"><div class="eyebrow">Lead lists</div><div class="big soft" style="font-size:52px">Thousands of names.<br>No reason to call.</div></div>
+      <div id="s-problem-b" class="row"><div class="eyebrow">Chatbots</div><div class="big soft" style="font-size:52px">Plenty of reasons.<br>No way to check them.</div></div>
+    </div></div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.fromTo("#s-problem-q",{opacity:0,y:16,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},2.33);
+tl.fromTo("#s-problem-a",{opacity:0,y:24,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},4.792);
+tl.fromTo("#s-problem-b",{opacity:0,y:24,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},9.784);
+window.__timelines["s-problem"] = tl;
+</script>
+</template>

@@ -1,19 +1,19 @@
 {
- "text": "Then it hunts for signals, not a database. Live job posts, news, launches.",
+ "text": "Then it looks for companies showing that need today. Open job posts on Lever, Greenhouse and Ashby, news, product launches.",
  "words": [
   {
    "text": "Then",
    "start": 0.0,
-   "end": 0.08
+   "end": 0.16
   },
   {
    "text": "it",
-   "start": 0.133,
-   "end": 0.24
+   "start": 0.213,
+   "end": 0.32
   },
   {
-   "text": "hunts",
-   "start": 0.28,
+   "text": "looks",
+   "start": 0.347,
    "end": 0.48
   },
   {
@@ -22,49 +22,84 @@
    "end": 0.64
   },
   {
-   "text": "signals,",
-   "start": 0.73,
-   "end": 1.76
+   "text": "companies",
+   "start": 0.704,
+   "end": 1.28
   },
   {
-   "text": "not",
-   "start": 1.82,
-   "end": 2.0
+   "text": "showing",
+   "start": 1.33,
+   "end": 1.68
   },
   {
-   "text": "a",
-   "start": 2.04,
-   "end": 2.08
+   "text": "that",
+   "start": 1.728,
+   "end": 1.92
   },
   {
-   "text": "database.",
-   "start": 2.151,
-   "end": 2.88
+   "text": "need",
+   "start": 2.016,
+   "end": 2.4
   },
   {
-   "text": "Live",
-   "start": 3.04,
-   "end": 3.68
+   "text": "today.",
+   "start": 2.493,
+   "end": 3.52
+  },
+  {
+   "text": "Open",
+   "start": 3.632,
+   "end": 4.08
   },
   {
    "text": "job",
-   "start": 3.74,
-   "end": 3.92
+   "start": 4.16,
+   "end": 4.4
   },
   {
-   "text": "posts,",
-   "start": 4.0,
-   "end": 4.64
+   "text": "posts",
+   "start": 4.467,
+   "end": 4.8
+  },
+  {
+   "text": "on",
+   "start": 4.853,
+   "end": 4.96
+  },
+  {
+   "text": "Lever,",
+   "start": 5.027,
+   "end": 5.68
+  },
+  {
+   "text": "Greenhouse",
+   "start": 5.733,
+   "end": 6.24
+  },
+  {
+   "text": "and",
+   "start": 6.28,
+   "end": 6.4
+  },
+  {
+   "text": "Ashby,",
+   "start": 6.52,
+   "end": 7.12
   },
   {
    "text": "news,",
-   "start": 4.736,
-   "end": 5.2
+   "start": 7.264,
+   "end": 8.12
+  },
+  {
+   "text": "product",
+   "start": 8.155,
+   "end": 8.4
   },
   {
    "text": "launches.",
-   "start": 5.28,
-   "end": 6.32
+   "start": 8.471,
+   "end": 9.12
   }
  ]
 }

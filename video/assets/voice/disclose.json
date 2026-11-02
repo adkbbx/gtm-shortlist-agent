@@ -1,100 +1,110 @@
 {
- "text": "I'd started a rough prototype before the hackathon. Everything you'll see here, I built this week on Muse Spark.",
+ "text": "Before this hackathon I had a rough prototype. This week I rebuilt it on Muse Spark. Here's what it does now.",
  "words": [
   {
-   "text": "I'd",
+   "text": "Before",
    "start": 0.0,
    "end": 0.24
   },
   {
-   "text": "started",
-   "start": 0.28,
-   "end": 0.56
+   "text": "this",
+   "start": 0.272,
+   "end": 0.4
   },
   {
-   "text": "a",
-   "start": 0.6,
-   "end": 0.64
-  },
-  {
-   "text": "rough",
-   "start": 0.68,
-   "end": 0.88
-  },
-  {
-   "text": "prototype",
-   "start": 0.936,
-   "end": 1.44
-  },
-  {
-   "text": "before",
-   "start": 1.486,
-   "end": 1.76
-  },
-  {
-   "text": "the",
-   "start": 1.78,
-   "end": 1.84
-  },
-  {
-   "text": "hackathon.",
-   "start": 1.888,
-   "end": 2.56
-  },
-  {
-   "text": "Everything",
-   "start": 2.647,
-   "end": 3.52
-  },
-  {
-   "text": "you'll",
-   "start": 3.54,
-   "end": 3.72
-  },
-  {
-   "text": "see",
-   "start": 3.75,
-   "end": 3.84
-  },
-  {
-   "text": "here,",
-   "start": 3.904,
-   "end": 4.32
+   "text": "hackathon",
+   "start": 0.448,
+   "end": 0.96
   },
   {
    "text": "I",
-   "start": 4.36,
-   "end": 4.4
+   "start": 1.04,
+   "end": 1.12
   },
   {
-   "text": "built",
-   "start": 4.44,
-   "end": 4.64
+   "text": "had",
+   "start": 1.16,
+   "end": 1.28
   },
   {
-   "text": "this",
-   "start": 4.704,
-   "end": 4.96
+   "text": "a",
+   "start": 1.32,
+   "end": 1.36
+  },
+  {
+   "text": "rough",
+   "start": 1.4,
+   "end": 1.6
+  },
+  {
+   "text": "prototype.",
+   "start": 1.664,
+   "end": 2.4
+  },
+  {
+   "text": "This",
+   "start": 2.528,
+   "end": 3.04
   },
   {
    "text": "week",
-   "start": 5.024,
-   "end": 5.28
+   "start": 3.104,
+   "end": 3.36
+  },
+  {
+   "text": "I",
+   "start": 3.4,
+   "end": 3.44
+  },
+  {
+   "text": "rebuilt",
+   "start": 3.5,
+   "end": 3.92
+  },
+  {
+   "text": "it",
+   "start": 3.973,
+   "end": 4.08
   },
   {
    "text": "on",
-   "start": 5.36,
-   "end": 5.52
+   "start": 4.133,
+   "end": 4.24
   },
   {
    "text": "Muse",
-   "start": 5.584,
-   "end": 5.84
+   "start": 4.304,
+   "end": 4.56
   },
   {
    "text": "Spark.",
-   "start": 5.907,
+   "start": 4.64,
+   "end": 5.12
+  },
+  {
+   "text": "Here's",
+   "start": 5.296,
+   "end": 6.08
+  },
+  {
+   "text": "what",
+   "start": 6.096,
+   "end": 6.16
+  },
+  {
+   "text": "it",
+   "start": 6.213,
    "end": 6.32
+  },
+  {
+   "text": "does",
+   "start": 6.368,
+   "end": 6.56
+  },
+  {
+   "text": "now.",
+   "start": 6.66,
+   "end": 7.28
   }
  ]
 }

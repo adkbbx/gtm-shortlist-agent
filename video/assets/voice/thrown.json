@@ -1,115 +1,105 @@
 {
- "text": "Every quote the checker throws out stays on the board, with its reason. Across my searches, that was a third of them.",
+ "text": "I can also see everything that got thrown out. Across my searches, that was about a third of all quotes.",
  "words": [
   {
-   "text": "Every",
+   "text": "I",
    "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "can",
+   "start": 0.12,
    "end": 0.24
   },
   {
-   "text": "quote",
-   "start": 0.307,
-   "end": 0.64
+   "text": "also",
+   "start": 0.304,
+   "end": 0.56
   },
   {
-   "text": "the",
-   "start": 0.66,
-   "end": 0.72
+   "text": "see",
+   "start": 0.64,
+   "end": 0.88
   },
   {
-   "text": "checker",
-   "start": 0.76,
-   "end": 1.04
-  },
-  {
-   "text": "throws",
-   "start": 1.086,
+   "text": "everything",
+   "start": 0.924,
    "end": 1.36
   },
   {
-   "text": "out",
-   "start": 1.42,
-   "end": 1.6
+   "text": "that",
+   "start": 1.392,
+   "end": 1.52
   },
   {
-   "text": "stays",
-   "start": 1.653,
+   "text": "got",
+   "start": 1.56,
+   "end": 1.68
+  },
+  {
+   "text": "thrown",
+   "start": 1.714,
    "end": 1.92
   },
   {
-   "text": "on",
-   "start": 1.973,
-   "end": 2.08
-  },
-  {
-   "text": "the",
-   "start": 2.1,
-   "end": 2.16
-  },
-  {
-   "text": "board,",
-   "start": 2.213,
-   "end": 2.8
-  },
-  {
-   "text": "with",
-   "start": 2.832,
-   "end": 2.96
-  },
-  {
-   "text": "its",
-   "start": 3.0,
-   "end": 3.12
-  },
-  {
-   "text": "reason.",
-   "start": 3.177,
-   "end": 3.6
+   "text": "out.",
+   "start": 2.02,
+   "end": 2.4
   },
   {
    "text": "Across",
-   "start": 3.76,
-   "end": 4.72
+   "start": 2.571,
+   "end": 3.6
   },
   {
    "text": "my",
-   "start": 4.8,
-   "end": 4.96
+   "start": 3.653,
+   "end": 3.76
   },
   {
    "text": "searches,",
-   "start": 5.022,
-   "end": 5.76
+   "start": 3.813,
+   "end": 4.56
   },
   {
    "text": "that",
-   "start": 5.792,
-   "end": 5.92
+   "start": 4.592,
+   "end": 4.72
   },
   {
    "text": "was",
-   "start": 5.96,
-   "end": 6.08
+   "start": 4.74,
+   "end": 4.8
+  },
+  {
+   "text": "about",
+   "start": 4.84,
+   "end": 5.04
   },
   {
    "text": "a",
-   "start": 6.12,
-   "end": 6.16
+   "start": 5.12,
+   "end": 5.2
   },
   {
    "text": "third",
-   "start": 6.2,
-   "end": 6.4
+   "start": 5.253,
+   "end": 5.52
   },
   {
    "text": "of",
-   "start": 6.453,
-   "end": 6.56
+   "start": 5.547,
+   "end": 5.6
   },
   {
-   "text": "them.",
-   "start": 6.608,
-   "end": 6.88
+   "text": "all",
+   "start": 5.66,
+   "end": 5.84
+  },
+  {
+   "text": "quotes.",
+   "start": 5.92,
+   "end": 6.48
   }
  ]
 }

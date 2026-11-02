@@ -1,120 +1,195 @@
 {
- "text": "Then a second model, Muse Spark Open on Baseten, reads every quote cold, with no web access, and throws out the weak ones.",
+ "text": "Every quote it finds goes to a second model, Muse Spark Open on Base-ten. That one can't browse. It only sees the quote and what it's supposed to prove, and it throws out anything that doesn't hold up.",
  "words": [
   {
-   "text": "Then",
+   "text": "Every",
    "start": 0.0,
-   "end": 0.08
-  },
-  {
-   "text": "a",
-   "start": 0.12,
-   "end": 0.16
-  },
-  {
-   "text": "second",
-   "start": 0.206,
-   "end": 0.48
-  },
-  {
-   "text": "model,",
-   "start": 0.533,
-   "end": 1.04
-  },
-  {
-   "text": "Muse",
-   "start": 1.12,
-   "end": 1.44
-  },
-  {
-   "text": "Spark",
-   "start": 1.507,
-   "end": 1.84
-  },
-  {
-   "text": "Open",
-   "start": 1.92,
-   "end": 2.24
-  },
-  {
-   "text": "on",
-   "start": 2.347,
-   "end": 2.56
-  },
-  {
-   "text": "Baseten,",
-   "start": 2.6,
-   "end": 3.44
-  },
-  {
-   "text": "reads",
-   "start": 3.507,
-   "end": 3.84
-  },
-  {
-   "text": "every",
-   "start": 3.88,
-   "end": 4.08
+   "end": 0.32
   },
   {
    "text": "quote",
-   "start": 4.147,
-   "end": 4.48
+   "start": 0.36,
+   "end": 0.56
   },
   {
-   "text": "cold,",
-   "start": 4.576,
-   "end": 5.2
+   "text": "it",
+   "start": 0.587,
+   "end": 0.64
   },
   {
-   "text": "with",
-   "start": 5.232,
-   "end": 5.36
+   "text": "finds",
+   "start": 0.733,
+   "end": 1.2
   },
   {
-   "text": "no",
-   "start": 5.44,
-   "end": 5.6
+   "text": "goes",
+   "start": 1.28,
+   "end": 1.6
   },
   {
-   "text": "web",
-   "start": 5.66,
-   "end": 5.84
+   "text": "to",
+   "start": 1.653,
+   "end": 1.76
   },
   {
-   "text": "access,",
-   "start": 5.92,
-   "end": 6.56
+   "text": "a",
+   "start": 1.8,
+   "end": 1.84
   },
   {
-   "text": "and",
-   "start": 6.58,
-   "end": 6.64
+   "text": "second",
+   "start": 1.897,
+   "end": 2.24
   },
   {
-   "text": "throws",
-   "start": 6.697,
+   "text": "model,",
+   "start": 2.293,
+   "end": 2.96
+  },
+  {
+   "text": "Muse",
+   "start": 3.04,
+   "end": 3.36
+  },
+  {
+   "text": "Spark",
+   "start": 3.427,
+   "end": 3.76
+  },
+  {
+   "text": "Open",
+   "start": 3.856,
+   "end": 4.24
+  },
+  {
+   "text": "on",
+   "start": 4.4,
+   "end": 4.72
+  },
+  {
+   "text": "Base-ten.",
+   "start": 4.768,
+   "end": 5.441
+  },
+  {
+   "text": "That",
+   "start": 5.648,
+   "end": 6.48
+  },
+  {
+   "text": "one",
+   "start": 6.54,
+   "end": 6.72
+  },
+  {
+   "text": "can't",
+   "start": 6.78,
    "end": 7.04
   },
   {
-   "text": "out",
-   "start": 7.1,
-   "end": 7.28
+   "text": "browse.",
+   "start": 7.131,
+   "end": 7.76
+  },
+  {
+   "text": "It",
+   "start": 7.893,
+   "end": 8.16
+  },
+  {
+   "text": "only",
+   "start": 8.208,
+   "end": 8.4
+  },
+  {
+   "text": "sees",
+   "start": 8.464,
+   "end": 8.72
   },
   {
    "text": "the",
-   "start": 7.3,
-   "end": 7.36
+   "start": 8.76,
+   "end": 8.88
   },
   {
-   "text": "weak",
-   "start": 7.408,
-   "end": 7.6
+   "text": "quote",
+   "start": 8.933,
+   "end": 9.2
   },
   {
-   "text": "ones.",
-   "start": 7.664,
-   "end": 8.08
+   "text": "and",
+   "start": 9.26,
+   "end": 9.44
+  },
+  {
+   "text": "what",
+   "start": 9.472,
+   "end": 9.6
+  },
+  {
+   "text": "it's",
+   "start": 9.653,
+   "end": 9.96
+  },
+  {
+   "text": "supposed",
+   "start": 9.982,
+   "end": 10.16
+  },
+  {
+   "text": "to",
+   "start": 10.187,
+   "end": 10.24
+  },
+  {
+   "text": "prove,",
+   "start": 10.333,
+   "end": 11.2
+  },
+  {
+   "text": "and",
+   "start": 11.22,
+   "end": 11.28
+  },
+  {
+   "text": "it",
+   "start": 11.333,
+   "end": 11.44
+  },
+  {
+   "text": "throws",
+   "start": 11.497,
+   "end": 11.84
+  },
+  {
+   "text": "out",
+   "start": 11.9,
+   "end": 12.08
+  },
+  {
+   "text": "anything",
+   "start": 12.142,
+   "end": 12.64
+  },
+  {
+   "text": "that",
+   "start": 12.672,
+   "end": 12.8
+  },
+  {
+   "text": "doesn't",
+   "start": 12.827,
+   "end": 13.04
+  },
+  {
+   "text": "hold",
+   "start": 13.104,
+   "end": 13.36
+  },
+  {
+   "text": "up.",
+   "start": 13.467,
+   "end": 13.84
   }
  ]
 }

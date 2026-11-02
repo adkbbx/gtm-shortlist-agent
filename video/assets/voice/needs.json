@@ -1,50 +1,80 @@
 {
- "text": "Everything else? Needs a look, with exactly what's missing.",
+ "text": "If it can't prove something, the company goes to Needs a look, with what's missing.",
  "words": [
   {
-   "text": "Everything",
+   "text": "If",
    "start": 0.0,
-   "end": 0.32
+   "end": 0.08
   },
   {
-   "text": "else?",
-   "start": 0.384,
-   "end": 1.16
+   "text": "it",
+   "start": 0.133,
+   "end": 0.24
   },
   {
-   "text": "Needs",
-   "start": 1.247,
-   "end": 1.68
+   "text": "can't",
+   "start": 0.3,
+   "end": 0.56
   },
   {
-   "text": "a",
-   "start": 1.76,
+   "text": "prove",
+   "start": 0.613,
+   "end": 0.88
+  },
+  {
+   "text": "something,",
+   "start": 0.928,
+   "end": 1.76
+  },
+  {
+   "text": "the",
+   "start": 1.78,
    "end": 1.84
   },
   {
-   "text": "look,",
-   "start": 1.872,
-   "end": 2.48
+   "text": "company",
+   "start": 1.89,
+   "end": 2.24
   },
   {
-   "text": "with",
-   "start": 2.496,
+   "text": "goes",
+   "start": 2.304,
    "end": 2.56
   },
   {
-   "text": "exactly",
+   "text": "to",
    "start": 2.64,
-   "end": 3.2
+   "end": 2.8
+  },
+  {
+   "text": "Needs",
+   "start": 2.88,
+   "end": 3.28
+  },
+  {
+   "text": "a",
+   "start": 3.32,
+   "end": 3.36
+  },
+  {
+   "text": "look,",
+   "start": 3.424,
+   "end": 3.76
+  },
+  {
+   "text": "with",
+   "start": 3.856,
+   "end": 4.24
   },
   {
    "text": "what's",
-   "start": 3.28,
-   "end": 3.8
+   "start": 4.288,
+   "end": 4.68
   },
   {
    "text": "missing.",
-   "start": 3.825,
-   "end": 4.08
+   "start": 4.705,
+   "end": 4.96
   }
  ]
 }

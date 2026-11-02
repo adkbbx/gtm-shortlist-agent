@@ -1,42 +1,41 @@
 <template>
-<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}
-@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
-#root{position:absolute;inset:0;overflow:hidden;background:#f7f7f5;font-family:'Schibsted Grotesk',sans-serif}
+<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:600;src:url('assets/fonts/schibsted-600.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b;
+  background:radial-gradient(1400px 700px at 50% -10%,#fbf7f1 0%,#f3f1ed 60%)}
+.win{position:absolute;left:224px;top:56px;width:1472px;height:868px;border-radius:18px;overflow:hidden;
+  background:#fff;border:1px solid rgba(27,27,27,.10);box-shadow:0 50px 110px -45px rgba(40,30,20,.45),0 8px 24px -12px rgba(40,30,20,.12)}
+.bar{position:absolute;left:0;top:0;width:1472px;height:40px;background:#f7f6f3;border-bottom:1px solid rgba(27,27,27,.10);
+  display:flex;align-items:center}
+.dots{position:absolute;left:18px;top:14px;display:flex;gap:8px}.dots i{width:12px;height:12px;border-radius:50%;background:#dedad3;display:block}
+.url{margin:0 auto;padding:4px 16px;border-radius:8px;background:#fff;border:1px solid rgba(27,27,27,.10);font-size:15px;font-weight:500;color:#6b665f}
+.view{position:absolute;left:0;top:40px;width:1472px;height:828px;overflow:hidden;background:#f7f7f5}
 .cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
 .cam video{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:contain}
-.ov{position:absolute;z-index:5}
-.badge{display:inline-flex;align-items:center;gap:14px;padding:16px 26px;border-radius:999px;font-weight:800;
-  font-size:34px;letter-spacing:-.02em;white-space:nowrap;box-shadow:0 18px 40px -18px rgba(27,27,27,.45)}
-.badge i{width:12px;height:12px;border-radius:50%;background:#d5682f;display:block}
-.badge.dark{background:#1b1b1b;color:#fff}
-.badge.light{background:rgba(255,255,255,.96);color:#1b1b1b;border:1.5px solid rgba(27,27,27,.12)}
-.badge.orange{background:#b4501c;color:#fff}.badge.orange i{background:#fff}
-.sweep{width:100%;height:100%;background:#d5682f;border-radius:4px;transform-origin:0 50%}
-.ring{width:100%;height:100%;border:5px solid #d5682f;border-radius:12px}
-.stamp{position:absolute;left:50%;top:50%;margin-left:-430px;margin-top:-120px;width:860px;height:240px;display:flex;
-  align-items:center;justify-content:center;border:14px solid #c62f25;border-radius:28px;color:#c62f25;font-weight:800;
-  font-size:170px;letter-spacing:.04em;background:rgba(255,255,255,.55)}
-.stat{margin:0 auto;width:max-content;padding:22px 40px;border-radius:24px;background:#1b1b1b;color:#fff;font-weight:800;
-  font-size:48px;letter-spacing:-.025em}
-.dim{position:absolute;inset:0;background:#1b1b1b;z-index:3}
-.note{max-width:900px;padding:16px 24px;border-radius:18px;background:rgba(255,255,255,.96);color:#5c5853;font-weight:500;
-  font-size:28px;line-height:1.4;border:1.5px solid rgba(27,27,27,.12)}</style>
+.spot{position:absolute;border-radius:14px;box-shadow:0 0 0 3000px rgba(24,22,20,.42);z-index:4}
+.label{position:absolute;left:224px;top:12px;height:40px;display:flex;align-items:center;gap:14px;font-size:28px;
+  font-weight:600;letter-spacing:-.015em;color:#1b1b1b;white-space:nowrap}
+.label b{color:#b4501c;font-weight:800}
+.speed{position:absolute;right:224px;top:12px;height:40px;display:flex;align-items:center;font-size:28px;font-weight:500;
+  color:#6b665f;white-space:nowrap}
+.spotclip{position:absolute;left:0;top:0;width:1920px;height:1080px}</style>
 <div id="root" data-composition-id="s-cost" data-width="1920" data-height="1080">
-  <div id="s-cost-settle" class="cam"><div id="s-cost-cam" class="cam">
-    <video id="s-cost-video" class="clip" src="assets/screens/example.mp4" data-start="0" data-duration="6.04"
-      data-media-start="47.95" data-playback-rate="0.2318" muted playsinline></video>
-    <div id="s-cost-o0" class="clip ov" data-start="1.353" data-duration="4.687" style="left:1657px;top:339px;width:111px;height:56px"><div class="ring"></div></div>
-  </div></div>
-  
-  
+  <div id="s-cost-label" class="label">5 companies  ·  $0.42</div>
+  <div id="s-cost-win" class="win">
+    <div class="bar" data-layout-ignore><div class="dots"><i></i><i></i><i></i></div><div class="url">gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run</div></div>
+    <div class="view"><div id="s-cost-cam" class="cam">
+      <video id="s-cost-video" class="clip" src="assets/screens/example.mp4" data-start="0" data-duration="7.16"
+        data-media-start="47.95" data-playback-rate="0.1955" muted playsinline></video>
+      <div id="s-cost-sp0" class="clip spotclip" data-start="0.978" data-duration="6.182" data-layout-allow-overflow data-layout-ignore><div class="spot" style="left:1080px;top:302px;width:700px;height:104px"></div></div>
+    </div></div>
+  </div>
 </div>
 <script>
 const tl = gsap.timeline({ paused: true });
-tl.set("#s-cost-cam",{x:0.0,y:0.0,scale:1.0},0);
-tl.fromTo("#s-cost-settle",{scale:1.035,transformOrigin:"50% 50%"},{scale:1,transformOrigin:"50% 50%",duration:0.45,ease:"expo.out"},0);
-tl.to("#s-cost-cam",{x:-1344.0,y:-80.5,scale:1.7,duration:1.812,ease:"sine.inOut"},0.0);
-tl.to("#s-cost-cam",{x:-1440.0,y:-98.8,scale:1.75,duration:4.228,ease:"sine.inOut"},1.812);
-tl.fromTo("#s-cost-o0 > *",{opacity:0,scale:1.25},{opacity:1,scale:1,duration:0.4,ease:"expo.out"},1.353);
+tl.set("#s-cost-cam",{x:0.0,y:0.0,scale:0.7667},0);
+tl.to("#s-cost-cam",{x:-736.0,y:-0.0,scale:1.15,duration:2.148,ease:"sine.inOut"},0.0);
+tl.to("#s-cost-cam",{x:-765.4,y:-5.5,scale:1.1653,duration:5.012,ease:"sine.inOut"},2.148);
+tl.fromTo("#s-cost-sp0 .spot",{opacity:0},{opacity:1,duration:.6,ease:"power2.inOut"},0.978);
+tl.fromTo("#s-cost-label",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.35,ease:"power3.out"},0.12);
 window.__timelines["s-cost"] = tl;
 </script>
 </template>
