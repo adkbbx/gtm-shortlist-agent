@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gtm-shortlist-agent"
+version = "0.1.0"
+description = "Put in your website: an agent on Muse Spark finds the companies that need what you sell right now"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+dependencies = [
+  # The pre-event prototype, used as a library for its safe page fetcher, quote matching and page-type rules.
+  # Pinned to the last commit before the hackathon, so none of its code is part of this repository.
+  "gtm-shortlist @ git+https://github.com/adkbbx/GTM_Shortlist@pre-meta-hackathon",
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.12,<3", "httpx>=0.28,<1", "beautifulsoup4>=4.13,<5",
+  "python-dotenv>=1,<2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+shortlist-agent = "shortlist_agent.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+shortlist_agent = ["showcase/*.json", "showcase/events/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"

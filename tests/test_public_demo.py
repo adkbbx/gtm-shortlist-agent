@@ -1,0 +1,362 @@
+"""Public demo app and its file store, over the SYNTHETIC providers. No provider keys, no network."""
+import hashlib
+import hmac
+import time
+from datetime import timedelta
+
+import pytest
+from fastapi.testclient import TestClient
+from pydantic import ValidationError
+from shortlist.domain import utcnow
+
+from shortlist_agent.files import INTERRUPTED, FileAgentRuns
+from shortlist_agent.models import AgentEvent, RunResult, SellerDescription, Telemetry
+from shortlist_agent.public import PublicSettings, create_public_app
+from shortlist_agent.seller import DESCRIPTION_URL
+from shortlist_agent.service import described_label
+from shortlist_agent.settings import AgentSettings
+from shortlist_agent.synthetic import DESCRIBED_SELLER, synthetic_providers
+
+SECRET = "public-demo-test-secret-0123456789abcdef"
+ORIGIN = "https://demo.example"
+
+
+def public_settings(tmp_path, **changes):
+    dist = tmp_path / "dist"
+    dist.mkdir(parents=True, exist_ok=True)
+    (dist / "index.html").write_text("<html><head><title>Demo</title></head><body></body></html>", encoding="utf-8")
+    return PublicSettings(app_url=ORIGIN, secret=SECRET, data_dir=tmp_path / "runs", dist_dir=dist, **changes)
+
+
+def make_client(tmp_path, **changes):
+    app = create_public_app(public_settings(tmp_path, **changes), agent_settings=lambda: AgentSettings(),
+                            providers=lambda settings: synthetic_providers())
+    client = TestClient(app, base_url=ORIGIN)
+    client.service, client.policy = app.state.agent_service, app.state.public_policy
+    return client
+
+
+@pytest.fixture
+def client(tmp_path):
+    with make_client(tmp_path) as test_client:
+        yield test_client
+
+
+def finished(client, run_id):
+    client.service.wait(run_id, 20)
+    for _ in range(100):
+        body = client.get(f"/api/agent/runs/{run_id}").json()
+        if body["status"] not in ("queued", "running"):
+            return body
+        time.sleep(0.05)
+    raise AssertionError("Run did not finish")
+
+
+def token_for(run_id):
+    return hmac.new(SECRET.encode(), ("edit:" + run_id).encode(), hashlib.sha256).hexdigest()
+
+
+def saved_run(status="complete", cost=0.0):
+    return RunResult(website="https://seller.example/", status=status, telemetry=Telemetry(budget_usd=1.0, cost_usd=cost))
+
+
+def test_start_caps_companies_returns_edit_token_and_lists_nothing(client):
+    response = client.post("/api/agent/runs", json={"website": "seller.example", "overrides": {"company_count": 20}})
+    assert response.status_code == 201
+    started = response.json()
+    assert started["edit_token"] == token_for(started["id"])
+    body = finished(client, started["id"])
+    assert body["status"] == "complete" and body["run"]["company_count"] == 5 and body["run"]["synthetic"]
+    assert client.get("/api/agent/runs").json() == []
+    health = client.get("/api/health").json()
+    assert health["mode"] == "public" and health["max_companies"] == 5 and health["turnstile_site_key"] is None
+
+
+def test_a_seller_without_a_website_describes_its_business_and_every_claim_quotes_those_words(client):
+    started = client.post("/api/agent/runs", json={"description": DESCRIBED_SELLER})
+    assert started.status_code == 201
+    body = finished(client, started.json()["id"])
+    run, profile = body["run"], body["run"]["profile"]
+    assert body["status"] == "complete" and run["website"] == "Northwind Desk"  # named after the business
+    assert run["description"]["markets"] == "North America and Europe"
+    assert profile["website"] == "" and profile["domain"] == "" and profile["name"] == "Northwind Desk"
+    assert [page["url"] for page in profile["pages"]] == [DESCRIPTION_URL]  # nothing was fetched for the seller
+    quotes = [q for item in [profile["offer"], profile["buyer"], *profile["fit_criteria"], *profile["need_signals"],
+                             *profile["stated_limits"]] for q in item["quotes"]]
+    text = "\n".join(DESCRIBED_SELLER.values())
+    assert quotes and all(q["source_type"] == "description" and q["text"] in text for q in quotes)
+    # A quote the description does not contain is dropped, as one missing from a website would be.
+    assert "Teams cut first response times by 80 percent." in [d["quote"] for d in run["dropped"]]
+    assert any(c["verdict"] and c["verdict"]["kind"] == "shortlisted" for c in run["companies"])
+    csv = client.get(f"/api/agent/runs/{run['id']}/shortlist.csv")
+    assert csv.status_code == 200 and "shortlist-northwinddesk-" in csv.headers["content-disposition"]
+
+
+def test_an_unnamed_description_is_labelled_by_what_it_sells_and_never_by_a_guessed_name(client):
+    unnamed = {**DESCRIBED_SELLER, "name": ""}
+    body = finished(client, client.post("/api/agent/runs", json={"description": unnamed}).json()["id"])
+    # Each unnamed search reads differently in your list, from your own words; "Your business" made them all alike.
+    assert body["run"]["website"] == "Help desk software for online stores"
+    # The synthetic model returns a name ("Northwind Desk"); no one typed it, so no email may be signed with it.
+    assert body["run"]["profile"]["name"] == ""
+    longer = {**unnamed, "offer": "Inventory and ordering software for independent coffee roasters and the cafés they supply"}
+    assert described_label(SellerDescription(**longer)) == "Inventory and ordering software for independent…"
+    typed = {**unnamed, "offer": "bookkeeping software for independent cafes"}
+    assert described_label(SellerDescription(**typed)) == "Bookkeeping software for independent cafes"
+
+
+@pytest.mark.parametrize("body", [{}, {"website": "seller.example", "description": DESCRIBED_SELLER},
+                                  {"description": {**DESCRIBED_SELLER, "offer": "Tools"}}])
+def test_a_search_needs_a_website_or_a_real_description_but_not_both(client, body):
+    assert client.post("/api/agent/runs", json=body).status_code == 422
+
+
+def test_shared_link_reads_but_only_the_starter_can_correct(client):
+    started = client.post("/api/agent/runs", json={"website": "seller.example"}).json()
+    finished(client, started["id"])
+    path = f"/api/agent/runs/{started['id']}"
+    assert client.get(path).status_code == 200
+    refused = client.post(path + "/overrides", json={"exclusions": ["trailgear.example"]})
+    assert refused.status_code == 403 and "Only the browser that started" in refused.json()["detail"]
+    wrong = client.post(path + "/overrides", json={"exclusions": ["trailgear.example"]}, headers={"X-Agent-Edit-Token": "0" * 64})
+    assert wrong.status_code == 403
+    allowed = client.post(path + "/overrides", json={"exclusions": ["trailgear.example"]},
+                          headers={"X-Agent-Edit-Token": started["edit_token"]})
+    assert allowed.status_code == 202
+    finished(client, started["id"])
+
+
+def test_a_new_search_skips_only_companies_this_browser_already_researched(client):
+    first = client.post("/api/agent/runs", json={"website": "seller.example"}).json()
+    done = finished(client, first["id"])
+    researched = {c["domain"] for c in done["run"]["companies"]}
+    assert researched
+    previous = [{"id": first["id"], "token": first["edit_token"]}]
+    again = finished(client, client.post("/api/agent/runs", json={"website": "seller.example", "previous": previous}).json()["id"])
+    skipped = {a["domain"] for a in again["run"]["set_aside"] if a["reason"].startswith("Already researched")}
+    assert researched <= skipped and not researched & {c["domain"] for c in again["run"]["companies"]}
+    forged = [{"id": first["id"], "token": "0" * 64}]  # another visitor's run without its token: not used
+    other = finished(client, client.post("/api/agent/runs", json={"website": "seller.example", "previous": forged}).json()["id"])
+    assert not any(a["reason"].startswith("Already researched") for a in other["run"]["set_aside"])
+
+
+def test_draft_outreach_email_for_a_shortlisted_company_only_from_the_starting_browser(client):
+    started = client.post("/api/agent/runs", json={"website": "seller.example"}).json()
+    done = finished(client, started["id"])
+    shortlisted = next(c for c in done["run"]["companies"] if c["verdict"]["kind"] == "shortlisted")
+    other = next(c for c in done["run"]["companies"] if c["verdict"]["kind"] != "shortlisted")
+    path = f"/api/agent/runs/{started['id']}/companies/{{}}/outreach"
+    headers = {"X-Agent-Edit-Token": started["edit_token"]}
+    assert client.post(path.format(shortlisted["domain"])).status_code == 403
+    drafted = client.post(path.format(shortlisted["domain"]), headers=headers)
+    assert drafted.status_code == 200
+    company = next(c for c in drafted.json()["run"]["companies"] if c["domain"] == shortlisted["domain"])
+    email = company["outreach"]
+    assert email["subject"] and email["body"].startswith("Hi ") and email["checked"]
+    assert set(email["evidence_ids"]) <= {d["evidence_id"] for d in company["decisions"] if d["decision"] == "supports"}
+    operations = [call["operation"] for call in drafted.json()["run"]["telemetry"]["calls"]]
+    assert operations.count("email") == 1 and operations.count("email_check") == 1
+    again = client.post(path.format(shortlisted["domain"]), headers=headers).json()  # saved: no new model calls
+    assert [call["operation"] for call in again["run"]["telemetry"]["calls"]] == operations
+    assert client.post(path.format(other["domain"]), headers=headers).status_code == 409
+    assert client.post(path.format("missing.example"), headers=headers).status_code == 404
+
+
+def test_hourly_limit_per_visitor(tmp_path):
+    with make_client(tmp_path, runs_per_hour=2, max_active=10) as client:
+        ids = [client.post("/api/agent/runs", json={"website": "seller.example"}).json()["id"] for _ in range(2)]
+        limited = client.post("/api/agent/runs", json={"website": "seller.example"})
+        assert limited.status_code == 429 and "2 searches an hour" in limited.json()["detail"]
+        for run_id in ids:
+            finished(client, run_id)
+        now = time.monotonic()
+        client.policy.clock = lambda: now + 3601
+        assert client.post("/api/agent/runs", json={"website": "seller.example"}).status_code == 201
+
+
+def test_forwarded_address_counts_only_behind_a_trusted_proxy(tmp_path):
+    with make_client(tmp_path, runs_per_hour=1, max_active=10, trust_proxy=True) as client:
+        for address in ("203.0.113.5", "203.0.113.6"):
+            response = client.post("/api/agent/runs", json={"website": "seller.example"}, headers={"X-Forwarded-For": address})
+            assert response.status_code == 201
+        again = client.post("/api/agent/runs", json={"website": "seller.example"}, headers={"X-Forwarded-For": "203.0.113.5, 10.0.0.1"})
+        assert again.status_code == 429
+    with make_client(tmp_path / "direct", runs_per_hour=1, max_active=10) as client:
+        assert client.post("/api/agent/runs", json={"website": "seller.example"}, headers={"X-Forwarded-For": "203.0.113.7"}).status_code == 201
+        spoofed = client.post("/api/agent/runs", json={"website": "seller.example"}, headers={"X-Forwarded-For": "203.0.113.8"})
+        assert spoofed.status_code == 429
+
+
+def test_daily_budget_and_busy_limits(tmp_path):
+    with make_client(tmp_path, daily_usd=1.5, max_active=1) as client:
+        client.service.store.save(saved_run(cost=0.6))
+        refused = client.post("/api/agent/runs", json={"website": "seller.example"})
+        assert refused.status_code == 503 and "budget is used up" in refused.json()["detail"]
+    with make_client(tmp_path / "busy", max_active=1) as client:
+        client.service.store.save(saved_run(status="running"))
+        busy = client.post("/api/agent/runs", json={"website": "seller.example"})
+        assert busy.status_code == 503 and "busy" in busy.json()["detail"]
+
+
+def test_turnstile_is_checked_before_any_work(tmp_path):
+    with make_client(tmp_path, turnstile_site_key="site-key", turnstile_secret="turnstile-secret") as client:
+        checked = []
+        client.policy.verify = lambda secret, token, address: checked.append(token) or token == "good"
+        assert client.get("/api/health").json()["turnstile_site_key"] == "site-key"
+        assert client.post("/api/agent/runs", json={"website": "seller.example"}).status_code == 403
+        assert client.post("/api/agent/runs", json={"website": "seller.example", "turnstile": "bad"}).status_code == 403
+        good = client.post("/api/agent/runs", json={"website": "seller.example", "turnstile": "good"})
+        assert good.status_code == 201 and checked == ["bad", "good"]
+        finished(client, good.json()["id"])
+
+
+def test_origin_host_and_run_ids_are_checked(client, tmp_path):
+    crossed = client.post("/api/agent/runs", json={"website": "seller.example"}, headers={"Origin": "https://evil.example"})
+    assert crossed.status_code == 403
+    for bad in ("not-a-run", "A" * 32, "0" * 31):
+        assert client.get(f"/api/agent/runs/{bad}").status_code == 404
+    assert client.get("/api/agent/runs/" + "0" * 32).status_code == 404
+    with TestClient(client.app, base_url="https://other.example") as stranger:
+        assert stranger.get("/api/health").status_code == 400
+
+
+def test_ui_page_is_marked_agent_only(client):
+    page = client.get("/?agent=" + "0" * 32)
+    assert page.status_code == 200 and '<meta name="shortlist-start-flow" content="agent-only">' in page.text
+    assert page.headers["x-frame-options"] == "DENY"
+
+
+def test_settings_refuse_weak_or_mismatched_configuration(tmp_path):
+    with pytest.raises(ValidationError):
+        PublicSettings(app_url=ORIGIN, secret="short")
+    with pytest.raises(ValidationError):
+        PublicSettings(app_url="http://demo.example", secret=SECRET)
+    with pytest.raises(ValidationError):
+        PublicSettings(app_url=ORIGIN + "/path", secret=SECRET)
+    with pytest.raises(ValidationError):
+        PublicSettings(app_url=ORIGIN, secret=SECRET, turnstile_site_key="only-half")
+    assert PublicSettings(app_url="http://127.0.0.1:8020", secret=SECRET).app_url == "http://127.0.0.1:8020"
+
+
+def test_file_store_round_trip_usage_and_restart_recovery(tmp_path):
+    writes = []
+    store = FileAgentRuns(tmp_path, after_write=lambda: writes.append(1))
+    done, working = saved_run(cost=0.25), saved_run(status="running", cost=0.1)
+    store.create(done)
+    store.save(working)
+    with pytest.raises(ValueError):
+        store.create(done)
+    for message in ("one", "two", "three"):
+        store.append_event(done.id, AgentEvent(stage="run", message=message))
+    status, events = store.events(done.id, after=1)
+    assert status == "complete" and [(e.seq, e.message) for e in events] == [(2, "two"), (3, "three")]
+    assert store.get(done.id)["result"].telemetry.cost_usd == 0.25
+    spent, active = store.usage_since(utcnow() - timedelta(hours=1))
+    assert spent == pytest.approx(0.35) and active == 1
+    assert store.usage_since(utcnow() + timedelta(hours=1))[0] == 0
+    assert {item["id"] for item in store.list()} == {done.id, working.id}
+    assert writes and not list(tmp_path.glob("*.tmp"))
+
+    assert FileAgentRuns(tmp_path).recover_interrupted() == 1
+    recovered = store.get(working.id)
+    assert recovered["status"] == "failed" and recovered["result"].error == INTERRUPTED
+    assert store.get(done.id)["events"][-1].message == "three"
+    with pytest.raises(KeyError):
+        store.get("../" + done.id)
+
+
+def test_shipped_examples_are_real_finished_searches_that_open_read_only(tmp_path):
+    from shortlist_agent.public import SHOWCASE
+
+    files = sorted(SHOWCASE.glob("*.json"))
+    assert files  # real live runs, saved 1 November; see docs/PROGRESS.md
+    for path in files:
+        run = RunResult.model_validate_json(path.read_text(encoding="utf-8"))
+        assert run.status == "complete" and not run.synthetic
+        assert all(aside.previous_run is None for aside in run.set_aside)  # no links to runs the demo does not have
+        for company in run.companies:
+            supported = {d.evidence_id for d in company.decisions if d.decision == "supports"}
+            assert company.pitch is None or (company.verdict.kind == "shortlisted"
+                                             and set(company.pitch.evidence_ids) <= supported)
+    with make_client(tmp_path) as client:
+        examples = client.get("/api/health").json()["examples"]
+        assert {e["id"] for e in examples} == {p.stem for p in files}
+        # One example per seller: three cards for eygentic.com read as one search repeated.
+        assert len({e["website"] for e in examples}) == len(examples)
+        assert all(len(e["shortlisted_names"]) == e["shortlisted"] for e in examples)
+        assert any("Storable proudly employs over 800 employees" in r for e in examples for r in e["rejected"])
+        example = examples[0]
+        shown = client.get(f"/api/agent/runs/{example['id']}").json()
+        assert shown["run"]["status"] == "complete"
+        # The run itself ends with its tally; notes added later (an opening line written from the saved quotes after
+        # a budget fix) follow it, dated when they happened.
+        runs = [e for e in shown["events"] if e["stage"] == "run"]
+        assert len(shown["events"]) > 20 and runs[-1]["message"].startswith("Done: ")
+        assert [e["seq"] for e in shown["events"]] == list(range(1, len(shown["events"]) + 1))
+        refused = client.post(f"/api/agent/runs/{example['id']}/overrides", json={"exclusions": ["x.example"]})
+        assert refused.status_code == 403
+
+
+def test_a_shared_finished_board_has_a_link_preview(tmp_path):
+    with make_client(tmp_path) as client:
+        example = next(e for e in client.get("/api/health").json()["examples"]
+                       if e["shortlisted"] == 2 and "crisp.chat" in e["website"])
+        page = client.get(f"/?agent={example['id']}").text
+        assert '<meta property="og:title" content="2 companies that need what crisp.chat sells">' in page
+        description = page.split('property="og:description" content="', 1)[1].split('"', 1)[0]
+        assert description.startswith("Shortlisted: ") and "checked by Muse Spark Open" in description
+        assert 'name="twitter:card" content="summary"' in page
+        assert "og:title" not in client.get("/?agent=" + "0" * 32).text  # unknown run: no preview
+        assert "og:title" not in client.get("/?agent=../etc").text
+
+
+def test_a_finished_board_downloads_as_csv_with_quotes_and_opening_lines(tmp_path):
+    import csv
+    import io
+
+    from shortlist_agent.export import cell
+
+    with make_client(tmp_path) as client:
+        example = next(e for e in client.get("/api/health").json()["examples"] if "eygentic.com" in e["website"])
+        response = client.get(f"/api/agent/runs/{example['id']}/shortlist.csv")
+        assert response.status_code == 200 and response.headers["content-type"].startswith("text/csv")
+        assert response.headers["content-disposition"].startswith('attachment; filename="shortlist-eygentic.com-')
+        rows = list(csv.DictReader(io.StringIO(response.text.removeprefix("\ufeff"))))
+        shortlisted = [r for r in rows if r["verdict"] == "Shortlisted"]
+        assert len(shortlisted) == example["shortlisted"] >= 1 and rows[0]["verdict"] == "Shortlisted"
+        assert all(r["opening_line"] and r["opening_line_checked"] == "yes" and '" (http' in r["supporting_quotes"]
+                   for r in shortlisted)
+        assert client.get("/api/agent/runs/" + "0" * 32 + "/shortlist.csv").status_code == 404
+    assert cell("=HYPERLINK(1)") == "'=HYPERLINK(1)" and cell("@SUM") == "'@SUM" and cell("plain\ntext") == "plain text"
+
+
+def test_brandfetch_public_id_reaches_the_page_only_when_set(tmp_path):
+    with make_client(tmp_path, brandfetch_client_id="public-Client_1") as client:
+        assert '<meta name="shortlist-company-suggestions-client-id" content="public-Client_1">' in client.get("/").text
+    with make_client(tmp_path / "none") as client:
+        assert "company-suggestions-client-id" not in client.get("/").text
+    with pytest.raises(ValidationError):
+        PublicSettings(app_url=ORIGIN, secret=SECRET, brandfetch_client_id='x"><script>')
+
+
+def test_the_demo_starts_without_the_main_app_or_its_settings():
+    """The demo host has no Supabase settings; importing it must not build the main app (a Render deploy failed so)."""
+    import os
+    import subprocess
+    import sys
+
+    env = {**os.environ, "SUPABASE_URL": "not a url"}
+    code = "import sys, shortlist_agent.public; assert 'shortlist.api' not in sys.modules"
+    done = subprocess.run([sys.executable, "-c", code], check=False, env=env, capture_output=True, text=True, timeout=60)
+    assert done.returncode == 0, done.stderr[-2000:]
+
+
+def test_site_icon_lookup_checks_the_domain_and_stays_offline_in_synthetic_mode(client):
+    assert client.get("/api/site-icon/seller.example").json() == {"url": None, "placeholder": False}
+    assert client.get("/api/site-icon/localhost").status_code == 404
+    assert client.get("/api/site-icon/127.0.0.1").status_code == 404
+
+
+def test_examples_can_be_turned_off(tmp_path):
+    with make_client(tmp_path, showcase_dir=None) as client:
+        assert client.get("/api/health").json()["examples"] == []

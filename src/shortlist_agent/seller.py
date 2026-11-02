@@ -1,0 +1,268 @@
+"""Stage A: understand the seller from its own website, with no typing required, or from its own description when
+it has no website."""
+import hashlib
+import json
+import re
+from collections.abc import Callable
+from datetime import datetime
+
+from shortlist.domain import Source, utcnow
+from shortlist.fetch import FetchError, canonical_url, domain_of
+
+from shortlist_agent.answers import SellerAnswer, ground_quotes, page_block
+from shortlist_agent.llm import UNTRUSTED, Calls
+from shortlist_agent.models import (
+    DroppedClaim,
+    ExistingCustomer,
+    FitCriterion,
+    Interpretation,
+    PageRef,
+    SellerDescription,
+    SellerProfile,
+    Signal,
+    StatedLimit,
+    Statement,
+)
+from shortlist_agent.pages import Fetcher, Page, comparison_links, seller_links
+
+SELLER_INSTRUCTIONS = f"""You read a B2B seller's own website and describe, for a prospecting tool, what it sells and
+which companies would buy it. {UNTRUSTED}
+
+Return only one JSON object with this shape:
+{{"name": "seller name",
+ "offer": {{"value": "what they sell, one sentence", "quotes": [{{"quote": "exact words", "url": "page url"}}]}},
+ "buyer": {{"value": "which companies buy it, one sentence", "quotes": [...]}},
+ "existing_customers": [{{"name": "customer company", "domain": "customer.com or null", "quotes": [...]}}],
+ "fit_criteria": [{{"id": "fit-1", "text": "an observable check on a company's own pages", "required": true, "quotes": [...]}}],
+ "need_signals": [{{"id": "need-1", "text": "something a company does that shows it needs this", "own_site": false,
+   "quotes": [...]}}],
+ "timing_signals": [{{"id": "timing-1", "text": "an event that makes now a good time", "quotes": [...]}}],
+ "stated_limits": [{{"kind": "size or region", "value": "...", "quotes": [...]}}],
+ "target_size": {{"value": "the size and stage of company the offer is written for", "quotes": [...]}},
+ "interpretations": [{{"offer": "...", "buyer": "...", "quotes": [...]}}]}}
+
+Rules:
+- Every quote is copied exactly, word for word, from one page's text, with that page's url. No paraphrase.
+- fit_criteria: 2 to 5 checks that can be observed on a target company's website (what it sells, how it sells,
+  what it runs). Mark at most 2 as required, and only checks a company's own homepage normally states: what it sells
+  and who it sells to, in words a homepage would use ("sells software to businesses"). Never require what the
+  company's own customers demand of it, a certification, an audit or a process (not "sells to buyers that require
+  security reviews"): those are nice to have. Checks about how it sells or which tools it runs are nice to have
+  (required: false). Every
+  check must tell likely buyers apart from other companies: never one nearly every company passes, such as having a
+  website or serving customers online.
+- need_signals: 2 to 4 things a stranger can see on a target company's public pages (its site, careers page, job
+  boards, press releases or news) that show it needs this, such as hiring a role the product helps or replaces,
+  using an older tool the product replaces, or selling in a way the product supports. Write each as an observable
+  fact, for example "Hiring SDRs or outbound sales reps". Never an internal state, belief, plan or performance
+  (not "does not know what works", "is not confident", "struggles with", "wants to", "before X is proven"): no
+  public quote can show those. Never use a competitor's product as a need signal: using a competitor is checked
+  separately and rejects the company. A need signal must set likely buyers apart: never something nearly every
+  company in the buyer group shows, such as listing a phone number, an address, opening hours, a contact form or
+  after-hours instructions (a live search Shortlisted a dental clinic for "Levittown Office Phone Number:").
+- own_site on a need signal: true only when the company's own website is where it shows, because the signal is what
+  the company publishes about itself as a fact: a trust or security page, compliance work it lists (SOC 2, ISO 27001,
+  HIPAA), the tools or channels its site runs. false for hiring, news, funding and anything a company's marketing would
+  merely claim about its ambitions or problems ("scaling fast", "needs more pipeline"): only other pages show those.
+- timing_signals: up to 3 dated public events that make now a good time, such as a launch, expansion into a new
+  market, new funding or hiring for a new team. The same rule applies: events, not states of mind.
+- existing_customers: only companies the site names as customers (logos, case studies, testimonials).
+- stated_limits: only a company size or region the site explicitly says it serves. Otherwise an empty list.
+- target_size: always give it, as a size and stage range, for example "early-stage startups, about 5 to 50 people,
+  seed to Series A" or "mid-market companies, about 200 to 2,000 people". Use what the site states; otherwise infer
+  it from who the offer speaks to (founders, "before you hire your first SDR", "enterprise teams", the size of its
+  named customers) and quote the words it rests on. A small seller rarely sells to the largest companies.
+- When target_size is early-stage, prefer early-stage signals: a first or founding sales hire, founder-led sales, a
+  recent seed or Series A round. Hiring many reps for an existing team is a later-stage signal.
+- Describe companies only. Never name, describe or judge individual people.
+- If the site is too vague to tell the offer or the buyer, leave that field null and give up to 3 different
+  interpretations, each with a quote it rests on."""
+
+
+MAX_REQUIRED_FIT = 2
+# Buying moments that hold for most B2B offers, used only when the seller's own site supports no timing signal.
+STANDARD_TIMING = ("Announced a new funding round in the last six months",
+                   "Launched a new product or expanded into a new market in the last six months",
+                   "Started building or growing the team this offer supports")
+
+# A need or timing signal must be something a public page can show. These describe a company's internal state
+# (knowledge, confidence, intent, performance), which no quote from a target's site can support, so nothing could
+# ever be Shortlisted on them. Found in the first live run ("does not know what is actually working").
+PRIVATE_SIGNAL = re.compile(
+    r"\b(?:does not|doesn't|do not|don't|is not|isn't|are not|aren't|not)\s+(?:yet\s+)?(?:know|sure|certain|confident|"
+    r"ready|proven|clear|aware|isolat\w*)|\bunsure\b|\bunclear\b|\bwithout knowing\b|\bstruggl\w*|"
+    # "Announced plans to expand" is a public event; "plans to expand" alone is an intention.
+    r"(?<!announced )(?<!announces )(?<!announcing )(?<!published )\b(?:wants?|hopes?|plans?|intends?) to\b|"
+    r"\black(?:s|ing)?\s+(?:a|an|the|any|clear|repeatable)\b|\bfrustrat\w*|\bworr\w*|"
+    r"\bunproven\b|\bbefore\b.{0,60}\b(?:is|are|has been|have been)\s+(?:proven|validated|clear)|\bwithout isolating\b",
+    re.IGNORECASE)
+
+
+def private_signal(text: str) -> bool:
+    return bool(PRIVATE_SIGNAL.search(text))
+
+
+# A described seller's words are read like a page at this address; it is not a link.
+DESCRIPTION_URL = "description:your-words"
+DESCRIBED = ("This seller has no website. The page below is its own description of its business, written for this "
+             "search. Read it as the seller's site: every quote is copied exactly from it, with its url. Infer fit "
+             "checks and signals from what it sells and to whom, and quote the words each one rests on.\n")
+
+
+def description_page(description: SellerDescription, now: datetime) -> Page:
+    """The seller's own words as the one page its profile may quote, so every claim stays grounded."""
+    lines = [("Business", description.name), ("What we sell", description.offer),
+             ("Our ideal customer", description.buyer), ("Markets we sell in", description.markets)]
+    text = "\n".join(f"{label}: {value.strip()}" for label, value in lines if value.strip())
+    source = Source(url=DESCRIPTION_URL, company_domain="", title="Your description", text=text,
+                    content_hash=hashlib.sha256(text.encode()).hexdigest(), retrieved_at=now)
+    return Page(source=source, html="", full_text=text)
+
+
+def choose_pages(home: Page, extra: int = 5) -> list[str]:
+    """Up to five same-domain pages: pricing, product, customers, about, integrations, keeping one slot for the
+    seller's own comparison page when it has one."""
+    compare = comparison_links(home)[:1]
+    links = [link for link in seller_links(home, extra - len(compare)) if link not in compare]
+    return (links + compare)[:extra]
+
+
+def read_seller_pages(website: str, fetcher: Fetcher, emit: Callable[..., None]) -> dict[str, Page]:
+    home = fetcher(website, None)
+    pages = {home.url: home}
+    emit("seller", f"Read your homepage ({home.url})")
+    for link in choose_pages(home):
+        try:
+            page = fetcher(link, home.domain)
+        except FetchError as exc:
+            emit("seller", f"Could not read {link}: {exc}", level="warn")
+            continue
+        pages[page.url] = page
+        emit("seller", f"Read {page.url}")
+    return pages
+
+
+def _criterion_id(prefix: str, raw: str, index: int, used: set[str]) -> str:
+    value = re.sub(r"[^a-z0-9-]+", "-", (raw or "").casefold()).strip("-")[:40]
+    value = value if value and value not in used else f"{prefix}-{index + 1}"
+    while value in used:
+        value += "-x"
+    used.add(value)
+    return value
+
+
+def build_profile(website: str, answer: SellerAnswer, pages: dict[str, Page], dropped: list[DroppedClaim]) -> SellerProfile:
+    home = next(iter(pages.values()))
+    described = home.url == DESCRIPTION_URL
+
+    def quotes(items, claim_type, limit=3):
+        return ground_quotes(items, pages, stage="seller", dropped=dropped, claim_type=claim_type,
+                             source_type="description" if described else "own_site", limit=limit)
+
+    def statement(item, claim_type):
+        if item is None or not item.value.strip():
+            return None
+        found = quotes(item.quotes, claim_type)
+        return Statement(value=item.value.strip()[:1000], quotes=found) if found else None
+
+    used: set[str] = set()
+    criteria = []
+    for index, item in enumerate(answer.fit_criteria[:8]):
+        found = quotes(item.quotes, "fit criterion")
+        if len(item.text.strip()) >= 3 and found:
+            # Every required check must be proven before Shortlisted; live runs marked hard-to-prove checks ("sells
+            # via meetings and demos") required, which held back companies with strong need evidence. You can still
+            # make any check required yourself.
+            required = item.required and sum(c.required for c in criteria) < MAX_REQUIRED_FIT
+            criteria.append(FitCriterion(id=_criterion_id("fit", item.id, index, used), text=item.text.strip()[:500],
+                                         required=required, quotes=found))
+    signals = {}
+    for kind, items, cap in (("need", answer.need_signals, 4), ("timing", answer.timing_signals, 3)):
+        kept = []
+        for index, item in enumerate(items[:6]):
+            if private_signal(item.text):
+                dropped.append(DroppedClaim(stage="seller", claim_type=f"{kind} signal", quote=item.text.strip()[:1500],
+                                            reason="Not observable on public pages: it describes a company's internal "
+                                                   "state, so no quote could support it"))
+                continue
+            found = quotes(item.quotes, f"{kind} signal")
+            if len(item.text.strip()) >= 3 and found:
+                kept.append(Signal(id=_criterion_id(kind, item.id, index, used), kind=kind,
+                                   text=item.text.strip()[:500], quotes=found,
+                                   own_site=kind == "need" and item.own_site is True))
+        signals[kind] = kept[:cap]
+    if not signals["timing"]:
+        signals["timing"] = [Signal(id=f"timing-std-{index}", kind="timing", text=text, standard=True)
+                             for index, text in enumerate(STANDARD_TIMING, 1)]
+    customers = []
+    for item in answer.existing_customers[:30]:
+        found = quotes(item.quotes, "existing customer", limit=2)
+        if not item.name.strip() or not found:
+            continue
+        domain = None
+        if item.domain:
+            try:
+                domain = domain_of(canonical_url("https://" + item.domain.strip().removeprefix("https://")
+                                                 .removeprefix("http://").split("/")[0]))
+            except FetchError:
+                domain = None
+        customers.append(ExistingCustomer(name=item.name.strip()[:200], domain=domain, quotes=found))
+    limits = []
+    for item in answer.stated_limits[:4]:
+        kind = item.kind.strip().casefold()
+        if kind not in ("size", "region"):
+            continue
+        found = quotes(item.quotes, "stated limit", limit=2)
+        if len(item.value.strip()) >= 2 and found:
+            limits.append(StatedLimit(kind=kind, value=item.value.strip()[:300], quotes=found))
+    readings = []
+    for item in answer.interpretations[:3]:
+        found = quotes(item.quotes, "interpretation", limit=2)
+        if len(item.offer.strip()) >= 3 and len(item.buyer.strip()) >= 3 and found:
+            readings.append(Interpretation(id=f"reading-{len(readings) + 1}", offer=item.offer.strip()[:600],
+                                           buyer=item.buyer.strip()[:600], quotes=found))
+    return SellerProfile(
+        website=website, domain=home.domain, name=answer.name.strip()[:200], offer=statement(answer.offer, "offer"),
+        buyer=statement(answer.buyer, "buyer"), existing_customers=customers, fit_criteria=criteria[:5],
+        need_signals=signals["need"], timing_signals=signals["timing"], stated_limits=limits,
+        target_size=statement(answer.target_size, "target size"), interpretations=readings,
+        pages=[PageRef(url=page.url, title=page.source.title[:300], fetched_at=page.fetched_at) for page in pages.values()])
+
+
+def understand_seller(website: str, calls: Calls, fetcher: Fetcher, emit: Callable[..., None],
+                      dropped: list[DroppedClaim], hint: tuple[str, str] | None = None,
+                      description: SellerDescription | None = None, now: Callable[[], datetime] = utcnow) -> SellerProfile:
+    """website: the seller's site, or for a described seller (description set) its business name, which is not read."""
+    if description is not None:
+        page = description_page(description, now())
+        pages = {page.url: page}
+        emit("seller", "Read your description of your business")
+    else:
+        pages = read_seller_pages(website, fetcher, emit)
+    blocks = "\n\n".join(page_block(page, 8000 if index == 0 else 5000) for index, page in enumerate(pages.values()))
+    request = (DESCRIBED if description is not None else "") + "Describe this seller from its own pages.\n"
+    if hint:
+        request += ("The seller chose this reading of its site; use it and propose criteria and signals for it: "
+                    + json.dumps({"offer": hint[0], "buyer": hint[1]}) + "\n")
+    answer, _ = calls.investigator_json("seller_profile", SellerAnswer, instructions=SELLER_INSTRUCTIONS,
+                                        input=[{"role": "user", "content": request + "<data>\n" + blocks + "\n</data>"}],
+                                        max_output_tokens=4000)
+    profile = build_profile("" if description is not None else website, answer, pages, dropped)
+    if description is not None:  # only the name the seller typed: a model's guess could end up signing its emails
+        profile = profile.model_copy(update={"name": description.name.strip()[:200]})
+    if profile.offer and not profile.need_signals and all(s.standard for s in profile.timing_signals):
+        # Live run (crisp.chat): the answer had no need or timing signal, so no company could ever be Shortlisted.
+        # Ask once more and keep only the new signals; the offer, buyer and fit checks stay as first read.
+        emit("seller", "No need or timing signals in the first reading; asking once more", level="warn")
+        retry = (request + "Your earlier answer had no need_signals and no timing_signals. Return the full JSON object "
+                 "again with 2 to 4 need_signals and up to 3 timing_signals, following the rules.\n")
+        again, _ = calls.investigator_json("seller_profile:signals", SellerAnswer, instructions=SELLER_INSTRUCTIONS,
+                                           input=[{"role": "user", "content": retry + "<data>\n" + blocks + "\n</data>"}],
+                                           max_output_tokens=4000)
+        signals = build_profile(profile.website, again, pages, dropped)
+        profile = profile.model_copy(update={"need_signals": signals.need_signals,
+                                             "timing_signals": signals.timing_signals})
+    emit("seller", f"Understood the offer with {len(profile.fit_criteria)} fit checks, "
+                   f"{len(profile.need_signals)} need signals and {len(profile.existing_customers)} named customers",
+         level="done")
+    return profile

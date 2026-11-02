@@ -1,0 +1,80 @@
+/* Base element styles, colour and type tokens and a few shared classes, carried over from the pre-event
+   prototype's stylesheets (styles.css, landing.css, SiteIcon.css) so the agent pages look the same. */
+
+:root{font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b;background:#f7f7f5;font-synthesis:none;--paper:#f7f7f5;--ink:#1b1b1b;--muted:#5c5853;--orange:#b4501c;--line:rgba(27,27,27,.16);line-height:1.55}
+*{box-sizing:border-box}
+body{margin:0}
+button,input,textarea{font:inherit}
+button,a,input,textarea{touch-action:manipulation}
+a{color:var(--orange);text-underline-offset:.25rem;overflow-wrap:anywhere}
+button{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.75rem;min-height:3.25rem;padding:.75rem 1.25rem;background:var(--orange);color:white;border:1px solid var(--orange);border-radius:2px;font-weight:600;box-shadow:0 2px 0 #6a3417;transition:background .2s,transform .15s}
+button:hover{background:#9b4215;transform:translateY(-1px)}
+button:active{transform:translateY(1px)}
+button:disabled{cursor:wait;opacity:.65;transform:none}
+.secondary{color:var(--ink);border:1px solid var(--ink);background:var(--paper);box-shadow:none}
+.secondary:hover{background:#eeede9}
+.button-link{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;padding:.625rem 1rem;border-radius:2px;text-decoration:none;font-weight:600}
+.button-link:hover{background:#eeede9}
+:focus-visible{outline:2px solid var(--orange);outline-offset:.25rem}
+::selection{background:#f6e0d3;color:var(--ink)}
+input,textarea{width:100%;min-width:0;background:white;border:1px solid #8c8881;border-radius:2px;min-height:3rem;padding:.75rem;color:var(--ink);caret-color:var(--orange)}
+textarea{resize:vertical}
+input::placeholder{color:#68635c}
+input[type=checkbox]{accent-color:var(--orange);width:1.25rem;height:1.25rem;min-height:1.25rem;margin:0;flex:none}
+label,legend{font-weight:600;font-size:.9375rem}
+label{display:block;margin-bottom:.5rem}
+.optional{font-size:.8125rem;font-weight:400;color:var(--muted);margin-left:.5rem}
+h1,h2,h3,h4,p{margin:0}
+h1{font-size:2rem;line-height:1.2;letter-spacing:-.025em;text-wrap:balance;max-width:24ch}
+h2{font-size:1.375rem;line-height:1.3;letter-spacing:-.015em}
+h3{font-size:1.375rem;line-height:1.3}
+h4{font-size:1rem;line-height:1.45}
+p{max-width:72ch}
+p+p{margin-top:.625rem}
+.skip-link{position:fixed;top:-6.25rem;left:1.25rem;background:white;padding:.75rem;z-index:10}
+.skip-link:focus{top:.625rem}
+.notice{background:#f5eee8;border:1px solid #caa994;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.9375rem;overflow-wrap:anywhere}
+fieldset{padding:1.5rem 0;border:0;border-top:1px solid var(--line);margin:2rem 0 0}
+legend{padding:0 .5rem 0 0}
+summary{cursor:pointer;min-height:2.75rem;padding:.625rem 0;font-size:.9375rem;font-weight:600;overflow-wrap:anywhere}
+summary>span{font-size:.8125rem;color:var(--orange);display:block;font-weight:400;margin-left:1rem;margin-top:.3125rem}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+:root{--line:#e1dfd9;--muted:#64615b;--surface:#fff;--radius-control:.5rem;--radius-sheet:.875rem}
+body{background:var(--paper)}
+button,.button-link{border-radius:var(--radius-control);box-shadow:none;transition:background .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}
+button:hover{transform:none}
+button:active{transform:translateY(1px)}
+.secondary{background:var(--surface);border-color:#d4d1ca}
+.secondary:hover{background:#f0eee9;border-color:#b9b5ad}
+input,textarea{border-radius:var(--radius-control);border-color:#c4c0b8;padding:.875rem 1rem;transition:border-color .18s,box-shadow .18s}
+input:hover,textarea:hover{border-color:#918b80}
+input:focus,textarea:focus{border-color:var(--orange);box-shadow:0 0 0 .1875rem #b4501c14}
+
+/* Landing tokens and resets, scoped under .pl */
+.pl {
+  --pl-paper: #f7f7f5; --pl-sheet: #fff; --pl-peach: #f6e0d3; --pl-apricot: #e4a07b; --pl-orange: #d5682f; --pl-ink: #b4501c;
+  --pl-rust: #6a3417; --pl-charcoal: #1b1b1b; --pl-frame: #201e1b; --pl-frame-text: #f1eee8; --pl-frame-muted: #b3ada5;
+  --pl-muted: #5c5853; --pl-line: rgba(27, 27, 27, .16); --pl-line-soft: rgba(27, 27, 27, .09); --pl-grid: rgba(106, 52, 23, .055);
+  --pl-card-line: rgba(27, 27, 27, .15); --pl-field-line: rgba(27, 27, 27, .32);
+  --pl-shadow: 0 1px 2px rgba(27, 27, 27, .05), 0 18px 40px -24px rgba(27, 27, 27, .32);
+  --pl-ok: #1f7a4d; --pl-ok-soft: #e2f1e7; --pl-fail: #b3261e; --pl-fail-soft: #fbe7e4; --pl-work: #b4501c; --pl-work-soft: #f6e0d3;
+  --pl-you: #2457a6; --pl-you-soft: #e4ecf8; --pl-reuse: #1f6f6a; --pl-reuse-soft: #e0f0ee; --pl-idle: #8a857d;
+  --pl-ease: cubic-bezier(.2, .7, .2, 1); --pl-nav: 4.25rem; --pl-gutter: max(1rem, env(safe-area-inset-left, 0px)); --pl-r: 4px;
+  min-height: 100vh; overflow-x: clip; color: var(--pl-charcoal); font: 400 1rem/1.6 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background-color: var(--pl-paper);
+  background-image: linear-gradient(var(--pl-grid) 1px, transparent 1px), linear-gradient(90deg, var(--pl-grid) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem; -webkit-font-smoothing: antialiased;
+}
+/* neutralise the workspace's element rules without raising specificity */
+.pl :where(h1, h2, h3, h4) { max-width: none; margin: 0; font-weight: 700; line-height: 1.1; letter-spacing: normal; text-wrap: balance; }
+.pl :where(p) { max-width: none; margin: 0; }
+.pl :where(a) { color: inherit; overflow-wrap: normal; }
+.pl :where(label) { display: inline; margin: 0; font-size: inherit; font-weight: inherit; }
+.pl :where(ol, ul) { margin: 0; padding: 0; list-style: none; }
+.pl :focus-visible { outline: 2px solid var(--pl-ink); outline-offset: 4px; border-radius: 2px; }
+.pl-wrap { width: min(100% - 2 * var(--pl-gutter), 84rem); margin-inline: auto; }
+.pl-h2 { font-size: clamp(2rem, 1.3rem + 2.1vw, 3.25rem); line-height: 1.04; letter-spacing: -.03em; }
+.pl-arrow { display: inline-block; transition: transform .15s var(--pl-ease); }
+
+.site-icon{border-radius:.5rem;overflow:hidden}
+.site-icon img{width:1.5rem;height:1.5rem;object-fit:contain}
