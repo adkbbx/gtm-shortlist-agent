@@ -1,5 +1,10 @@
 # Winning plan: Meta hackathon, Indie track
 
+**Done 2 Nov: the entry moved to this fresh public repository** (created 2 Nov), as the organisers' answer required: a
+repo created on or after 26 October holding only event work, and a video that opens by saying what existed before. The
+prototype is a library pinned to its pre-event tag; HACKATHON.md lists what carried over. All work from here happens in
+this repository, and the live demo deploys from it.
+
 **Goal:** a judge scores GTM Shortlist at least 8.5 on every criterion (Impact 30%, Meta AI tooling 25%, Demo 25%, Technical depth 20%), on work we control. Real users are a separate effort and are not in this plan.
 
 **Deadline:** Wed 4 Nov, 9:00 PM ET (Thu 5 Nov, 11:00 JST). **We submit by 4 Nov, 5:00 PM ET** (5 Nov, 07:00 JST), with four hours of buffer.

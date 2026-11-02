@@ -13,7 +13,8 @@ For the Meta Global AI Developer Hackathon. Judging: Impact 30, Meta AI tooling 
 - **Pace:** a cut or a motion beat every 1 to 2 seconds. Screen recordings get slow push-ins (105% to 112%) and snap zooms onto quotes.
 - **Music:** royalty-free upbeat electronic, 120 to 128 BPM, with a clear drop. Free sources: YouTube Audio Library, Pixabay Music (no credit needed), Uppbeat (credit in the description). Duck the music under the voice by 10 to 12 dB. Hard stop at 0:15 (the turn) and at 1:12 (the plot twist), then back in.
 - **Sound effects (royalty-free packs on Pixabay or Mixkit):** bass hit (slams), whoosh (filter transitions), soft key clicks (typing), pop (each pill appearing), bright ding (Shortlisted), record scratch (the turn), rubber-stamp thud (Rejected), highlighter squeak (quote highlight), cash-register tick (the cost).
-- **Voice:** your own voice. You are the real user; that is the strongest moment for judges. Speak fast and warm, as if telling a friend. Record in a quiet room, phone close to your mouth.
+- **Voice:** your own voice. You are the real user; that is the strongest moment for judges. Speak fast and warm, as if telling a friend. Record in a quiet room (a wardrobe full of clothes works), phone close to your mouth, then run it through a free speech clean-up such as Adobe Podcast's Enhance Speech. If you use an AI voice instead, keep every first-person line true.
+- **AI-made assets are fine, with three rules.** (1) Every product shot is a real screen recording; AI makes only B-roll, music, sound and, if needed, the voice. (2) Make the B-roll with Meta's own Muse Image where you can (the logo wall, the "companies flowing in" shots, the end card background): it counts toward Meta AI tooling and the Best Creative Build prize for Muse Image or Muse Wonder. (3) Say so in the description: "Music and some visuals made with AI; every product shot is a real recording." AI music needs a plan whose terms allow public use; royalty-free libraries avoid the question.
 
 ## Shots to record (video mode on)
 
@@ -34,7 +35,7 @@ Open the demo with `?video=1` once; it stays on for the browser tab. A dark tag 
 | 0:06 | A wall of grey logo squares scrolls up at speed (abstract tiles, no real logos). | "Lead lists give you ten thousand logos" | Counter rolls 0 → 10,000 "companies". | Rising whoosh. |
 | 0:09 | The wall freezes; a big red "0" appears. | "and zero reasons why." | "Reasons why: 0" | Pop. |
 | 0:11 | A chatbot-style answer bubble types out a confident list. Fake, generic, no real names. | "Chatbots give you reasons. You still have to check every single one." | Each line of the bubble gets a "?" badge. | Key clicks. |
-| 0:15 | Record scratch. Hard cut to R1: the hero. | "So I built GTM Shortlist." | Logo mark pops top-left. | Record scratch, then the drop. |
+| 0:15 | Record scratch. Hard cut to R1: the hero. | "I'd started a rough prototype before the hackathon. Everything you'll see here, I built this week on Muse Spark." | Logo mark pops top-left; small caption: "Built 26 Oct to 4 Nov 2026". | Record scratch, then the drop. |
 | 0:18 | R1: typing `eygentic.com`, press Find. Snap zoom on the field. | "One input. My website." | "1 input" sticker on the field. | Key clicks, pop. |
 | 0:22 | R2: "What we assumed" filling in. Push in. | "Muse Spark 1.3 reads it and works out what I sell, who buys it, and what makes a company need me now." | Badge slides in: "Muse Spark 1.3 · investigator". Each assumption gets a small "quoted ✓" tick as it appears. | Pops on each tick. |
 | 0:30 | R2: competitors. | "It proves my competitors from their own homepages." | Two competitor chips flash "direct". | Whoosh. |
