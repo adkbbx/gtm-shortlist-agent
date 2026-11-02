@@ -26,6 +26,9 @@ existed before the event and what was built during it.
 
 Every model call is logged with tokens, searches and dollars; a search of five companies costs about $0.40.
 
+Measured on 17 saved live searches: Muse Spark Open threw out 120 of 354 quotes and changed 31 of 82 verdicts
+([docs/checker-value.md](docs/checker-value.md)).
+
 ## Run it
 
 ```sh

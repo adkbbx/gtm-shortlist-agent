@@ -86,6 +86,17 @@ shortlist-agent eval tests/fixtures/labels.synthetic.csv --run run.json --no-ske
 **Tests.** `pytest` (145 tests, synthetic providers only), `ruff check src tests scripts`, and
 `npx playwright test` (7 browser journeys, each on laptop and phone).
 
+## What the second model changes (measured)
+
+On 17 saved live searches (82 companies), each search's evidence was judged again as if Muse Spark Open accepted every
+quote found on its page, with the same verdict code and no model calls (`scripts/checker_value.py`, full report in
+[docs/checker-value.md](docs/checker-value.md)):
+
+- Muse Spark Open judged 354 quotes and threw out 120 of them (34%): 99 too weak, 21 contradicted.
+- It changed 31 of 82 verdicts (38%). Without it, 6 companies would have been Shortlisted on quotes it threw out, and 25
+  would have been Rejected, because without a judge every quote filed under a disqualifier counts against the company,
+  including quotes gathered to show the opposite ("still operating", "within the seller's size range").
+
 ## Limits
 
 - **Live runs so far are spot checks, not an evaluation.** Live runs from 30 October to 2 November for vanta.com, crisp.chat, eygentic.com, usepylon.com and a seller without a website gave Shortlisted companies with dated need quotes, Rejected companies with the quote that ruled them out, and problems we then fixed (each one is in `docs/PROGRESS.md`). Two we found on 2 November: a run that reached its budget lost its opening lines (now kept within a small reserve), and a search without a website Shortlisted a clinic for listing a phone number (need signals must now set likely buyers apart). Tests use synthetic providers and recorded-shape HTTP fakes only.
