@@ -1,25 +1,25 @@
 {
- "text": "ThriveCart made the shortlist.",
+ "text": "ContactMonkey made the shortlist.",
  "words": [
   {
-   "text": "ThriveCart",
+   "text": "ContactMonkey",
    "start": 0.0,
-   "end": 0.64
+   "end": 0.72
   },
   {
    "text": "made",
-   "start": 0.688,
-   "end": 0.88
-  },
-  {
-   "text": "the",
-   "start": 0.9,
+   "start": 0.768,
    "end": 0.96
   },
   {
+   "text": "the",
+   "start": 0.98,
+   "end": 1.04
+  },
+  {
    "text": "shortlist.",
-   "start": 1.027,
-   "end": 1.76
+   "start": 1.093,
+   "end": 1.84
   }
  ]
 }

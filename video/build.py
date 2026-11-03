@@ -48,7 +48,8 @@ for line in lines:
     lid = line["id"]
     start = t + GAP[lid]
     words = json.loads((HERE / f"assets/voice/{lid}.json").read_text(encoding="utf-8"))["words"]
-    T[lid] = {"start": round(start, 3), "dur": round(wav_seconds(HERE / f"assets/voice/{lid}.wav"), 3),
+    # A clip ends shortly after its last word, so trailing silence never overlaps the next line.
+    T[lid] = {"start": round(start, 3), "dur": round(min(wav_seconds(HERE / f"assets/voice/{lid}.wav"), words[-1]["end"] + 0.3), 3),
               "words": words, "text": line["text"]}
     t = start + words[-1]["end"]
 TOTAL = round(t + TAIL, 2)
@@ -91,15 +92,15 @@ SCENES = [
      "label": "Checks which tools they already use", "spot": [spot(155, 935, 790, 120, "code", "site")]},
     {"id": "s-checker", "line": "checker", "src": "live", "m": (127.5, 150.0), "cam": [(0, 1.0, 960, 540), (0.25, 1.4, 1560, 520), (1, 1.45, 1560, 560)],
      "label": "5  A second model checks every quote  ·  Muse Spark Open on Baseten"},
-    {"id": "s-out", "line": "out", "src": "example", "m": (3.2, 7.5), "cam": [(0, 1.06, 960, 380), (1, 1.0, 960, 540)],
+    {"id": "s-out", "line": "out", "src": "contactmonkey", "m": (7.5, 12.9), "cam": [(0, 1.06, 960, 380), (1, 1.0, 960, 540)],
      "label": "A finished search for eygentic.com"},
-    {"id": "s-thrive", "line": "thrive", "src": "example", "m": (7.6, 11.4), "cam": [(0, 1.0, 960, 540), (1, 1.25, 700, 300)],
+    {"id": "s-thrive", "line": "thrive", "src": "contactmonkey", "m": (12.9, 16.6), "cam": [(0, 1.0, 960, 540), (1, 1.25, 700, 300)],
      "label": "Shortlisted"},
-    {"id": "s-quote", "line": "quote", "src": "example", "m": (13.9, 18.6), "cam": [(0, 1.25, 960, 540), (0.3, 1.6, 960, 545), (1, 1.62, 960, 545)],
-     "label": "The evidence: their open job post", "spot": [spot(650, 443, 620, 202, "quote", "hiring")],
-     "mark": [spot(668, 464, 298, 32, "quote", "first")]},
-    {"id": "s-opener", "line": "opener", "src": "example", "m": (19.9, 23.4), "cam": [(0, 1.25, 800, 420), (1, 1.45, 730, 420)],
-     "label": "A first line, written from that quote and checked", "spot": [spot(167, 302, 1123, 201, "opener", "writes")]},
+    {"id": "s-quote", "line": "quote", "src": "contactmonkey", "m": (18.9, 24.9), "cam": [(0, 1.25, 960, 540), (0.3, 1.6, 960, 545), (1, 1.62, 960, 545)],
+     "label": "The evidence: their open job post", "spot": [spot(650, 457, 620, 168, "quote", "growing")],
+     "mark": [spot(962, 476, 266, 32, "quote", "four"), spot(668, 509, 348, 32, "quote", "sales")]},
+    {"id": "s-opener", "line": "opener", "src": "contactmonkey", "m": (26.1, 27.1), "cam": [(0, 1.25, 800, 420), (1, 1.45, 730, 420)],
+     "label": "A first line, written from that quote and checked", "spot": [spot(167, 302, 1123, 231, "opener", "writes")]},
     EMAIL_SCENE,
     {"id": "s-turn", "line": "turn", "src": "example", "m": (23.4, 29.9), "cam": [(0, 1.0, 960, 540), (1, 1.1, 700, 320)],
      "label": "storable.com"},
@@ -123,7 +124,7 @@ for i, s in enumerate(SCENES):
 for i, s in enumerate(SCENES):
     s["end"] = SCENES[i + 1]["start"] if i + 1 < len(SCENES) else TOTAL
     s["dur"] = round(s["end"] - s["start"], 3)
-MEDIA_LEN = {"live": 228.5, "example": 49.4, "nowebsite": 22.1, "draft": 37.8}
+MEDIA_LEN = {"contactmonkey": 27.2, "live": 228.5, "example": 49.4, "nowebsite": 22.1, "draft": 37.8}
 
 
 def cam_xy(zoom, fx, fy):
@@ -372,9 +373,9 @@ SFX = [
     ("keys", media_to_film("s-input", 8.35), 0.3),
     ("click", media_to_film("s-input", 13.05), 0.5),
     ("tick", at("input", "website"), 0.25),
-    ("click", media_to_film("s-thrive", 8.6), 0.45),
-    ("click", media_to_film("s-quote", 14.6), 0.45),
-    ("tick", at("quote", "hiring") - 0.15, 0.22),
+    ("click", media_to_film("s-thrive", 13.8), 0.45),
+    ("click", media_to_film("s-quote", 19.9), 0.45),
+    ("tick", at("quote", "growing") - 0.15, 0.22),
     ("tick", at("storable", "about") - 0.15, 0.22),
     ("swoosh-a", scene_start("s-rule"), 0.3),
     ("swoosh-b", scene_start("s-thrown"), 0.3),

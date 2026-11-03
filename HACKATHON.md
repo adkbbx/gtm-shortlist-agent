@@ -97,11 +97,33 @@ quote found on its page, with the same verdict code and no model calls (`scripts
   would have been Rejected, because without a judge every quote filed under a disqualifier counts against the company,
   including quotes gathered to show the opposite ("still operating", "within the seller's size range").
 
+## How it did on real searches (labelled by me)
+
+I labelled 41 companies from live searches run between 31 October and 2 November (21 for eygentic.com, my own
+business; 9 for vanta.com; 4 for crisp.chat; 7 for a seller without a website), answering for each one whether I would
+contact it now, check it first or skip it. The sheet showed the agent's verdict and reasons next to my answer.
+
+- I agreed with the agent's verdict on **30 of 41 companies (73%)**.
+- **It never threw away a company I wanted.** I agreed with all 3 of its Rejections, and every company I would contact
+  now was on its Shortlist (7 of 7).
+- **Its Shortlist is too generous: I would contact 7 of its 12 Shortlisted companies (58%).** All 5 I would skip were
+  too big for the seller (for eygentic.com: Middesk, Brellium, ThriveCart; for vanta.com: Aledade, omnichat.ai). It
+  also held back as Needs a look 6 companies I would reject outright.
+- **Why:** company size is rarely stated on the pages the agent reads (job posts, homepages), and an unconfirmed size
+  does not block a Shortlist; it is listed under "Check before you reach out". Making an unconfirmed size send a
+  company to Needs a look would remove 3 of the 5 too-big companies but also 2 of the 7 I wanted (measured on the
+  saved evidence, no model calls). The fix is to look size up: Crunchbase, ZoomInfo and PitchBook refuse automated
+  reading, so the next step is a size search across pages that allow it (news, funding announcements, the company's
+  own about and careers pages), judged by the second model like any other quote.
+
+The sheet (`gtm-shortlist-review-2026-11-02.xlsx`, my labels next to the agent's verdicts and reasons) is kept outside
+this repository.
+
 ## Limits
 
-- **Live runs so far are spot checks, not an evaluation.** Live runs from 30 October to 2 November for vanta.com, crisp.chat, eygentic.com, usepylon.com and a seller without a website gave Shortlisted companies with dated need quotes, Rejected companies with the quote that ruled them out, and problems we then fixed (each in the commit history, here and on the branch it was first built on). Found on 2 and 3 November: a run that reached its budget lost its opening lines (now kept within a small reserve); a search without a website Shortlisted a clinic for listing a phone number (need signals must now set likely buyers apart); and a check whose answer ran out of room was reported as a rejection (the check now starts with more room and an unreadable answer is logged as such). Tests use synthetic providers and recorded-shape HTTP fakes only.
+- **The labelled set is small (41 companies, one person's judgement).** Live runs from 30 October to 2 November for vanta.com, crisp.chat, eygentic.com, usepylon.com and a seller without a website gave Shortlisted companies with dated need quotes, Rejected companies with the quote that ruled them out, and problems we then fixed (each in the commit history, here and on the branch it was first built on). Found on 2 and 3 November: a run that reached its budget lost its opening lines (now kept within a small reserve); a search without a website Shortlisted a clinic for listing a phone number (need signals must now set likely buyers apart); and a check whose answer ran out of room was reported as a rejection (the check now starts with more room and an unreadable answer is logged as such). Tests use synthetic providers and recorded-shape HTTP fakes only.
 - **Signals favour companies that hire on startup job boards.** Discovery searches Lever, Greenhouse and Ashby postings first. Local businesses such as dental clinics post front-desk roles elsewhere, so a search for a seller who serves them finds little current evidence: a re-run on 3 November for an AI phone receptionist found one Shortlisted clinic, on a weak signal (it has three locations), and three held back as Needs a look.
 - Built-in web search runs on the provider's side, so the agent cannot stop a single response from making more searches than asked. It removes the search tool once a company has used four.
 - Searches are stored in a local SQLite file, or as JSON files in the public demo. There are no accounts: the public demo is the hosted way to use the agent.
 - The public demo runs on one always-on Modal container with searches on a Modal Volume. Its dollar limits use the agent's own estimates, so provider-side spend limits are still needed.
-- The synthetic evaluation proves the plumbing and the rules, not real-world accuracy. A labelled set of real companies is the next step.
+- The synthetic evaluation proves the plumbing and the rules; the 41 labelled companies above are the only real-world accuracy measure so far.

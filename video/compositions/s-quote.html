@@ -24,19 +24,20 @@
   <div id="s-quote-win" class="win">
     <div class="bar" data-layout-ignore><div class="dots"><i></i><i></i><i></i></div><div class="url">eygentic.tech</div></div>
     <div class="view"><div id="s-quote-cam" class="cam">
-      <video id="s-quote-video" class="clip" src="assets/screens/example.mp4" data-start="0" data-duration="8.27"
-        data-media-start="13.9" data-playback-rate="0.5683" muted playsinline></video>
-      <div id="s-quote-sp0" class="clip spotclip" data-start="1.147" data-duration="7.123" data-layout-allow-overflow data-layout-ignore><div class="spot" style="left:640px;top:433px;width:640px;height:222px"></div></div><div id="s-quote-mk0" class="clip spotclip" data-start="1.913" data-duration="6.357" data-layout-ignore><div class="mark" style="left:668px;top:464px;width:298px;height:32px"></div></div>
+      <video id="s-quote-video" class="clip" src="assets/screens/contactmonkey.mp4" data-start="0" data-duration="6.75"
+        data-media-start="18.9" data-playback-rate="0.8889" muted playsinline></video>
+      <div id="s-quote-sp0" class="clip spotclip" data-start="1.15" data-duration="5.6" data-layout-allow-overflow data-layout-ignore><div class="spot" style="left:640px;top:447px;width:640px;height:188px"></div></div><div id="s-quote-mk0" class="clip spotclip" data-start="2.34" data-duration="4.41" data-layout-ignore><div class="mark" style="left:962px;top:476px;width:266px;height:32px"></div></div><div id="s-quote-mk1" class="clip spotclip" data-start="2.727" data-duration="4.023" data-layout-ignore><div class="mark" style="left:668px;top:509px;width:348px;height:32px"></div></div>
     </div></div>
   </div>
 </div>
 <script>
 const tl = gsap.timeline({ paused: true });
 tl.set("#s-quote-cam",{x:-184.0,y:-103.5,scale:0.9583},0);
-tl.to("#s-quote-cam",{x:-441.6,y:-254.5,scale:1.2267,duration:2.481,ease:"sine.inOut"},0.0);
-tl.to("#s-quote-cam",{x:-456.3,y:-262.9,scale:1.242,duration:5.789,ease:"sine.inOut"},2.481);
-tl.fromTo("#s-quote-sp0 .spot",{opacity:0},{opacity:1,duration:.6,ease:"power2.inOut"},1.147);
-tl.fromTo("#s-quote-mk0 .mark",{scaleX:0},{scaleX:1,duration:.7,ease:"power2.inOut"},1.913);
+tl.to("#s-quote-cam",{x:-441.6,y:-254.5,scale:1.2267,duration:2.025,ease:"sine.inOut"},0.0);
+tl.to("#s-quote-cam",{x:-456.3,y:-262.9,scale:1.242,duration:4.725,ease:"sine.inOut"},2.025);
+tl.fromTo("#s-quote-sp0 .spot",{opacity:0},{opacity:1,duration:.6,ease:"power2.inOut"},1.15);
+tl.fromTo("#s-quote-mk0 .mark",{scaleX:0},{scaleX:1,duration:.7,ease:"power2.inOut"},2.34);
+tl.fromTo("#s-quote-mk1 .mark",{scaleX:0},{scaleX:1,duration:.7,ease:"power2.inOut"},2.727);
 tl.fromTo("#s-quote-label",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.35,ease:"power3.out"},0.12);
 window.__timelines["s-quote"] = tl;
 </script>
