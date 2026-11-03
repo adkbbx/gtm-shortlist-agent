@@ -198,6 +198,20 @@ def test_daily_budget_and_busy_limits(tmp_path):
         assert busy.status_code == 503 and "busy" in busy.json()["detail"]
 
 
+def test_an_overall_spending_limit_stops_new_searches_for_good_and_counts_only_since_its_start(tmp_path):
+    with make_client(tmp_path, daily_usd=100, total_usd=2.0) as client:
+        client.service.store.save(saved_run(cost=0.8))
+        client.service.store.save(saved_run(cost=0.8))
+        refused = client.post("/api/agent/runs", json={"website": "seller.example"})
+        assert refused.status_code == 503 and "Spending limit reached" in refused.json()["detail"]
+    with make_client(tmp_path / "later", daily_usd=100, total_usd=2.0,
+                     total_since=utcnow() + timedelta(days=1)) as client:
+        client.service.store.save(saved_run(cost=1.9))  # spent before the limit started: not counted
+        started = client.post("/api/agent/runs", json={"website": "seller.example"})
+        assert started.status_code == 201
+        finished(client, started.json()["id"])
+
+
 def test_turnstile_is_checked_before_any_work(tmp_path):
     with make_client(tmp_path, turnstile_site_key="site-key", turnstile_secret="turnstile-secret") as client:
         checked = []

@@ -10,10 +10,11 @@ A separate app for letting anyone try the website-only agent from a public link:
 | Searches per visitor per hour (address hashed with the secret, never stored raw) | `AGENT_PUBLIC_RUNS_PER_HOUR` | 3 |
 | Searches working at once | `AGENT_PUBLIC_MAX_ACTIVE` | 3 |
 | Estimated dollars per day across all visitors, resets 00:00 UTC | `AGENT_PUBLIC_DAILY_USD` | 10 |
+| Estimated dollars in all since a start date; once reached, no new searches ("Spending limit reached") | `AGENT_PUBLIC_TOTAL_USD` + `AGENT_PUBLIC_TOTAL_SINCE` | off (eygentic.tech: 50 from 3 Nov) |
 | Estimated dollars per search | `AGENT_RUN_BUDGET_USD` | 1.00 (0.50 suggested here) |
 | Cloudflare Turnstile before a search starts | `AGENT_PUBLIC_TURNSTILE_SITE_KEY` + `AGENT_PUBLIC_TURNSTILE_SECRET` | off |
 
-A new search is refused when the daily estimate plus a full budget for every working search would pass the daily cap. Estimates come from the agent's own telemetry (published token and search prices), not the providers' bills, so also set spend limits on the Meta billing page and in Baseten.
+A new search (or email draft) is refused when the day's estimate, or the total since `AGENT_PUBLIC_TOTAL_SINCE`, plus a full budget for every working search would pass its cap. The eygentic.tech values are set in `deploy/modal_agent.py`. Estimates come from the agent's own telemetry (published token and search prices), not the providers' bills, so also set spend limits on the Meta billing page and in Baseten.
 
 A search page is readable by anyone with its link; ids are random 128-bit hex. There is no list of searches. Only the browser that started a search holds its edit token (in that browser's local storage), so only it can correct the assumptions; everyone else sees a read-only shortlist. Requests from other origins and other host names are refused. A search left working by a restart is marked failed with a note to start again.
 

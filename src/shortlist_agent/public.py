@@ -64,6 +64,9 @@ class PublicSettings(BaseModel):
     runs_per_hour: int = Field(default=3, ge=1, le=100)
     max_active: int = Field(default=3, ge=1, le=20)
     daily_usd: float = Field(default=10.0, gt=0, le=1000)
+    # An overall limit across every search since total_since; once reached the demo starts nothing new. None for none.
+    total_usd: float | None = Field(default=None, gt=0, le=100000)
+    total_since: datetime = datetime(2026, 1, 1, tzinfo=UTC)
     turnstile_site_key: str = Field(default="", max_length=200)
     turnstile_secret: SecretStr = SecretStr("")
     # On only behind a proxy that sets X-Forwarded-For (Modal does); otherwise a visitor could pick their own address.
@@ -117,6 +120,8 @@ class PublicSettings(BaseModel):
                    data_dir=env("AGENT_PUBLIC_DATA", "data/agent-public"), dist_dir=env("AGENT_PUBLIC_DIST") or None,
                    max_companies=env("AGENT_PUBLIC_MAX_COMPANIES", "5"), runs_per_hour=env("AGENT_PUBLIC_RUNS_PER_HOUR", "3"),
                    max_active=env("AGENT_PUBLIC_MAX_ACTIVE", "3"), daily_usd=env("AGENT_PUBLIC_DAILY_USD", "10"),
+                   total_usd=env("AGENT_PUBLIC_TOTAL_USD") or None,
+                   total_since=env("AGENT_PUBLIC_TOTAL_SINCE") or datetime(2026, 1, 1, tzinfo=UTC),
                    turnstile_site_key=env("AGENT_PUBLIC_TURNSTILE_SITE_KEY", ""),
                    turnstile_secret=env("AGENT_PUBLIC_TURNSTILE_SECRET", ""),
                    trust_proxy=env_flag("AGENT_PUBLIC_TRUST_PROXY"), synthetic=env_flag("AGENT_PUBLIC_SYNTHETIC"),
@@ -194,7 +199,13 @@ class PublicPolicy(RoutePolicy):
         if active >= self.settings.max_active:
             raise HTTPException(503, "The demo is busy with other searches. Please try again in a few minutes.")
         # Every working search may still spend its whole budget, so reserve it before allowing another.
-        if spent + (active + 1) * self.agent_settings().run_budget_usd > self.settings.daily_usd:
+        reserved = (active + 1) * self.agent_settings().run_budget_usd
+        if self.settings.total_usd is not None:
+            total, _ = self.store.usage_since(self.settings.total_since)
+            if total + reserved > self.settings.total_usd:
+                raise HTTPException(503, "Spending limit reached: this demo has used its budget and is not starting "
+                                         "new searches. You can still open the finished searches.")
+        if spent + reserved > self.settings.daily_usd:
             raise HTTPException(503, "Today's demo budget is used up. It resets at 00:00 UTC.")
 
     def capped(self, overrides: Overrides) -> Overrides:

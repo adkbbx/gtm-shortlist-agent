@@ -28,10 +28,16 @@ image = (
 app = modal.App(APP_NAME, image=image)
 
 # Served at https://eygentic.tech through a Cloudflare Worker (deploy/eygentic-proxy), which reaches this app by its
-# modal.run name. Not secret; listed after the secret so these win over any older values in it.
-PUBLIC_ADDRESS = modal.Secret.from_dict({
+# modal.run name. The spending limits live here so they are visible and certain: at most $0.50 a search, $10 a day, and
+# $50 in all from 3 November, after which the demo starts nothing new. Not secret; listed after the secret so these win
+# over any older values in it.
+PUBLIC_SETTINGS = modal.Secret.from_dict({
     "AGENT_PUBLIC_URL": "https://eygentic.tech",
     "AGENT_PUBLIC_ALSO_HOSTS": "gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run",
+    "AGENT_RUN_BUDGET_USD": "0.50",
+    "AGENT_PUBLIC_DAILY_USD": "10",
+    "AGENT_PUBLIC_TOTAL_USD": "50",
+    "AGENT_PUBLIC_TOTAL_SINCE": "2026-11-03T00:00:00+00:00",
 })
 
 
@@ -58,7 +64,7 @@ class VolumeCommits:
 
 
 # One container keeps the per-visitor limits, the running searches and the files in one place.
-@app.function(secrets=[modal.Secret.from_name("gtm-shortlist-agent"), PUBLIC_ADDRESS], volumes={"/data": volume},
+@app.function(secrets=[modal.Secret.from_name("gtm-shortlist-agent"), PUBLIC_SETTINGS], volumes={"/data": volume},
               min_containers=1, max_containers=1, timeout=1800, memory=1024)
 @modal.concurrent(max_inputs=100)
 @modal.asgi_app()
