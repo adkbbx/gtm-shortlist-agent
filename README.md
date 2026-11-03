@@ -28,6 +28,8 @@ Every model call is logged with tokens, searches and dollars; a search of five c
 
 Measured on 17 saved live searches: Muse Spark Open threw out 120 of 354 quotes and changed 31 of 82 verdicts
 ([docs/checker-value.md](docs/checker-value.md)).
+On 41 real companies I labelled myself it agreed with me 73% of the time and never dropped a company I wanted; its
+Shortlist is too generous with companies too big for the seller ([HACKATHON.md](HACKATHON.md#how-it-did-on-real-searches-labelled-by-me)).
 
 ## Run it
 
