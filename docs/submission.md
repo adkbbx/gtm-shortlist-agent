@@ -15,7 +15,7 @@ Put in your website. It finds the companies that need what you sell right now, a
 
 - Live demo: https://eygentic.tech
 - Code: https://github.com/adkbbx/gtm-shortlist-agent
-- Video: (your YouTube link)
+- Video: https://youtu.be/YbzJRF3j9NE
 
 ## Description
 

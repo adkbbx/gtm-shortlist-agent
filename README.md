@@ -3,7 +3,7 @@
 Put in your website. GTM Shortlist tells you which companies need what you sell right now, and why, in their own words,
 with a link to where they said it. No website yet? Describe what you sell and who buys it.
 
-**Try it:** https://eygentic.tech
+**Try it:** https://eygentic.tech · **Demo video:** https://youtu.be/YbzJRF3j9NE
 
 Built solo for the Meta Global AI Developer Hackathon (Indie track). [HACKATHON.md](HACKATHON.md) says exactly what
 existed before the event and what was built during it.

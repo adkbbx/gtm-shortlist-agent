@@ -7,6 +7,7 @@ website, three short answers stand in for it. For each Shortlisted company it wr
 model checks every statement in it against the quotes.
 
 Live demo: https://eygentic.tech
+Demo video: https://youtu.be/YbzJRF3j9NE
 
 ## What existed before, and what this repository is
 
