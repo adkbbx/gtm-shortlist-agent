@@ -1,5 +1,5 @@
 {
- "text": "And I have the same problem myself: working out who to reach out to this week. Lead lists give me thousands of names and no reason to call any of them. A chatbot gives me reasons, but I can't tell which ones are real.",
+ "text": "And I have the same problem myself: who do I reach out to this week? Lead lists give me names with no reason to call. A chatbot gives me reasons I can't check.",
  "words": [
   {
    "text": "And",
@@ -33,193 +33,138 @@
   },
   {
    "text": "myself:",
-   "start": 1.131,
+   "start": 1.12,
    "end": 2.08
   },
   {
-   "text": "working",
-   "start": 2.13,
+   "text": "who",
+   "start": 2.1,
+   "end": 2.16
+  },
+  {
+   "text": "do",
+   "start": 2.213,
+   "end": 2.32
+  },
+  {
+   "text": "I",
+   "start": 2.4,
    "end": 2.48
   },
   {
-   "text": "out",
-   "start": 2.52,
+   "text": "reach",
+   "start": 2.507,
    "end": 2.64
   },
   {
-   "text": "who",
-   "start": 2.68,
-   "end": 2.8
-  },
-  {
-   "text": "to",
-   "start": 2.827,
+   "text": "out",
+   "start": 2.7,
    "end": 2.88
   },
   {
-   "text": "reach",
-   "start": 2.92,
-   "end": 3.12
-  },
-  {
-   "text": "out",
-   "start": 3.16,
-   "end": 3.28
-  },
-  {
    "text": "to",
-   "start": 3.36,
-   "end": 3.52
+   "start": 2.933,
+   "end": 3.04
   },
   {
    "text": "this",
-   "start": 3.6,
-   "end": 3.92
+   "start": 3.088,
+   "end": 3.28
   },
   {
-   "text": "week.",
-   "start": 4.0,
-   "end": 4.4
+   "text": "week?",
+   "start": 3.36,
+   "end": 3.76
   },
   {
    "text": "Lead",
-   "start": 4.592,
-   "end": 5.36
+   "start": 3.936,
+   "end": 4.64
   },
   {
    "text": "lists",
-   "start": 5.427,
-   "end": 5.76
+   "start": 4.72,
+   "end": 5.12
   },
   {
    "text": "give",
-   "start": 5.792,
-   "end": 5.92
+   "start": 5.152,
+   "end": 5.28
   },
   {
    "text": "me",
-   "start": 5.973,
-   "end": 6.08
+   "start": 5.333,
+   "end": 5.44
   },
   {
-   "text": "thousands",
-   "start": 6.12,
+   "text": "names",
+   "start": 5.48,
+   "end": 5.68
+  },
+  {
+   "text": "with",
+   "start": 5.728,
+   "end": 5.92
+  },
+  {
+   "text": "no",
+   "start": 6.0,
+   "end": 6.16
+  },
+  {
+   "text": "reason",
+   "start": 6.206,
    "end": 6.48
   },
   {
-   "text": "of",
+   "text": "to",
    "start": 6.533,
    "end": 6.64
   },
   {
-   "text": "names",
-   "start": 6.707,
-   "end": 7.04
-  },
-  {
-   "text": "and",
-   "start": 7.08,
-   "end": 7.2
-  },
-  {
-   "text": "no",
-   "start": 7.28,
-   "end": 7.44
-  },
-  {
-   "text": "reason",
-   "start": 7.474,
-   "end": 7.68
-  },
-  {
-   "text": "to",
-   "start": 7.733,
-   "end": 7.84
-  },
-  {
-   "text": "call",
-   "start": 7.888,
-   "end": 8.08
-  },
-  {
-   "text": "any",
-   "start": 8.14,
-   "end": 8.32
-  },
-  {
-   "text": "of",
-   "start": 8.373,
-   "end": 8.48
-  },
-  {
-   "text": "them.",
-   "start": 8.512,
-   "end": 8.72
+   "text": "call.",
+   "start": 6.72,
+   "end": 7.12
   },
   {
    "text": "A",
-   "start": 9.12,
-   "end": 9.52
+   "start": 7.36,
+   "end": 7.6
   },
   {
    "text": "chatbot",
-   "start": 9.584,
-   "end": 10.0
+   "start": 7.68,
+   "end": 8.24
   },
   {
    "text": "gives",
-   "start": 10.04,
-   "end": 10.24
+   "start": 8.267,
+   "end": 8.4
   },
   {
    "text": "me",
-   "start": 10.293,
-   "end": 10.4
+   "start": 8.453,
+   "end": 8.56
   },
   {
-   "text": "reasons,",
-   "start": 10.47,
-   "end": 11.16
-  },
-  {
-   "text": "but",
-   "start": 11.21,
-   "end": 11.36
+   "text": "reasons",
+   "start": 8.61,
+   "end": 8.96
   },
   {
    "text": "I",
-   "start": 11.44,
-   "end": 11.52
+   "start": 9.04,
+   "end": 9.12
   },
   {
    "text": "can't",
-   "start": 11.56,
-   "end": 11.76
+   "start": 9.16,
+   "end": 9.36
   },
   {
-   "text": "tell",
-   "start": 11.792,
-   "end": 11.92
-  },
-  {
-   "text": "which",
-   "start": 11.96,
-   "end": 12.16
-  },
-  {
-   "text": "ones",
-   "start": 12.208,
-   "end": 12.4
-  },
-  {
-   "text": "are",
-   "start": 12.44,
-   "end": 12.56
-  },
-  {
-   "text": "real.",
-   "start": 12.624,
-   "end": 12.96
+   "text": "check.",
+   "start": 9.427,
+   "end": 9.92
   }
  ]
 }

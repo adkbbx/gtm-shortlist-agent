@@ -1,0 +1,135 @@
+{
+ "text": "It can also draft the whole email and a LinkedIn note, from the company's quotes and what it learned about my business. Those get checked too.",
+ "words": [
+  {
+   "text": "It",
+   "start": 0.0,
+   "end": 0.08
+  },
+  {
+   "text": "can",
+   "start": 0.12,
+   "end": 0.24
+  },
+  {
+   "text": "also",
+   "start": 0.288,
+   "end": 0.48
+  },
+  {
+   "text": "draft",
+   "start": 0.533,
+   "end": 0.8
+  },
+  {
+   "text": "the",
+   "start": 0.84,
+   "end": 0.96
+  },
+  {
+   "text": "whole",
+   "start": 0.987,
+   "end": 1.12
+  },
+  {
+   "text": "email",
+   "start": 1.2,
+   "end": 1.6
+  },
+  {
+   "text": "and",
+   "start": 1.68,
+   "end": 1.92
+  },
+  {
+   "text": "a",
+   "start": 1.96,
+   "end": 2.0
+  },
+  {
+   "text": "LinkedIn",
+   "start": 2.053,
+   "end": 2.48
+  },
+  {
+   "text": "note,",
+   "start": 2.544,
+   "end": 2.96
+  },
+  {
+   "text": "from",
+   "start": 2.992,
+   "end": 3.12
+  },
+  {
+   "text": "the",
+   "start": 3.14,
+   "end": 3.2
+  },
+  {
+   "text": "company's",
+   "start": 3.25,
+   "end": 3.68
+  },
+  {
+   "text": "quotes",
+   "start": 3.749,
+   "end": 4.16
+  },
+  {
+   "text": "and",
+   "start": 4.2,
+   "end": 4.32
+  },
+  {
+   "text": "what",
+   "start": 4.352,
+   "end": 4.48
+  },
+  {
+   "text": "it",
+   "start": 4.533,
+   "end": 4.64
+  },
+  {
+   "text": "learned",
+   "start": 4.67,
+   "end": 4.88
+  },
+  {
+   "text": "about",
+   "start": 4.92,
+   "end": 5.12
+  },
+  {
+   "text": "my",
+   "start": 5.173,
+   "end": 5.28
+  },
+  {
+   "text": "business.",
+   "start": 5.333,
+   "end": 5.84
+  },
+  {
+   "text": "Those",
+   "start": 5.92,
+   "end": 6.32
+  },
+  {
+   "text": "get",
+   "start": 6.36,
+   "end": 6.48
+  },
+  {
+   "text": "checked",
+   "start": 6.52,
+   "end": 6.8
+  },
+  {
+   "text": "too.",
+   "start": 6.88,
+   "end": 7.2
+  }
+ ]
+}

@@ -220,6 +220,23 @@ def test_origin_host_and_run_ids_are_checked(client, tmp_path):
         assert stranger.get("/api/health").status_code == 400
 
 
+def test_a_proxy_can_reach_the_app_by_its_own_host_name_while_browsers_still_use_the_public_origin(tmp_path):
+    with make_client(tmp_path, also_hosts="Demo-Origin.example, ") as proxied:
+        assert proxied.app.state.public_policy.settings.also_hosts == ("demo-origin.example",)
+        with TestClient(proxied.app, base_url="https://demo-origin.example") as via_proxy:
+            assert via_proxy.get("/api/health").status_code == 200
+            started = via_proxy.post("/api/agent/runs", json={"website": "seller.example"}, headers={"Origin": ORIGIN})
+            assert started.status_code == 201
+            crossed = via_proxy.post("/api/agent/runs", json={"website": "seller.example"},
+                                     headers={"Origin": "https://demo-origin.example"})
+            assert crossed.status_code == 403  # the browser-facing origin is still only app_url
+            finished(proxied, started.json()["id"])
+        with TestClient(proxied.app, base_url="https://other.example") as stranger:
+            assert stranger.get("/api/health").status_code == 400
+    with pytest.raises(ValidationError):
+        PublicSettings(app_url=ORIGIN, secret=SECRET, also_hosts="https://demo-origin.example")
+
+
 def test_ui_page_is_marked_agent_only(client):
     page = client.get("/?agent=" + "0" * 32)
     assert page.status_code == 200 and '<meta name="shortlist-start-flow" content="agent-only">' in page.text

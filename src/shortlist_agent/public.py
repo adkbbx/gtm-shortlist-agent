@@ -11,6 +11,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 import time
 from collections import defaultdict, deque
 from collections.abc import Callable
@@ -52,6 +53,9 @@ def env_flag(name: str) -> bool:
 class PublicSettings(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True, hide_input_in_errors=True)
     app_url: str
+    # Other host names that reach this app, such as its own modal.run name behind a proxy that serves app_url. The
+    # browser still sees app_url: same-origin checks and links use it.
+    also_hosts: tuple[str, ...] = ()
     # Signs edit tokens and hashes visitor addresses for the hourly limit (raw addresses are never stored).
     secret: SecretStr
     data_dir: Path = Path("data/agent-public")
@@ -82,6 +86,15 @@ class PublicSettings(BaseModel):
             raise ValueError("AGENT_PUBLIC_URL must use https (http only for localhost)")
         return value
 
+    @field_validator("also_hosts", mode="before")
+    @classmethod
+    def host_names(cls, value):
+        names = tuple(name.strip().lower() for name in (value.split(",") if isinstance(value, str) else value))
+        names = tuple(name for name in names if name)
+        if any(not re.fullmatch(r"[a-z0-9.-]+", name) for name in names):
+            raise ValueError("AGENT_PUBLIC_ALSO_HOSTS is a comma-separated list of host names, without scheme or port")
+        return names
+
     @field_validator("secret")
     @classmethod
     def long_secret(cls, value):
@@ -99,7 +112,8 @@ class PublicSettings(BaseModel):
     def load(cls) -> "PublicSettings":
         load_dotenv()
         env = os.getenv
-        return cls(app_url=env("AGENT_PUBLIC_URL", ""), secret=env("AGENT_PUBLIC_SECRET", ""),
+        return cls(app_url=env("AGENT_PUBLIC_URL", ""), also_hosts=env("AGENT_PUBLIC_ALSO_HOSTS", ""),
+                   secret=env("AGENT_PUBLIC_SECRET", ""),
                    data_dir=env("AGENT_PUBLIC_DATA", "data/agent-public"), dist_dir=env("AGENT_PUBLIC_DIST") or None,
                    max_companies=env("AGENT_PUBLIC_MAX_COMPANIES", "5"), runs_per_hour=env("AGENT_PUBLIC_RUNS_PER_HOUR", "3"),
                    max_active=env("AGENT_PUBLIC_MAX_ACTIVE", "3"), daily_usd=env("AGENT_PUBLIC_DAILY_USD", "10"),
@@ -271,7 +285,7 @@ def create_public_app(settings: PublicSettings | None = None, *, agent_settings:
 
     app = FastAPI(title="GTM Shortlist agent demo", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None)
     app.state.public_policy = policy
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=[urlsplit(settings.app_url).hostname])
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=[urlsplit(settings.app_url).hostname, *settings.also_hosts])
 
     @app.middleware("http")
     async def same_origin(request: Request, call_next):

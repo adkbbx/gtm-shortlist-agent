@@ -1,195 +1,160 @@
 {
- "text": "Every quote it finds goes to a second model, Muse Spark Open on Base-ten. That one can't browse. It only sees the quote and what it's supposed to prove, and it throws out anything that doesn't hold up.",
+ "text": "Every quote it finds goes to a second model, Muse Spark Open on Base-ten. It can't browse. It only sees the quote, and it throws out anything that doesn't hold up.",
  "words": [
   {
    "text": "Every",
    "start": 0.0,
-   "end": 0.32
+   "end": 0.24
   },
   {
    "text": "quote",
-   "start": 0.36,
+   "start": 0.293,
    "end": 0.56
   },
   {
    "text": "it",
-   "start": 0.587,
-   "end": 0.64
+   "start": 0.613,
+   "end": 0.72
   },
   {
    "text": "finds",
-   "start": 0.733,
+   "start": 0.8,
    "end": 1.2
   },
   {
    "text": "goes",
-   "start": 1.28,
-   "end": 1.6
+   "start": 1.248,
+   "end": 1.44
   },
   {
    "text": "to",
-   "start": 1.653,
-   "end": 1.76
+   "start": 1.467,
+   "end": 1.52
   },
   {
    "text": "a",
-   "start": 1.8,
-   "end": 1.84
+   "start": 1.6,
+   "end": 1.68
   },
   {
    "text": "second",
-   "start": 1.897,
-   "end": 2.24
+   "start": 1.726,
+   "end": 2.0
   },
   {
    "text": "model,",
-   "start": 2.293,
-   "end": 2.96
+   "start": 2.067,
+   "end": 2.88
   },
   {
    "text": "Muse",
-   "start": 3.04,
-   "end": 3.36
+   "start": 2.96,
+   "end": 3.28
   },
   {
    "text": "Spark",
-   "start": 3.427,
-   "end": 3.76
+   "start": 3.373,
+   "end": 3.84
   },
   {
    "text": "Open",
-   "start": 3.856,
+   "start": 3.92,
    "end": 4.24
   },
   {
    "text": "on",
-   "start": 4.4,
-   "end": 4.72
+   "start": 4.373,
+   "end": 4.64
   },
   {
    "text": "Base-ten.",
-   "start": 4.768,
-   "end": 5.441
-  },
-  {
-   "text": "That",
-   "start": 5.648,
-   "end": 6.48
-  },
-  {
-   "text": "one",
-   "start": 6.54,
-   "end": 6.72
-  },
-  {
-   "text": "can't",
-   "start": 6.78,
-   "end": 7.04
-  },
-  {
-   "text": "browse.",
-   "start": 7.131,
-   "end": 7.76
+   "start": 4.688,
+   "end": 5.36
   },
   {
    "text": "It",
-   "start": 7.893,
-   "end": 8.16
+   "start": 5.627,
+   "end": 6.16
+  },
+  {
+   "text": "can't",
+   "start": 6.22,
+   "end": 6.48
+  },
+  {
+   "text": "browse.",
+   "start": 6.56,
+   "end": 7.12
+  },
+  {
+   "text": "It",
+   "start": 7.28,
+   "end": 7.6
   },
   {
    "text": "only",
-   "start": 8.208,
-   "end": 8.4
+   "start": 7.664,
+   "end": 7.92
   },
   {
    "text": "sees",
-   "start": 8.464,
-   "end": 8.72
+   "start": 7.984,
+   "end": 8.24
   },
   {
    "text": "the",
-   "start": 8.76,
-   "end": 8.88
+   "start": 8.26,
+   "end": 8.32
   },
   {
-   "text": "quote",
-   "start": 8.933,
-   "end": 9.2
-  },
-  {
-   "text": "and",
-   "start": 9.26,
-   "end": 9.44
-  },
-  {
-   "text": "what",
-   "start": 9.472,
-   "end": 9.6
-  },
-  {
-   "text": "it's",
-   "start": 9.653,
-   "end": 9.96
-  },
-  {
-   "text": "supposed",
-   "start": 9.982,
-   "end": 10.16
-  },
-  {
-   "text": "to",
-   "start": 10.187,
-   "end": 10.24
-  },
-  {
-   "text": "prove,",
-   "start": 10.333,
-   "end": 11.2
+   "text": "quote,",
+   "start": 8.387,
+   "end": 8.96
   },
   {
    "text": "and",
-   "start": 11.22,
-   "end": 11.28
+   "start": 9.0,
+   "end": 9.12
   },
   {
    "text": "it",
-   "start": 11.333,
-   "end": 11.44
+   "start": 9.147,
+   "end": 9.2
   },
   {
    "text": "throws",
-   "start": 11.497,
-   "end": 11.84
+   "start": 9.246,
+   "end": 9.52
   },
   {
    "text": "out",
-   "start": 11.9,
-   "end": 12.08
+   "start": 9.58,
+   "end": 9.76
   },
   {
    "text": "anything",
-   "start": 12.142,
-   "end": 12.64
+   "start": 9.813,
+   "end": 10.24
   },
   {
    "text": "that",
-   "start": 12.672,
-   "end": 12.8
+   "start": 10.272,
+   "end": 10.4
   },
   {
    "text": "doesn't",
-   "start": 12.827,
-   "end": 13.04
+   "start": 10.427,
+   "end": 10.64
   },
   {
    "text": "hold",
-   "start": 13.104,
-   "end": 13.36
+   "start": 10.704,
+   "end": 10.96
   },
   {
    "text": "up.",
-   "start": 13.467,
-   "end": 13.84
+   "start": 11.04,
+   "end": 11.28
   }
  ]
 }

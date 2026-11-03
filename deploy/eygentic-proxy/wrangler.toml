@@ -1,0 +1,9 @@
+name = "eygentic-proxy"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+# eygentic.tech must be a zone in the same Cloudflare account (its nameservers pointed at Cloudflare).
+routes = [
+  { pattern = "eygentic.tech", custom_domain = true },
+  { pattern = "www.eygentic.tech", custom_domain = true },
+]

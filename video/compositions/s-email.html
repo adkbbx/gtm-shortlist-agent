@@ -1,0 +1,41 @@
+<template>
+<style>@font-face{font-family:'Schibsted Grotesk';font-weight:500;src:url('assets/fonts/schibsted-500.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:600;src:url('assets/fonts/schibsted-600.woff2') format('woff2')}@font-face{font-family:'Schibsted Grotesk';font-weight:800;src:url('assets/fonts/schibsted-800.woff2') format('woff2')}
+#root{position:absolute;inset:0;overflow:hidden;font-family:'Schibsted Grotesk',sans-serif;color:#1b1b1b;
+  background:radial-gradient(1400px 700px at 50% -10%,#fbf7f1 0%,#f3f1ed 60%)}
+.win{position:absolute;left:224px;top:56px;width:1472px;height:868px;border-radius:18px;overflow:hidden;
+  background:#fff;border:1px solid rgba(27,27,27,.10);box-shadow:0 50px 110px -45px rgba(40,30,20,.45),0 8px 24px -12px rgba(40,30,20,.12)}
+.bar{position:absolute;left:0;top:0;width:1472px;height:40px;background:#f7f6f3;border-bottom:1px solid rgba(27,27,27,.10);
+  display:flex;align-items:center}
+.dots{position:absolute;left:18px;top:14px;display:flex;gap:8px}.dots i{width:12px;height:12px;border-radius:50%;background:#dedad3;display:block}
+.url{margin:0 auto;padding:4px 16px;border-radius:8px;background:#fff;border:1px solid rgba(27,27,27,.10);font-size:15px;font-weight:500;color:#6b665f}
+.view{position:absolute;left:0;top:40px;width:1472px;height:828px;overflow:hidden;background:#f7f7f5}
+.cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+.cam video{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:contain}
+.mark{position:absolute;border-radius:6px;background:rgba(240,150,70,.38);mix-blend-mode:multiply;transform-origin:0 50%;z-index:5}
+.spot{position:absolute;border-radius:14px;box-shadow:0 0 0 3000px rgba(24,22,20,.42);z-index:4}
+.label{position:absolute;left:224px;top:12px;height:40px;display:flex;align-items:center;gap:14px;font-size:28px;
+  font-weight:600;letter-spacing:-.015em;color:#1b1b1b;white-space:nowrap}
+.label b{color:#b4501c;font-weight:800}
+.speed{position:absolute;right:224px;top:12px;height:40px;display:flex;align-items:center;font-size:28px;font-weight:500;
+  color:#6b665f;white-space:nowrap}
+.spotclip{position:absolute;left:0;top:0;width:1920px;height:1080px}</style>
+<div id="root" data-composition-id="s-email" data-width="1920" data-height="1080">
+  <div id="s-email-label" class="label">Draft outreach: an email and a LinkedIn note, checked by Muse Spark Open</div><div id="s-email-speed" class="speed">Sped up 2×</div>
+  <div id="s-email-win" class="win">
+    <div class="bar" data-layout-ignore><div class="dots"><i></i><i></i><i></i></div><div class="url">eygentic.tech</div></div>
+    <div class="view"><div id="s-email-cam" class="cam">
+      <video id="s-email-video" class="clip" src="assets/screens/draft.mp4" data-start="0" data-duration="7.7"
+        data-media-start="22.0" data-playback-rate="1.6234" muted playsinline></video>
+      
+    </div></div>
+  </div>
+</div>
+<script>
+const tl = gsap.timeline({ paused: true });
+tl.set("#s-email-cam",{x:-36.8,y:-20.7,scale:0.805},0);
+tl.to("#s-email-cam",{x:-132.5,y:-56.4,scale:0.9047,duration:7.7,ease:"sine.inOut"},0.0);
+tl.fromTo("#s-email-label",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.35,ease:"power3.out"},0.12);
+tl.fromTo("#s-email-speed",{opacity:0},{opacity:1,duration:.35,ease:"power2.out"},0.2);
+window.__timelines["s-email"] = tl;
+</script>
+</template>

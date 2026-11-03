@@ -1,29 +1,29 @@
 {
- "text": "Before this hackathon I had a rough prototype. This week I rebuilt it on Muse Spark. Here's what it does now.",
+ "text": "Before this hackathon I had a rough prototype. Everything you'll see here I built this week, and it runs on Meta's Muse Spark models.",
  "words": [
   {
    "text": "Before",
    "start": 0.0,
-   "end": 0.24
+   "end": 0.32
   },
   {
    "text": "this",
-   "start": 0.272,
-   "end": 0.4
+   "start": 0.352,
+   "end": 0.48
   },
   {
    "text": "hackathon",
-   "start": 0.448,
+   "start": 0.528,
    "end": 0.96
   },
   {
    "text": "I",
-   "start": 1.04,
-   "end": 1.12
+   "start": 1.08,
+   "end": 1.2
   },
   {
    "text": "had",
-   "start": 1.16,
+   "start": 1.22,
    "end": 1.28
   },
   {
@@ -39,72 +39,87 @@
   {
    "text": "prototype.",
    "start": 1.664,
-   "end": 2.4
+   "end": 2.32
   },
   {
-   "text": "This",
-   "start": 2.528,
-   "end": 3.04
+   "text": "Everything",
+   "start": 2.393,
+   "end": 3.12
   },
   {
-   "text": "week",
-   "start": 3.104,
-   "end": 3.36
+   "text": "you'll",
+   "start": 3.14,
+   "end": 3.28
   },
   {
-   "text": "I",
-   "start": 3.4,
+   "text": "see",
+   "start": 3.32,
    "end": 3.44
   },
   {
-   "text": "rebuilt",
-   "start": 3.5,
+   "text": "here",
+   "start": 3.504,
+   "end": 3.76
+  },
+  {
+   "text": "I",
+   "start": 3.84,
    "end": 3.92
   },
   {
-   "text": "it",
-   "start": 3.973,
-   "end": 4.08
+   "text": "built",
+   "start": 3.96,
+   "end": 4.16
   },
   {
-   "text": "on",
-   "start": 4.133,
-   "end": 4.24
+   "text": "this",
+   "start": 4.208,
+   "end": 4.4
   },
   {
-   "text": "Muse",
-   "start": 4.304,
-   "end": 4.56
-  },
-  {
-   "text": "Spark.",
-   "start": 4.64,
+   "text": "week,",
+   "start": 4.448,
    "end": 5.12
   },
   {
-   "text": "Here's",
-   "start": 5.296,
-   "end": 6.08
-  },
-  {
-   "text": "what",
-   "start": 6.096,
-   "end": 6.16
+   "text": "and",
+   "start": 5.14,
+   "end": 5.2
   },
   {
    "text": "it",
-   "start": 6.213,
-   "end": 6.32
+   "start": 5.227,
+   "end": 5.28
   },
   {
-   "text": "does",
-   "start": 6.368,
-   "end": 6.56
+   "text": "runs",
+   "start": 5.344,
+   "end": 5.6
   },
   {
-   "text": "now.",
-   "start": 6.66,
-   "end": 7.28
+   "text": "on",
+   "start": 5.627,
+   "end": 5.68
+  },
+  {
+   "text": "Meta's",
+   "start": 5.744,
+   "end": 6.08
+  },
+  {
+   "text": "Muse",
+   "start": 6.16,
+   "end": 6.48
+  },
+  {
+   "text": "Spark",
+   "start": 6.547,
+   "end": 6.88
+  },
+  {
+   "text": "models.",
+   "start": 6.937,
+   "end": 7.6
   }
  ]
 }

@@ -50,6 +50,18 @@ Open http://127.0.0.1:8020 and search for `seller.example`. Remove `AGENT_PUBLIC
 
 The deployment keeps one small CPU container running (`min_containers=1`, `max_containers=1`), so the per-visitor limits and the working searches stay in one process. Searches are JSON files on the Modal Volume `gtm-shortlist-agent-runs`, committed every few seconds. To stop the demo, run `modal app stop gtm-shortlist-agent`.
 
+## Serve it at your own domain (eygentic.tech)
+
+Modal custom domains need its Team plan, so the demo is served at https://eygentic.tech by a free Cloudflare Worker
+(`deploy/eygentic-proxy/`) that forwards every request to the Modal app. The browser only sees eygentic.tech.
+
+1. In Cloudflare (free plan), add the site `eygentic.tech`, then set the two nameservers Cloudflare gives you at the
+   registrar (Namify). Remove the old CNAME to Render once Cloudflare has imported the records.
+2. `cd deploy/eygentic-proxy && npx wrangler login && npx wrangler deploy`. This attaches the Worker to `eygentic.tech`
+   and `www.eygentic.tech` (www redirects to the bare domain).
+3. In the Modal secret, set `AGENT_PUBLIC_URL=https://eygentic.tech` and
+   `AGENT_PUBLIC_ALSO_HOSTS=gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run`, then deploy the app again. From then
+   on, searches start only from eygentic.tech: the app refuses a browser whose origin is not `AGENT_PUBLIC_URL`.
 ## Checks
 
 - `pytest tests/test_public_demo.py`: limits, edit tokens, Turnstile, origin and host checks, run-id validation, the file store and restart recovery.

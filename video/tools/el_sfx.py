@@ -1,4 +1,4 @@
-﻿"""ElevenLabs sound effects and the music bed. Never prints the key.
+"""ElevenLabs sound effects and the music bed. Never prints the key.
 Usage: el_sfx.py <outdir>            -> the effects kit
        el_sfx.py <outdir> music      -> music.mp3, one continuous bed for the whole film
        el_sfx.py <outdir> name,name  -> only those effects"""
@@ -32,7 +32,7 @@ def main():
     arg = sys.argv[2] if len(sys.argv) > 2 else ""
     with httpx.Client(timeout=600) as client:
         if arg == "music":
-            r = client.post("https://api.elevenlabs.io/v1/music", params={"output_format": "mp3_44100_192"},
+            r = client.post("https://api.elevenlabs.io/v1/music", params={"output_format": "mp3_44100_128"},
                             headers={"xi-api-key": KEY},
                             json={"prompt": MUSIC, "music_length_ms": 160000, "force_instrumental": True})
             if not r.is_success:
@@ -44,7 +44,7 @@ def main():
         for name, (prompt, seconds) in SFX.items():
             if only and name not in only:
                 continue
-            r = client.post("https://api.elevenlabs.io/v1/sound-generation", params={"output_format": "mp3_44100_192"},
+            r = client.post("https://api.elevenlabs.io/v1/sound-generation", params={"output_format": "mp3_44100_128"},
                             headers={"xi-api-key": KEY},
                             json={"text": prompt, "duration_seconds": seconds, "prompt_influence": 0.7})
             if not r.is_success:

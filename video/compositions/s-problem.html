@@ -10,7 +10,7 @@
 .row{display:flex;flex-direction:column;align-items:center;gap:14px}
 .stack svg{width:100%;height:100%;display:block}</style>
 <div id="root" data-composition-id="s-problem" data-width="1920" data-height="1080">
-  <div class="stack">
+  <div class="stack" data-hold>
     <div id="s-problem-q" class="big" style="font-size:72px" data-hold>Who do I reach out to this week?</div>
     <div style="display:flex;gap:120px;margin-top:40px">
       <div id="s-problem-a" class="row"><div class="eyebrow">Lead lists</div><div class="big soft" style="font-size:52px">Thousands of names.<br>No reason to call.</div></div>
@@ -19,9 +19,9 @@
 </div>
 <script>
 const tl = gsap.timeline({ paused: true });
-tl.fromTo("#s-problem-q",{opacity:0,y:16,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},2.33);
-tl.fromTo("#s-problem-a",{opacity:0,y:24,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},4.792);
-tl.fromTo("#s-problem-b",{opacity:0,y:24,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},9.784);
+tl.fromTo("#s-problem-q",{opacity:0,y:16,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},2.3);
+tl.fromTo("#s-problem-a",{opacity:0,y:24,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},4.136);
+tl.fromTo("#s-problem-b",{opacity:0,y:24,filter:"blur(8px)"},{opacity:1,y:0,filter:"blur(0px)",duration:.5,ease:"expo.out"},7.88);
 window.__timelines["s-problem"] = tl;
 </script>
 </template>

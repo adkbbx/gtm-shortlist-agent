@@ -11,6 +11,7 @@
 .view{position:absolute;left:0;top:40px;width:1472px;height:828px;overflow:hidden;background:#f7f7f5}
 .cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
 .cam video{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:contain}
+.mark{position:absolute;border-radius:6px;background:rgba(240,150,70,.38);mix-blend-mode:multiply;transform-origin:0 50%;z-index:5}
 .spot{position:absolute;border-radius:14px;box-shadow:0 0 0 3000px rgba(24,22,20,.42);z-index:4}
 .label{position:absolute;left:224px;top:12px;height:40px;display:flex;align-items:center;gap:14px;font-size:28px;
   font-weight:600;letter-spacing:-.015em;color:#1b1b1b;white-space:nowrap}
@@ -21,7 +22,7 @@
 <div id="root" data-composition-id="s-input" data-width="1920" data-height="1080">
   <div id="s-input-label" class="label"><b>1</b>Your website. Nothing else.</div><div id="s-input-speed" class="speed">Sped up 2×</div>
   <div id="s-input-win" class="win">
-    <div class="bar" data-layout-ignore><div class="dots"><i></i><i></i><i></i></div><div class="url">gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run</div></div>
+    <div class="bar" data-layout-ignore><div class="dots"><i></i><i></i><i></i></div><div class="url">eygentic.tech</div></div>
     <div class="view"><div id="s-input-cam" class="cam">
       <video id="s-input-video" class="clip" src="assets/screens/live.mp4" data-start="0" data-duration="3.44"
         data-media-start="8.25" data-playback-rate="1.5552" muted playsinline></video>
@@ -33,6 +34,7 @@
 const tl = gsap.timeline({ paused: true });
 tl.set("#s-input-cam",{x:0.0,y:0.0,scale:0.7667},0);
 tl.to("#s-input-cam",{x:-331.2,y:-372.6,scale:1.1117,duration:1.032,ease:"power3.inOut"},0.0);
+tl.fromTo("#s-input-win",{y:40,opacity:0},{y:0,opacity:1,duration:.7,ease:"expo.out"},0);
 tl.fromTo("#s-input-sp0 .spot",{opacity:0},{opacity:1,duration:.6,ease:"power2.inOut"},0.67);
 tl.fromTo("#s-input-label",{opacity:0,filter:"blur(6px)"},{opacity:1,filter:"blur(0px)",duration:.35,ease:"power3.out"},0.12);
 tl.fromTo("#s-input-speed",{opacity:0},{opacity:1,duration:.35,ease:"power2.out"},0.2);

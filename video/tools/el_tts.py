@@ -1,4 +1,4 @@
-﻿"""ElevenLabs narration with word timings. Never prints the key.
+"""ElevenLabs narration with word timings. Never prints the key.
 Usage: el_tts.py samples <outdir>            -> one line on several voices
        el_tts.py lines <narration.json> <voice_id> <outdir> [model]  -> every line: <id>.mp3 + <id>.json (word timings)
 """
@@ -25,7 +25,7 @@ def speak(client, voice, text, model, out: Path, context=None):
     if model != "eleven_v3" and context:
         body.update(context)
     r = client.post(f"https://api.elevenlabs.io/v1/text-to-speech/{voice}/with-timestamps",
-                    params={"output_format": "mp3_44100_192"}, headers={"xi-api-key": KEY}, json=body)
+                    params={"output_format": "mp3_44100_128"}, headers={"xi-api-key": KEY}, json=body)
     if not r.is_success:
         raise SystemExit(f"{out.name}: status {r.status_code} {r.text[:300]}")
     data = r.json()
