@@ -184,9 +184,7 @@
   background:#f1ede7;color:var(--pl-charcoal);font-size:.8125rem;font-weight:700}
 .company-option-icon img{width:100%;height:100%;object-fit:cover;display:block}
 .company-option-name{font-weight:600;color:var(--pl-charcoal);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.company-option-domain{margin-left:auto;color:#6b665f;font-size:.875rem;white-space:nowrap}
-.company-options-credit{margin:.25rem .625rem .125rem;font-size:.75rem;color:#6b665f;text-align:right}
-.yc-field input{width:100%;height:3rem;padding:0 .875rem;border:0;outline:0;background:transparent;font-size:1.0625rem;color:var(--pl-charcoal)}
+.company-option-domain{margin-left:auto;color:#6b665f;font-size:.875rem;white-space:nowrap}.yc-field input{width:100%;height:3rem;padding:0 .875rem;border:0;outline:0;background:transparent;font-size:1.0625rem;color:var(--pl-charcoal)}
 /* The whole field shows focus (above); the text box inside it draws no second ring. */
 .yc-field input:focus,.yc-field input:focus-visible{outline:0;box-shadow:none}
 .yc-btn{flex:none;display:inline-flex;align-items:center;gap:.5rem;height:3rem;padding:0 1.25rem;border:0;border-radius:.625rem;

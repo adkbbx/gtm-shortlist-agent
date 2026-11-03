@@ -98,7 +98,6 @@ export function WebsiteField({ value, onChange, disabled, label, placeholder, in
             <span className="company-option-domain">{match.domain}</span>
           </li>)}
       </ul>
-      <p className="company-options-credit" aria-hidden="true">Company suggestions by Brandfetch</p>
     </div>}
   </div>;
 }
