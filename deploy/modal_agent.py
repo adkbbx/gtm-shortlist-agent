@@ -27,6 +27,13 @@ image = (
 )
 app = modal.App(APP_NAME, image=image)
 
+# Served at https://eygentic.tech through a Cloudflare Worker (deploy/eygentic-proxy), which reaches this app by its
+# modal.run name. Not secret; listed after the secret so these win over any older values in it.
+PUBLIC_ADDRESS = modal.Secret.from_dict({
+    "AGENT_PUBLIC_URL": "https://eygentic.tech",
+    "AGENT_PUBLIC_ALSO_HOSTS": "gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run",
+})
+
 
 class VolumeCommits:
     """Saves are atomic files on the volume; commit them every few seconds instead of on every progress event."""
@@ -51,7 +58,7 @@ class VolumeCommits:
 
 
 # One container keeps the per-visitor limits, the running searches and the files in one place.
-@app.function(secrets=[modal.Secret.from_name("gtm-shortlist-agent")], volumes={"/data": volume},
+@app.function(secrets=[modal.Secret.from_name("gtm-shortlist-agent"), PUBLIC_ADDRESS], volumes={"/data": volume},
               min_containers=1, max_containers=1, timeout=1800, memory=1024)
 @modal.concurrent(max_inputs=100)
 @modal.asgi_app()

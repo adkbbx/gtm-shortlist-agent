@@ -6,7 +6,7 @@ companies that show a need right now (open job posts, launches, funding), invest
 website, three short answers stand in for it. For each Shortlisted company it writes an opening line, and a second Meta
 model checks every statement in it against the quotes.
 
-Live demo: https://gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run
+Live demo: https://eygentic.tech
 
 ## What existed before, and what this repository is
 
@@ -48,7 +48,7 @@ https://github.com/adkbbx/GTM_Shortlist/compare/pre-meta-hackathon...meta-hackat
 | Storage | `runs`, `records` and related tables | New `agent_runs` table (id, created_at, status, payload JSON, events JSON) in a local SQLite file |
 | Interface | Classic workspace, landing page and demo | New start page with one field, a replay of a real search and a snapshot of a real result; a live board with a pinned monitor, an activity rail, "What we assumed", verdict columns, quote popovers with text-fragment links and a cost footer; a "Your shortlist" page for this browser's Shortlisted companies; a video mode (`?video=1`) that shows every company except the recording seller under an invented `.example` name, with a "company names changed" tag |
 | Command line and evaluation | `shortlist run`, `export` and earlier evaluation scripts | `shortlist-agent run` and `shortlist-agent eval` with agreement, shortlist precision, disqualifier recall, cost per company, p50/p95 latency and a no-skeptic ablation |
-| Public access | Hosted accounts with signup credits | A separate public demo app (`shortlist_agent/public.py`) that needs only a website: capped companies per search, an hourly limit per visitor, a cap on searches working at once, a daily dollar cap and optional Turnstile. Shareable read-only links; only the starting browser can correct a search. Runs are JSON files (`shortlist_agent/files.py`). Live at https://gtmshortlist--gtm-shortlist-agent-web.us-east.modal.run (`deploy/modal_agent.py`: one always-on container, searches saved on a Modal Volume so shared links last). Three real finished searches ship as read-only examples, one per seller (vanta.com, crisp.chat, eygentic.com), and finished boards have link previews |
+| Public access | Hosted accounts with signup credits | A separate public demo app (`shortlist_agent/public.py`) that needs only a website: capped companies per search, an hourly limit per visitor, a cap on searches working at once, a daily dollar cap and optional Turnstile. Shareable read-only links; only the starting browser can correct a search. Runs are JSON files (`shortlist_agent/files.py`). Live at https://eygentic.tech (`deploy/modal_agent.py` on Modal, served at that address by a Cloudflare Worker in `deploy/eygentic-proxy`: one always-on container, searches saved on a Modal Volume so shared links last). Three real finished searches ship as read-only examples, one per seller (vanta.com, crisp.chat, eygentic.com), and finished boards have link previews |
 | Tests | 838 backend tests and the existing browser journeys | 145 backend tests in `tests/` and 7 browser journeys in `tests/ui/agent.spec.ts` and `tests/ui/agent-public.spec.ts`, each on laptop and phone |
 
 ## Which Meta model does what
