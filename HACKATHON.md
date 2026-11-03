@@ -35,7 +35,7 @@ https://github.com/adkbbx/GTM_Shortlist/compare/pre-meta-hackathon...meta-hackat
 
 | | Built before the event (tag `pre-meta-hackathon`, commit `b620235`, 19 October) | Built during the event (this repository) |
 |---|---|---|
-| Input | Company name or website, then a required screen to confirm the offer, target and typed fit criteria | Website only. No confirmation screen. A vague site gets up to three clickable readings, never a required text box. Without a website, three short answers (what you sell, your ideal customer, which markets) stand in for it: every claim about the seller quotes those words, labelled "from your description" |
+| Input | Company name or website, then a required screen to confirm the offer, target and typed fit criteria | Website only; typing a company name offers matching companies with their logos (Brandfetch search, a new combobox written during the event) and choosing one fills in its website. No confirmation screen. A vague site gets up to three clickable readings, never a required text box. Without a website, three short answers (what you sell, your ideal customer, which markets) stand in for it: every claim about the seller quotes those words, labelled "from your description" |
 | Seller understanding | One model call drafts an offer and target from the homepage for the person to edit | Homepage plus up to five chosen pages (pricing, product, customers, about, integrations or the seller's own comparison page). Offer, buyer, existing customers, 2 to 5 fit checks, need and timing signals and any stated size or region, each with quotes |
 | Competitors | Same-category companies set aside by a word-overlap rule | Found with web search, then proven from each candidate's own homepage: `direct` needs a quote for the same job and one for the same buyer. Direct competitors become disqualifiers |
 | Research | `worker.execute_run`: Tavily or SerpApi search and an OpenAI-compatible Gemma model, one to three companies | An agent loop per company on Muse Spark with built-in `web_search` and a `fetch_page` tool, 10 companies by default (up to 20), five at a time, at most 4 searches, 6 page reads and 8 turns each |
@@ -49,7 +49,7 @@ https://github.com/adkbbx/GTM_Shortlist/compare/pre-meta-hackathon...meta-hackat
 | Interface | Classic workspace, landing page and demo | New start page with one field, a replay of a real search and a snapshot of a real result; a live board with a pinned monitor, an activity rail, "What we assumed", verdict columns, quote popovers with text-fragment links and a cost footer; a "Your shortlist" page for this browser's Shortlisted companies; a video mode (`?video=1`) that shows every company except the recording seller under an invented `.example` name, with a "company names changed" tag |
 | Command line and evaluation | `shortlist run`, `export` and earlier evaluation scripts | `shortlist-agent run` and `shortlist-agent eval` with agreement, shortlist precision, disqualifier recall, cost per company, p50/p95 latency and a no-skeptic ablation |
 | Public access | Hosted accounts with signup credits | A separate public demo app (`shortlist_agent/public.py`) that needs only a website: capped companies per search, an hourly limit per visitor, a cap on searches working at once, a daily dollar cap and optional Turnstile. Shareable read-only links; only the starting browser can correct a search. Runs are JSON files (`shortlist_agent/files.py`). Live at https://eygentic.tech (`deploy/modal_agent.py` on Modal, served at that address by a Cloudflare Worker in `deploy/eygentic-proxy`: one always-on container, searches saved on a Modal Volume so shared links last). Three real finished searches ship as read-only examples, one per seller (vanta.com, crisp.chat, eygentic.com), and finished boards have link previews |
-| Tests | 838 backend tests and the existing browser journeys | 145 backend tests in `tests/` and 7 browser journeys in `tests/ui/agent.spec.ts` and `tests/ui/agent-public.spec.ts`, each on laptop and phone |
+| Tests | 838 backend tests and the existing browser journeys | 149 backend tests in `tests/` and 8 browser journeys in `tests/ui/agent.spec.ts` and `tests/ui/agent-public.spec.ts`, each on laptop and phone |
 
 ## Which Meta model does what
 
@@ -83,8 +83,8 @@ shortlist-agent eval tests/fixtures/labels.synthetic.csv --run run.json --no-ske
 
 **Public demo.** `docs/agent-public-demo.md`: limits, a local trial with synthetic data, and deploying on Modal.
 
-**Tests.** `pytest` (145 tests, synthetic providers only), `ruff check src tests scripts`, and
-`npx playwright test` (7 browser journeys, each on laptop and phone).
+**Tests.** `pytest` (149 tests, synthetic providers only), `ruff check src tests scripts`, and
+`npx playwright test` (8 browser journeys, each on laptop and phone).
 
 ## What the second model changes (measured)
 

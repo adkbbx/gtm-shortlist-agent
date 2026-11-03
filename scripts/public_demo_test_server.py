@@ -13,7 +13,9 @@ from shortlist_agent.settings import AgentSettings
 
 data = tempfile.TemporaryDirectory(prefix="gtm-shortlist-public-")
 settings = PublicSettings(app_url="http://127.0.0.1:8017", secret=secrets.token_hex(32), data_dir=Path(data.name),
-                          synthetic=True, runs_per_hour=50, max_active=10)
+                          synthetic=True, runs_per_hour=50, max_active=10,
+                          # A dummy ID: the browser tests answer Brandfetch's search themselves, nothing leaves the machine.
+                          brandfetch_client_id="test-client-id")
 application = create_public_app(settings, agent_settings=lambda: AgentSettings())
 
 if __name__ == "__main__":

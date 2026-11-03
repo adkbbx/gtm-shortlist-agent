@@ -173,7 +173,19 @@
 .yc-field{display:flex;gap:.375rem;padding:.375rem;border:1px solid rgba(27,27,27,.14);border-radius:.875rem;background:#fff;
   box-shadow:0 1px 2px rgba(27,27,27,.05),0 12px 32px -12px rgba(106,52,23,.22);transition:border-color .2s,box-shadow .2s}
 .yc-field:focus-within{border-color:var(--pl-apricot);box-shadow:0 0 0 4px rgba(213,104,47,.14),0 12px 32px -12px rgba(106,52,23,.25)}
-.yc-field .company-search{flex:1;min-width:0}
+.yc-field .company-search{flex:1;min-width:0;position:relative}
+/* Company suggestions under the website field (Brandfetch). */
+.company-options{position:absolute;left:-.375rem;right:-.375rem;top:calc(100% + .75rem);z-index:30;padding:.375rem;
+  background:#fff;border:1px solid rgba(27,27,27,.12);border-radius:.875rem;box-shadow:0 18px 40px -16px rgba(60,35,15,.35)}
+.company-options ul{list-style:none;margin:0;padding:0}
+.company-options li{display:flex;align-items:center;gap:.75rem;min-height:2.75rem;padding:.375rem .625rem;border-radius:.625rem;cursor:pointer}
+.company-options li.is-active{background:#f6f1ea}
+.company-option-icon{width:1.75rem;height:1.75rem;flex:none;display:grid;place-items:center;border-radius:.5rem;overflow:hidden;
+  background:#f1ede7;color:var(--pl-charcoal);font-size:.8125rem;font-weight:700}
+.company-option-icon img{width:100%;height:100%;object-fit:cover;display:block}
+.company-option-name{font-weight:600;color:var(--pl-charcoal);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.company-option-domain{margin-left:auto;color:#6b665f;font-size:.875rem;white-space:nowrap}
+.company-options-credit{margin:.25rem .625rem .125rem;font-size:.75rem;color:#6b665f;text-align:right}
 .yc-field input{width:100%;height:3rem;padding:0 .875rem;border:0;outline:0;background:transparent;font-size:1.0625rem;color:var(--pl-charcoal)}
 /* The whole field shows focus (above); the text box inside it draws no second ring. */
 .yc-field input:focus,.yc-field input:focus-visible{outline:0;box-shadow:none}

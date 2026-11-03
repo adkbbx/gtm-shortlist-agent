@@ -8,6 +8,55 @@ test.use({ baseURL: 'http://127.0.0.1:8017' });
 
 const noOverflow = (page: Page) => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1);
 
+test('typing a company name offers matching companies, and choosing one fills in its website', async ({ page }, info) => {
+  // Brandfetch's search, answered here with LABELLED SYNTHETIC companies: nothing leaves the machine.
+  const asked: string[] = [];
+  await page.route('https://api.brandfetch.io/v2/search/**', route => {
+    asked.push(decodeURIComponent(new URL(route.request().url()).pathname.split('/').pop() ?? ''));
+    return route.fulfill({ json: [
+      { name: 'Seller Example', domain: 'seller.example', icon: null },
+      { name: 'Seller Example', domain: 'seller.example', icon: null },  // a duplicate is shown once
+      { name: 'Seller Two', domain: 'seller-two.example', icon: 'https://cdn.brandfetch.io/synthetic/icon.png' },
+      { name: 'Not a company', domain: 'no domain here' },
+    ] });
+  });
+  await page.route('https://cdn.brandfetch.io/**', route => route.fulfill({ status: 404 }));
+  await page.goto('/');
+  const field = page.getByRole('combobox', { name: 'Your company website' });
+  await field.pressSequentially('Seller', { delay: 40 });
+  const list = page.getByRole('listbox', { name: 'Matching companies' });
+  await expect(list.getByRole('option')).toHaveCount(2);
+  await expect(field).toHaveAttribute('aria-expanded', 'true');
+  await expect(list.locator('.company-option-icon img')).toHaveCount(0);  // a logo that fails to load shows the letter
+  await expect(list.getByRole('option', { name: /Seller Two/ }).locator('.company-option-icon')).toHaveText('S');
+  expect(asked.at(-1)).toBe('Seller');
+  mkdirSync('test-results/screens', { recursive: true });
+  await page.screenshot({ path: `test-results/screens/company-suggestions-${info.project.name}.png` });
+  expect(await noOverflow(page)).toBe(true);
+
+  await field.press('ArrowDown');
+  await field.press('ArrowDown');
+  await expect(list.getByRole('option', { name: /Seller Two/ })).toHaveAttribute('aria-selected', 'true');
+  await field.press('Enter');  // chooses the company; does not start a search
+  await expect(field).toHaveValue('seller-two.example');
+  await expect(list).toHaveCount(0);
+  await expect(page).toHaveURL(/\/$/);
+
+  // An address is not looked up; a name is, and the mouse can choose too; Escape closes the list.
+  const before = asked.length;
+  await field.fill('acme.example');
+  await page.waitForTimeout(500);
+  expect(asked.length).toBe(before);
+  await field.fill('');
+  await field.pressSequentially('Sell', { delay: 40 });
+  await expect(list.getByRole('option')).toHaveCount(2);
+  await field.press('Escape');
+  await expect(list).toHaveCount(0);
+  await field.press('ArrowDown');
+  await list.getByRole('option', { name: /Seller Example/ }).click();
+  await expect(field).toHaveValue('seller.example');
+});
+
 test('video mode renames every company and says so, and outreach still reaches the real company', async ({ page }) => {
   await page.goto('/?video=1');
   await expect(page.getByRole('note').filter({ hasText: 'Video mode: company names changed' })).toBeVisible();
